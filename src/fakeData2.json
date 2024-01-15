@@ -4,7 +4,7 @@
   "title": "فرم ثبت نام",
   "hide_question_number": false,
   "start_time": 1703917976577,
-  "disabled_edit_answer": false,
+  "disabled_edit_answer": true,
   "enable_edit_form": true,
   "locale": "Persian",
   "form_status": "Done",

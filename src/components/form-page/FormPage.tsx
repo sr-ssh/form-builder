@@ -3,18 +3,20 @@ import Box from "@mui/material/Box";
 import PartialTabContainer from "../../core/components/containers/PartialTabContainer";
 import theme from "../../utils/theme/theme";
 import BackgroundStyle from "./BackgroundStyle";
-import form from "../../fakeData.json";
+import form from "../../fakeData4.json";
 import { ThemeType } from "../../@types/ThemeTypes";
 import { FormType, LocaleEnum } from "../../@types/FormTypes";
 import { FormPageContextProvider } from "../../context/FormPageContextProvider";
 import Footer from "./footer/Footer";
 import { Localizer } from "../shared/Localizer";
-import { ThemeProvider, styled } from "@mui/material";
+import { CircularProgress, ThemeProvider, styled } from "@mui/material";
 import Timer from "./Timer";
 import rtlPlugin from "stylis-plugin-rtl";
 import { CacheProvider } from "@emotion/react";
 import createCache from "@emotion/cache";
 import { prefixer } from "stylis";
+import { useEffect, useState } from "react";
+import { AxiosApi } from "../../axios";
 
 const NoActiveMessage = styled(Box)({
   display: "flex",
@@ -27,8 +29,15 @@ const NoActiveMessage = styled(Box)({
   userSelect: "none",
 });
 
+const LoadingStyle = styled(CircularProgress)({
+  position: "relative",
+  right: "44%",
+  top: "50%",
+});
+
 const FormPage = () => {
-  const formData = form as unknown as FormType;
+  const [formData, setFormData] = useState<FormType>();
+  // const formData = form as unknown as FormType;
   const formTheme = form.theme as ThemeType;
 
   const cacheRtl = createCache({
@@ -56,6 +65,18 @@ const FormPage = () => {
       document.getElementById("root")?.setAttribute("dir", "rtl");
       document.documentElement?.setAttribute("dir", "rtl");
       break;
+  }
+
+  useEffect(() => {
+    AxiosApi.GetForm({ form_id: "6592bbc3eb4b963b4936e94f" })
+      .then((res) => {
+        if (res?.form) setFormData(res.form);
+      })
+      .catch((err) => console.error(err));
+  }, []);
+
+  if (!formData || !formData.controls) {
+    return <LoadingStyle />;
   }
 
   return (

@@ -4,11 +4,11 @@
   "title": "فرم ثبت نام",
   "hide_question_number": false,
   "locale": "Persian",
-  "disabled_edit_answer": false,
+  "disabled_edit_answer": true,
   "has_next": true,
   "has_prev": true,
   "enable_edit_form": false,
-  "required_answer": true,
+  "required_answer": false,
   "progress_display_mode": "PageNumber",
   "theme": {
     "padding": {

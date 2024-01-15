@@ -10,6 +10,8 @@ import {
 } from "react-hook-form";
 import { getValidationObject } from "../utils/getValidationObject";
 import {
+  checkEmptyValue,
+  getControl,
   getControlById,
   getControlParentById,
   getDefaultValues,
@@ -20,6 +22,7 @@ import {
 import { useFormPage } from "../hooks/useFormPage";
 import { AxiosApi } from "../axios";
 import { FormStatusEnum, FormValuesType } from "../@types/FormTypes";
+import { PageIndexesType } from "../@types/FormPageTypes";
 
 export const FBContext = createContext<{
   registerControl: (control: ControlType) => any;
@@ -37,7 +40,7 @@ export const FBContext = createContext<{
   ) => void;
   getDefaultValue: (controlId: string) => void;
   getFormValues: () => FormValuesType;
-  isDisabled: () => boolean;
+  isDisabled: (id: string) => boolean;
 }>({} as any);
 
 export const FBContextProvider = memo(
@@ -59,15 +62,30 @@ export const FBContextProvider = memo(
         listenControlChanges: (newControls: ControlType[]) => void;
       };
     }>({});
+    const formController = useForm({
+      defaultValues: controlDefaultValues.current,
+      mode: "onBlur",
+    });
     const { form } = useFormPage({});
     const { submitNext, isPageDisabled } = useFormPage({
       id: getControlParentById(control, form.controls, control.control_id)
         ?.control_id,
-    });
-
-    const formController = useForm({
-      defaultValues: controlDefaultValues.current,
-      mode: "onBlur",
+      onIndexChanged: (indexes: PageIndexesType) => {
+        const newControl = getControl(form.controls, indexes);
+        if (newControl?.control_id === control.control_id) {
+          console.log("resetting", control);
+          formController.reset(undefined, {
+            keepErrors: true,
+            keepDirty: true,
+            keepDirtyValues: true,
+            keepValues: true,
+            keepDefaultValues: true,
+            keepTouched: true,
+            keepIsValid: true,
+            keepSubmitCount: true,
+          });
+        }
+      },
     });
 
     const handleEventId = (
@@ -178,10 +196,13 @@ export const FBContextProvider = memo(
       formSetListenRef.current[id] = { listenControlChanges };
     };
 
-    const isDisabled = () => {
+    const isDisabled = (id: string) => {
       if (!form.enable_edit_form && form.form_status === FormStatusEnum.Done)
         return true;
       if (!form.disabled_edit_answer) return false;
+      if (checkEmptyValue(formController.getValues(id))) {
+        return false;
+      }
       if (formController.formState.isSubmitted || isPageDisabled()) {
         return true;
       }

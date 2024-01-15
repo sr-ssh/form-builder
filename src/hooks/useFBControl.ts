@@ -10,6 +10,6 @@ export const useFBControl = (control: ControlType) => {
     submitForm,
     getControlErrors: () => getControlErrors(control.control_id),
     getFormValues,
-    isDisabled: isDisabled(),
+    isDisabled: control.control_id ? isDisabled(control.control_id) : false,
   };
 };

@@ -136,19 +136,21 @@ const FileUpload = ({ control }: FileUploadPropsType) => {
       {file && fileUrl ? (
         <Box position="relative" display="flex">
           <FileDisplay fileUrl={fileUrl} file={file} />
-          <RemoveFile
-            onClick={() => {
-              setFile(undefined);
-              if (inputRef.current) inputRef.current.value = "";
-              onChange({
-                target: {
-                  name: control.control_id,
-                },
-              });
-            }}
-          >
-            <ClearIcon />
-          </RemoveFile>
+          {!isDisabled && (
+            <RemoveFile
+              onClick={() => {
+                setFile(undefined);
+                if (inputRef.current) inputRef.current.value = "";
+                onChange({
+                  target: {
+                    name: control.control_id,
+                  },
+                });
+              }}
+            >
+              <ClearIcon />
+            </RemoveFile>
+          )}
         </Box>
       ) : null}
 
