@@ -1,0 +1,104 @@
+{
+  "form_id": "form_id_1",
+  "type": "Form",
+  "title": "فرم ثبت نام",
+  "hide_question_number": false,
+  "locale": "Persian",
+  "has_next": true,
+  "has_prev": true,
+  "progress_display_mode": "PageNumber",
+  "theme": {
+    "padding": {
+      "horizontal": 10,
+      "vertical": 10
+    },
+    "theme_id": "dfdd",
+    "name": "پیش فرض 1",
+    "is_default": true,
+    "background": {
+      "color": "#f5f5f5"
+    },
+    "font_name": "IRANSans",
+    "font_size": 14,
+    "labels_style": {
+      "font_size": 16,
+      "text_color": "#333333"
+    },
+
+    "controls_style": {
+      "border": {
+        "top": "1px solid #333",
+        "left": "1px solid #333",
+        "right": "1px solid #333",
+        "bottom": "1px solid #333"
+      },
+      "shadow": "none",
+      "padding": {
+        "horizontal": 20,
+        "vertical": 10
+      },
+      "margin": {
+        "horizontal": 20
+      },
+      "background_color": "#fff",
+      "radius": 18,
+      "text_color": "#333"
+    },
+
+    "placeholders_style": {
+      "text_color": "#333",
+      "margin": {
+        "horizontal": 20
+      }
+    },
+
+    "groups_style": {},
+
+    "buttons_style": {
+      "border": {
+        "top": "1px solid #118EB7",
+        "left": "1px solid #118EB7",
+        "right": "1px solid #118EB7",
+        "bottom": "1px solid #118EB7"
+      },
+      "shadow": "none",
+      "background_color": "#118EB7",
+      "text_color": "#fff"
+    }
+  },
+  "layout": { "floating_box": false },
+  "values": {},
+  "controls": [
+    {
+      "control_id": "control_id_0",
+      "type": "PlaceHolder",
+      "label_text": "خوش آمدید",
+      "placeholder_info": {
+        "description": "برای پرکردن این پرسشنامه به ۲ دقیقه زمان نیاز دارید.",
+        "type": "Start",
+        "start_caption": "برای شروع کلیک کنید"
+      }
+    },
+    {
+      "control_id": "control_id_3",
+      "type": "Group",
+      "label_text": "تقویم‌ها",
+      "file_url": "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf",
+      "group_info": {
+        "type": "FormSet",
+        "page_no_type": "Number",
+        "description": "عدد برای شماره سوال کنترل‌ها",
+        "title": "تقویم‌ها",
+        "controls": [
+          {
+            "control_id": "control_id_3_2",
+            "type": "DatePicker",
+            "label_text": "تاریخ تولد به میلادی",
+            "date_picker_info": { "type": "Christian" },
+            "validations": [{ "type": "Required" }]
+          }
+        ]
+      }
+    }
+  ]
+}

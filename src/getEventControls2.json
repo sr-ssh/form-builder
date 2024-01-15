@@ -1,0 +1,35 @@
+{
+  "controls": [
+    {
+      "control_id": "control_id_city",
+      "type": "DropDown",
+      "label_text": "شهر",
+      "is_hidden": false,
+      "dropdown_info": {
+        "searchable": true,
+        "options": [
+          { "value": 0, "text": "مشهد" },
+          { "value": 1, "text": "نیشابور" },
+          { "value": 2, "text": "سبزوار" },
+          { "value": 3, "text": "تربت حیدریه" },
+          { "value": 4, "text": "قوچان" },
+          { "value": 5, "text": "گناباد" },
+          { "value": 6, "text": "عشق آباد" },
+          { "value": 7, "text": "کاشمر" },
+          { "value": 8, "text": "تایباد" },
+          { "value": 9, "text": "تربت جام" },
+          { "value": 10, "text": "خواف" },
+          { "value": 11, "text": "بردسکن" },
+          { "value": 12, "text": "فریمان" },
+          { "value": 13, "text": "سرخس" },
+          { "value": 14, "text": "رشتخوار" },
+          { "value": 15, "text": "باخرز" },
+          { "value": 16, "text": "صالح آباد" },
+          { "value": 17, "text": "بجستان" },
+          { "value": 18, "text": "گوگان" }
+        ]
+      },
+      "validations": [{ "type": "Required" }]
+    }
+  ]
+}

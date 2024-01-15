@@ -1,0 +1,250 @@
+{
+  "form_id": "form_id_1",
+  "type": "Form",
+  "title": "فرم ثبت نام",
+  "hide_question_number": false,
+  "locale": "Persian",
+  "has_next": true,
+  "has_prev": true,
+  "form_status": "Done",
+  "enable_edit_form": true,
+  "theme": {
+    "padding": {
+      "horizontal": 10,
+      "vertical": 10
+    },
+    "theme_id": "dfdd",
+    "name": "پیش فرض 1",
+    "is_default": true,
+    "background": {
+      "color": "#f5f5f5"
+    },
+    "font_name": "IRANSans",
+    "font_size": 14,
+    "labels_style": {
+      "font_size": 18,
+      "font_weight": "600",
+      "text_color": "#333333"
+    },
+
+    "controls_style": {
+      "border": {
+        "top": "1px solid #333",
+        "left": "1px solid #333",
+        "right": "1px solid #333",
+        "bottom": "1px solid #333"
+      },
+      "shadow": "none",
+      "padding": {
+        "horizontal": 20,
+        "vertical": 10
+      },
+      "margin": {
+        "horizontal": 20
+      },
+      "background_color": "#fff",
+      "radius": 18,
+      "text_color": "#333",
+      "font_size": 20
+    },
+
+    "placeholders_style": {
+      "text_color": "#333",
+      "margin": {
+        "horizontal": 20
+      }
+    },
+
+    "groups_style": {},
+
+    "buttons_style": {
+      "border": {
+        "top": "1px solid #118EB7",
+        "left": "1px solid #118EB7",
+        "right": "1px solid #118EB7",
+        "bottom": "1px solid #118EB7"
+      },
+      "shadow": "none",
+      "background_color": "#118EB7",
+      "text_color": "#fff"
+    }
+  },
+  "layout": { "floating_box": true },
+  "values": {
+    "control_id_1": "ریحانه",
+    "control_id_2": 1,
+    "control_id_7": "هلتنسی مبسیمبتسی بسیمنبتسی بتمن ینبت بین.",
+    "control_id_6": 1,
+    "control_id_5": 1700305220701
+  },
+  "controls": [
+    {
+      "control_id": "control_id_0",
+      "type": "PlaceHolder",
+      "label_text": "خوش آمدید",
+      "placeholder_info": {
+        "description": "برای پرکردن این پرسشنامه به ۲ دقیقه زمان نیاز دارید.",
+        "type": "Start",
+        "start_caption": "برای شروع کلیک کنید"
+      }
+    },
+    {
+      "control_id": "control_id_1",
+      "type": "TextBox",
+      "label_text": "نام و نام‌خانوادگی",
+      "textbox_info": { "type": "Text" },
+      "description": "ینمبتی ینبتسی نتب نیتبنیب نیتبن نب نتب نیتب نتهتثنصضجتم یبخح.",
+      "file_url": "https://dfstudio-d420.kxcdn.com/wordpress/wp-content/uploads/2019/06/digital_camera_photo-980x653.jpg",
+      "validations": [
+        { "type": "Required" },
+        { "type": "Regex", "regex_pattern": "/^[\u0600-\u06FFs]+$/" }
+      ]
+    },
+    {
+      "control_id": "control_id_2",
+      "type": "DropDown",
+      "description": "ینمبتی ینبتسی نتب نیتبنیب نیتبن نب نتب نیتب نتهتثنصضجتم یبخح.",
+      "label_text": "جنسیت",
+      "file_url": "https://www.learningcontainer.com/wp-content/uploads/2020/05/sample-mp4-file.mp4",
+      "dropdown_info": {
+        "searchable": true,
+        "options": [
+          { "value": 0, "text": "زن" },
+          { "value": 1, "text": "مرد" }
+        ]
+      },
+      "conditions": [
+        {
+          "type": "ThenGo",
+          "then_control_id": "control_id_4",
+          "when_control_id": "control_id_2",
+          "conditions": [
+            {
+              "control_id": "control_id_2",
+              "condition_type": "Equal",
+              "condition_value": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "control_id": "control_id_3",
+      "type": "Group",
+      "file_url": "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf",
+      "group_info": {
+        "type": "FormSet",
+        "title": "اطلاعات حقوقی",
+        "controls": [
+          {
+            "control_id": "control_id_5",
+            "type": "DatePicker",
+            "description": "ینمبتی ینبتسی نتب نیتبنیب نیتبن نب نتب نیتب نتهتثنصضجتم یبخح.",
+            "label_text": "تاریخ تولد",
+            "date_picker_info": { "type": "Jalali" }
+          },
+          {
+            "control_id": "control_id_6",
+            "type": "MultipleOption",
+            "description": "ینمبتی ینبتسی نتب نیتبنیب نیتبن نب نتب نیتب نتهتثنصضجتم یبخح.",
+            "label_text": "مقطع تحصیلی",
+            "multiple_option_info": {
+              "type": "Text",
+              "multi_select": false,
+              "randomize_option_number": false,
+              "arrange_type": "Vertical",
+              "options": [
+                { "text": "دیپلم", "value": 0 },
+                { "text": "کارشناسی", "value": 1 },
+                { "text": "ارشد", "value": 2 }
+              ]
+            },
+            "validations": [{ "type": "Required" }],
+            "conditions": [
+              {
+                "type": "ThenShow",
+                "then_control_id": "control_id_6_1",
+                "when_control_id": "control_id_6",
+                "conditions": [
+                  {
+                    "control_id": "control_id_6",
+                    "condition_type": "Equal",
+                    "condition_value": 2
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "control_id": "control_id_6_1",
+            "type": "DatePicker",
+            "label_text": "تاریخ اخذ مدرک",
+            "date_picker_info": { "type": "Jalali" }
+          }
+        ]
+      }
+    },
+    {
+      "control_id": "control_id_4",
+      "type": "Group",
+      "group_info": {
+        "type": "FormSet",
+        "title": "آدرس",
+        "controls": [
+          {
+            "control_id": "control_id_7",
+            "description": "ینمبتی ینبتسی نتب نیتبنیب نیتبن نب نتب نیتب نتهتثنصضجتم یبخح.",
+            "type": "TextArea",
+            "label_text": "توضیحات",
+            "textarea_info": { "line_count": 3, "max_line": 4 }
+          },
+          {
+            "control_id": "control_id_8",
+            "type": "PlaceHolder",
+            "label_text": "قوانین",
+            "placeholder_info": {
+              "description": "قوانین را خوانده و تایید می‌نمایم.",
+              "type": "End"
+            }
+          },
+          {
+            "control_id": "control_id_9",
+            "type": "FileUpload",
+            "label_text": "کارت ملی",
+            "file_upload_info": {
+              "file_type": "Image",
+              "allowed_extensions": ["jpg"],
+              "max_size": 1000
+            },
+            "validations": [{ "type": "Required" }]
+          }
+        ]
+      }
+    },
+    {
+      "control_id": "control_id_11",
+      "description": "ینمبتی ینبتسی نتب نیتبنیب نیتبن نب نتب نیتب نتهتثنصضجتم یبخح.",
+      "type": "TextArea",
+      "label_text": "توضیحات",
+      "textarea_info": { "line_count": 3, "max_line": 4 }
+    },
+    {
+      "control_id": "control_id_12",
+      "type": "PlaceHolder",
+      "label_text": "تشکر",
+      "placeholder_info": {
+        "description": "از زمان شما ممنونیم.",
+        "type": "End"
+      }
+    },
+    {
+      "control_id": "control_id_13",
+      "type": "PlaceHolder",
+      "label_text": "2قوانین",
+      "placeholder_info": {
+        "description": "قوانین را خوانده و تایید می‌نمایم.",
+        "type": "End"
+      }
+    }
+  ]
+}

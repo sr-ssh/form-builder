@@ -1,0 +1,35 @@
+{
+  "controls": [
+    {
+      "control_id": "control_id_city",
+      "type": "DropDown",
+      "label_text": "شهر",
+      "is_hidden": false,
+      "dropdown_info": {
+        "searchable": true,
+        "options": [
+          { "value": 0, "text": "بوشهر" },
+          { "value": 1, "text": "برازجان" },
+          { "value": 2, "text": "خرمشهر" },
+          { "value": 3, "text": "عسلویه" },
+          { "value": 4, "text": "کنگان" },
+          { "value": 5, "text": "دیر" },
+          { "value": 6, "text": "جم" },
+          { "value": 7, "text": "ریشهر" },
+          { "value": 8, "text": "گناوه" },
+          { "value": 9, "text": "دشتستان" },
+          { "value": 10, "text": "دشتی" },
+          { "value": 11, "text": "کاکی" },
+          { "value": 12, "text": "عالی شهر" },
+          { "value": 13, "text": "آب‌پخش" },
+          { "value": 14, "text": "انارستان" },
+          { "value": 15, "text": "شبانکاره" },
+          { "value": 16, "text": "خورموج" },
+          { "value": 17, "text": "بادوله" },
+          { "value": 18, "text": "تنگ ارم" }
+        ]
+      },
+      "validations": [{ "type": "Required" }]
+    }
+  ]
+}

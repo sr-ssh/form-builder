@@ -1,0 +1,498 @@
+{
+  "form_id": "form_id_1",
+  "type": "Form",
+  "title": "فرم ثبت نام",
+  "hide_question_number": false,
+  "locale": "Persian",
+  "disabled_edit_answer": false,
+  "has_next": true,
+  "has_prev": true,
+  "enable_edit_form": false,
+  "required_answer": true,
+  "progress_display_mode": "PageNumber",
+  "theme": {
+    "padding": {
+      "horizontal": 10,
+      "vertical": 10
+    },
+    "theme_id": "dfdd",
+    "name": "پیش فرض 1",
+    "is_default": true,
+    "background": {
+      "color": "#f5f5f5"
+    },
+    "font_name": "IRANSans",
+    "font_size": 14,
+    "labels_style": {
+      "font_size": 16,
+      "text_color": "#333333"
+    },
+
+    "controls_style": {
+      "border": {
+        "top": "1px solid #333",
+        "left": "1px solid #333",
+        "right": "1px solid #333",
+        "bottom": "1px solid #333"
+      },
+      "shadow": "none",
+      "padding": {
+        "horizontal": 20,
+        "vertical": 10
+      },
+      "margin": {
+        "horizontal": 20
+      },
+      "background_color": "#fff",
+      "radius": 18,
+      "text_color": "#333"
+    },
+
+    "placeholders_style": {
+      "text_color": "#333",
+      "margin": {
+        "horizontal": 20
+      }
+    },
+
+    "groups_style": {},
+
+    "buttons_style": {
+      "border": {
+        "top": "1px solid #118EB7",
+        "left": "1px solid #118EB7",
+        "right": "1px solid #118EB7",
+        "bottom": "1px solid #118EB7"
+      },
+      "shadow": "none",
+      "background_color": "#118EB7",
+      "text_color": "#fff"
+    }
+  },
+  "layout": { "floating_box": false },
+  "values": {},
+  "controls": [
+    {
+      "control_id": "control_id_0",
+      "type": "PlaceHolder",
+      "label_text": "خوش آمدید",
+      "placeholder_info": {
+        "description": "برای پرکردن این پرسشنامه به ۲ دقیقه زمان نیاز دارید.",
+        "type": "Start",
+        "start_caption": "برای شروع کلیک کنید"
+      }
+    },
+    {
+      "control_id": "control_id_1",
+      "type": "Group",
+      "label_text": "انواع تکست فیلد ها",
+      "file_url": "https://dfstudio-d420.kxcdn.com/wordpress/wp-content/uploads/2019/06/digital_camera_photo-980x653.jpg",
+      "group_info": {
+        "type": "FormSet",
+        "title": "انواع تکست فیلد‌ها",
+        "controls": [
+          {
+            "control_id": "control_id_1_0",
+            "type": "TextBox",
+            "label_text": "نام و نام خانوادگی",
+            "description": "حتما حروف فارسی وارد کنید.",
+            "textbox_info": { "type": "Persian" },
+            "validations": [
+              { "type": "Persian", "regex_pattern": "/^[\u0600-\u06FF\\s]+$/" }
+            ]
+          },
+          {
+            "control_id": "control_id_1_1",
+            "type": "TextBox",
+            "label_text": "سن",
+            "textbox_info": { "type": "Number" },
+            "validations": [
+              {
+                "type": "Number",
+                "regex_pattern": "/^\\d+$/"
+              }
+            ]
+          },
+          {
+            "control_id": "control_id_1_2",
+            "type": "TextBox",
+            "label_text": "ایمیل",
+            "textbox_info": { "type": "Email" },
+            "validations": [
+              {
+                "type": "Email",
+                "regex_pattern": "/^[w.[a-z0-9]+@[a-z]+.[a-z]{2,3}/"
+              }
+            ]
+          },
+          {
+            "control_id": "control_id_1_3",
+            "type": "TextBox",
+            "label_text": "آدرس سایت مورد علاقه",
+            "textbox_info": { "type": "Url" },
+            "validations": [
+              {
+                "type": "Url",
+                "regex_pattern": "/^(https?|ftp):\\/\\/[^\\s/$.?#].[^\\s]*$/"
+              }
+            ]
+          },
+          {
+            "control_id": "control_id_1_4",
+            "type": "TextBox",
+            "label_text": "نام و نام خانوادگی به انگلیسی",
+            "textbox_info": { "type": "Latin" },
+            "validations": [
+              {
+                "type": "Latin",
+                "regex_pattern": "/^[a-zA-Z\\s]+$/"
+              }
+            ]
+          },
+          {
+            "control_id": "control_id_1_5",
+            "type": "TextBox",
+            "label_text": "شماره تلفن همراه",
+            "textbox_info": { "type": "Mobile" },
+            "validations": [
+              {
+                "type": "Mobile",
+                "regex_pattern": "/^09\\d{9}$/"
+              }
+            ]
+          },
+          {
+            "control_id": "control_id_1_6",
+            "type": "TextBox",
+            "label_text": "کدپستی",
+            "textbox_info": { "type": "PostalCode" },
+            "validations": [
+              {
+                "type": "PostalCode",
+                "regex_pattern": "\b(?!(\\d)\\1{3})[13-9]{4}[1346-9][013-9]{5}\b"
+              }
+            ]
+          },
+          {
+            "control_id": "control_id_1_7",
+            "type": "TextBox",
+            "label_text": "کدملی",
+            "textbox_info": { "type": "NationalId" },
+            "validations": [
+              {
+                "type": "NationalId",
+                "regex_pattern": "^(?!(\\d)\\1{9})\\d{10}$"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "control_id": "control_id_2",
+      "type": "Group",
+      "label_text": "انواع فایل ها",
+      "file_url": "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf",
+      "group_info": {
+        "type": "FormSet",
+        "title": "انواع فایل ها",
+        "description": "بدون شماره سوال برای کنترل ها",
+        "page_no_type": "None",
+        "controls": [
+          {
+            "control_id": "control_id_2_1",
+            "type": "TextArea",
+            "label_text": "توضیحات",
+            "textarea_info": { "line_count": 3, "max_line": 4 }
+          },
+          {
+            "control_id": "control_id_2_2",
+            "type": "FileUpload",
+            "label_text": "کارت ملی",
+            "file_upload_info": {
+              "file_type": "Image",
+              "allowed_extensions": ["jpg"],
+              "max_size": 1000
+            }
+          },
+          {
+            "control_id": "control_id_2_3",
+            "type": "FileUpload",
+            "label_text": "ویدیو",
+            "file_upload_info": {
+              "file_type": "Video",
+              "allowed_extensions": ["mp4"]
+            }
+          },
+          {
+            "control_id": "control_id_2_4",
+            "type": "FileUpload",
+            "label_text": "فایل صوتی",
+            "file_upload_info": {
+              "file_type": "Voice",
+              "allowed_extensions": ["mp3"]
+            }
+          },
+          {
+            "control_id": "control_id_2_5",
+            "type": "FileUpload",
+            "label_text": "داکیومنت",
+            "file_upload_info": {
+              "file_type": "Doc",
+              "allowed_extensions": ["pdf"]
+            }
+          },
+          {
+            "control_id": "control_id_2_6",
+            "type": "FileUpload",
+            "label_text": "فایل فشرده",
+            "file_upload_info": {
+              "file_type": "Zip",
+              "allowed_extensions": ["zip"]
+            }
+          },
+          {
+            "control_id": "control_id_2_7",
+            "type": "FileUpload",
+            "label_text": "فایل",
+            "file_upload_info": {
+              "file_type": "Any"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "control_id": "control_id_3",
+      "type": "Group",
+      "label_text": "تقویم‌ها",
+      "file_url": "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf",
+      "group_info": {
+        "type": "FormSet",
+        "page_no_type": "Number",
+        "description": "عدد برای شماره سوال کنترل‌ها",
+        "title": "تقویم‌ها",
+        "controls": [
+          {
+            "control_id": "control_id_3_1",
+            "type": "DatePicker",
+            "label_text": "تاریخ تولد",
+            "date_picker_info": { "type": "Jalali" }
+          },
+          {
+            "control_id": "control_id_3_2",
+            "type": "DatePicker",
+            "label_text": "تاریخ تولد به میلادی",
+            "date_picker_info": { "type": "Christian" }
+          },
+          {
+            "control_id": "control_id_3_3",
+            "type": "DatePicker",
+            "label_text": "ساعت ورود",
+            "date_picker_info": { "type": "Time" }
+          }
+        ]
+      }
+    },
+    {
+      "control_id": "control_id_4",
+      "type": "Group",
+      "label_text": "انواع multiple options",
+      "file_url": "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf",
+      "group_info": {
+        "type": "FormSet",
+        "description": "استفاده از حروف الفبا برای شماره‌گذاری کنترل‌ها",
+        "page_no_type": "PersianAlphabet",
+        "title": "انواع multiple options",
+        "controls": [
+          {
+            "control_id": "control_id_4_1",
+            "type": "MultipleOption",
+            "label_text": "مقطع تحصیلی",
+            "multiple_option_info": {
+              "type": "Text",
+              "default_selected_index": 1,
+              "multi_select": false,
+              "randomize_option_number": false,
+              "arrange_type": "Vertical",
+              "options": [
+                { "text": "دیپلم", "value": 0 },
+                { "text": "کارشناسی", "value": 1 },
+                { "text": "ارشد", "value": 2 }
+              ]
+            }
+          },
+          {
+            "control_id": "control_id_4_2",
+            "type": "MultipleOption",
+            "label_text": "ژانر‌های مورد علاقه",
+            "multiple_option_info": {
+              "type": "Text",
+              "multi_select": true,
+              "randomize_option_number": false,
+              "arrange_type": "Vertical",
+              "default_selected_index": 1,
+              "options": [
+                { "text": "ترسناک", "value": 0 },
+                { "text": "تخیلی", "value": 1 },
+                { "text": "درام", "value": 2 }
+              ]
+            }
+          },
+          {
+            "control_id": "control_id_4_3",
+            "type": "MultipleOption",
+            "label_text": "رنگ مورد علاقه",
+            "multiple_option_info": {
+              "type": "Text",
+              "multi_select": true,
+              "randomize_option_number": false,
+              "arrange_type": "Horizontal",
+              "options": [
+                { "text": "ابی", "value": 0 },
+                { "text": "قرمز", "value": 1 },
+                { "text": "زرد", "value": 2 }
+              ]
+            }
+          },
+          {
+            "control_id": "control_id_4_4",
+            "type": "MultipleOption",
+            "label_text": "سوال امتحان",
+            "description": "رندم بودن ترتیب گزینه‌‌ها",
+            "multiple_option_info": {
+              "type": "Text",
+              "multi_select": false,
+              "randomize_option_number": true,
+              "arrange_type": "Vertical",
+              "options": [
+                { "text": "گزینه اول", "value": 0 },
+                { "text": "گزینه دوم", "value": 1 },
+                { "text": "هیچکدام", "value": 2 }
+              ]
+            }
+          },
+          {
+            "control_id": "control_id_4_5",
+            "type": "MultipleOption",
+            "label_text": "شهر مورد علاقه",
+            "multiple_option_info": {
+              "type": "Image",
+              "multi_select": false,
+              "randomize_option_number": false,
+              "arrange_type": "Vertical",
+              "options": [
+                {
+                  "text": "نیویورک",
+                  "value": 0,
+                  "image_url": "https://www.hellenicdailynewsny.com/images/new-york-city-.jpg"
+                },
+                {
+                  "text": "هند",
+                  "value": 1,
+                  "image_url": "https://www.thetimes.co.uk/travel/wp-content/uploads/sites/6/2022/04/Tawang-india-guesthouse-alamy-2AJEGND.jpeg"
+                },
+                {
+                  "text": "لندن",
+                  "value": 2,
+                  "image_url": "https://dandg.azureedge.net/cache/c/4/b/5/5/8/c4b5588929a134098233f42bdb21aa13d18fe456.jpg"
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "control_id": "control_id_5",
+      "type": "Group",
+      "label_text": "انواع drop down ها",
+      "file_url": "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf",
+      "group_info": {
+        "type": "FormSet",
+        "page_no_type": "EnglishAlphabet",
+        "description": "استفاده از حروف انگلیسی برای نام‌گذاری کنترل‌ها",
+        "title": "انواع drop down ها",
+        "controls": [
+          {
+            "control_id": "control_id_5_1",
+            "type": "DropDown",
+            "label_text": "جنسیت",
+            "file_url": "https://www.learningcontainer.com/wp-content/uploads/2020/05/sample-mp4-file.mp4",
+            "dropdown_info": {
+              "searchable": false,
+              "options": [
+                { "value": 0, "text": "زن" },
+                { "value": 1, "text": "مرد" }
+              ]
+            }
+          },
+          {
+            "control_id": "control_id_5_2",
+            "type": "DropDown",
+            "label_text": "استان",
+            "dropdown_info": {
+              "searchable": true,
+              "options": [
+                { "value": 0, "text": "آذربایجان شرقی" },
+                { "value": 1, "text": "آذربایجان غربی" },
+                { "value": 2, "text": "اردبیل" },
+                { "value": 3, "text": "اصفهان" },
+                { "value": 4, "text": "البرز" },
+                { "value": 5, "text": "ایلام" },
+                { "value": 6, "text": "بوشهر" },
+                { "value": 7, "text": "تهران" },
+                { "value": 8, "text": "چهارمحال و بختیاری" },
+                { "value": 9, "text": "خراسان جنوبی" },
+                { "value": 10, "text": "خراسان رضوی" }
+              ]
+            }
+          },
+          {
+            "control_id": "control_id_5_3",
+            "type": "DropDown",
+            "label_text": "سن",
+            "dropdown_info": {
+              "searchable": false,
+              "options": [
+                { "value": 0, "text": "۰-۱۵" },
+                { "value": 1, "text": "۱۵-۳۰" },
+                { "value": 2, "text": "۳۰-۴۵" },
+                { "value": 3, "text": "۴۵-۱۰۰" },
+                { "value": 4, "text": "۴۵-۱۰۰" },
+                { "value": 5, "text": "۴۵-۱۰۰" }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "control_id": "control_id_6",
+      "type": "Group",
+      "group_info": {
+        "type": "FormSet",
+        "controls": [
+          {
+            "control_id": "control_id_6_1",
+            "type": "PlaceHolder",
+            "label_text": "قوانین",
+            "placeholder_info": {
+              "description": "لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد. کتابهای زیادی در شصت و سه درصد گذشته، حال و آینده شناخت فراوان جامعه و متخصصان را می طلبد تا با نرم افزارها شناخت بیشتری را برای طراحان رایانه ای علی الخصوص طراحان خلاقی و فرهنگ پیشرو در زبان فارسی ایجاد کرد. در این صورت می توان امید داشت که تمام و دشواری موجود در ارائه راهکارها و شرایط سخت تایپ به پایان رسد وزمان مورد نیاز شامل حروفچینی دستاوردهای اصلی و جوابگوی سوالات پیوسته اهل دنیای موجود طراحی اساسا مورد استفاده قرار گیرد.",
+              "type": "Note"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "control_id": "control_id_12",
+      "type": "PlaceHolder",
+      "label_text": "تشکر",
+      "placeholder_info": {
+        "description": "از زمان شما ممنونیم.",
+        "type": "End"
+      }
+    }
+  ]
+}

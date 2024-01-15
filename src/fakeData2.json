@@ -1,0 +1,304 @@
+{
+  "form_id": "form_id_1",
+  "type": "Form",
+  "title": "فرم ثبت نام",
+  "hide_question_number": false,
+  "start_time": 1703917976577,
+  "disabled_edit_answer": false,
+  "enable_edit_form": true,
+  "locale": "Persian",
+  "form_status": "Done",
+  "theme": {
+    "theme_id": "dfdd",
+    "name": "پیش فرض 1",
+    "is_default": true,
+    "padding": {
+      "horizontal": 10,
+      "vertical": 10
+    },
+    "background": {
+      "color": "#f5fdff"
+    },
+    "font_name": "IRANSans",
+    "font_size": 14,
+    "labels_style": {
+      "font_size": 18,
+      "font_weight": "600",
+      "text_color": "#f15976"
+    },
+
+    "controls_style": {
+      "border": {
+        "top": "1px solid #67cae0",
+        "left": "1px solid #67cae0",
+        "right": "1px solid #67cae0",
+        "bottom": "1px solid #67cae0"
+      },
+      "shadow": "inset 0 0 0 .125rem #67cae0",
+      "padding": {
+        "horizontal": 20,
+        "vertical": 10
+      },
+      "margin": {
+        "horizontal": 20
+      },
+      "background_color": "#f5fdff",
+      "radius": 18,
+      "text_color": "#f15976"
+    },
+
+    "placeholders_style": {
+      "text_color": "#f15976",
+      "margin": {
+        "horizontal": 20
+      }
+    },
+
+    "groups_style": {},
+
+    "buttons_style": {
+      "border": {
+        "top": "1px solid #67cae0",
+        "left": "1px solid #67cae0",
+        "right": "1px solid #67cae0",
+        "bottom": "1px solid #67cae0"
+      },
+      "shadow": "none",
+      "background_color": "#67cae0",
+      "text_color": "#000"
+    }
+  },
+  "layout": { "floating_box": false },
+  "values": {
+    "control_id_1_1": "r.sadatshokouhi@gmail.com",
+    "control_id_1_2": 1,
+    "control_id_1_3": "ریحانه",
+    "control_id_1_4": "سادات شکوهی",
+    "control_id_2_1": 7,
+    "control_id_2_3": "میدان ونک خیابان برزیل",
+    "control_id_2_4": 123456789,
+    "control_id_3_3": "09307580142",
+    "control_id_3_4": "098765432123456",
+    "control_id_4_3": "34567812345"
+  },
+
+  "controls": [
+    {
+      "control_id": "control_id_0",
+      "type": "PlaceHolder",
+      "label_text": "خوش آمدید",
+      "placeholder_info": {
+        "description": "برای پرکردن این پرسشنامه به ۲ دقیقه زمان نیاز دارید.",
+        "type": "Start",
+        "start_caption": "برای شروع کلیک کنید"
+      }
+    },
+    {
+      "control_id": "control_id_1",
+      "type": "Group",
+      "group_info": {
+        "type": "FormSet",
+        "title": "اطلاعات شخصی",
+        "description": "لطفا اطلاعات شخصی توسعه‌دهنده را تکمیل کنید.",
+        "controls": [
+          {
+            "control_id": "control_id_1_1",
+            "type": "TextBox",
+            "label_text": "ایمیل",
+            "textbox_info": { "type": "Email" },
+            "validations": [
+              { "type": "Required" },
+              {
+                "type": "Email",
+                "regex_pattern": "/^[w.[a-z0-9]+@[a-z]+.[a-z]{2,3}/"
+              }
+            ]
+          },
+          {
+            "control_id": "control_id_1_2",
+            "type": "DropDown",
+            "label_text": "نوع اکانت کاربری",
+            "dropdown_info": {
+              "searchable": false,
+              "options": [
+                { "value": 0, "text": "حقوقی" },
+                { "value": 1, "text": "حقیقی" }
+              ]
+            },
+            "validations": [{ "type": "Required" }]
+          },
+          {
+            "control_id": "control_id_1_3",
+            "type": "TextBox",
+            "label_text": "نام",
+            "textbox_info": { "type": "Persian" },
+            "validations": [
+              { "type": "Required" },
+              {
+                "type": "Persian",
+                "regex_pattern": "/^[\u0600-\u06FF\\s]+$/"
+              }
+            ]
+          },
+          {
+            "control_id": "control_id_1_4",
+            "type": "TextBox",
+            "label_text": "نام خانوادگی",
+            "textbox_info": { "type": "Persian" },
+            "validations": [
+              { "type": "Required" },
+              {
+                "type": "Persian",
+                "regex_pattern": "/^[\u0600-\u06FF\\s]+$/"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "control_id": "control_id_2",
+      "type": "Group",
+      "group_info": {
+        "type": "FormSet",
+        "title": "اطلاعات آدرس",
+        "description": "اطلاعات آدرس خود را وارد کنید.",
+        "controls": [
+          {
+            "control_id": "control_id_province",
+            "type": "DropDown",
+            "label_text": "استان",
+            "dropdown_info": {
+              "searchable": false,
+              "options": [
+                { "value": 0, "text": "بوشهر" },
+                { "value": 1, "text": "تهران" },
+                { "value": 2, "text": "خراسان رضوی" }
+              ]
+            },
+            "event_id": "control_id_event_id",
+            "validations": [{ "type": "Required" }]
+          },
+          {
+            "control_id": "control_id_city",
+            "type": "DropDown",
+            "is_hidden": true,
+            "label_text": "شهر",
+            "dropdown_info": {
+              "searchable": true,
+              "options": []
+            },
+            "validations": [{ "type": "Required" }]
+          },
+          {
+            "control_id": "control_id_2_3",
+            "type": "TextBox",
+            "label_text": "آدرس",
+            "textbox_info": { "type": "Persian" },
+            "validations": [
+              { "type": "Required" },
+              {
+                "type": "Persian",
+                "regex_pattern": "/^[\u0600-\u06FF\\s]+$/"
+              }
+            ]
+          },
+          {
+            "control_id": "control_id_2_4",
+            "type": "TextBox",
+            "label_text": "کدپستی",
+            "textbox_info": { "type": "Number" },
+            "validations": [
+              { "type": "Required" },
+              {
+                "type": "Number",
+                "regex_pattern": "/^\\d+$/"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "control_id": "control_id_3",
+      "type": "Group",
+      "group_info": {
+        "type": "FormSet",
+        "title": "اطلاعات تماس",
+        "description": "اطلاعات تماس خود را وارد کنید.",
+        "controls": [
+          {
+            "control_id": "control_id_3_3",
+            "type": "TextBox",
+            "label_text": "شماره تلفن همراه",
+            "textbox_info": { "type": "Mobile" },
+            "validations": [
+              { "type": "Required" },
+              {
+                "type": "Mobile",
+                "regex_pattern": "/^09\\d{9}$/"
+              }
+            ]
+          },
+          {
+            "control_id": "control_id_3_4",
+            "type": "TextBox",
+            "label_text": "شماره تماس اضطراری",
+            "textbox_info": { "type": "Number" },
+            "validations": [
+              { "type": "Required" },
+              {
+                "type": "Number",
+                "regex_pattern": "/^\\d+$/"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "control_id": "control_id_4",
+      "type": "Group",
+      "group_info": {
+        "type": "FormSet",
+        "title": "تصاویر کارت ملی",
+        "controls": [
+          {
+            "control_id": "control_id_4_3",
+            "type": "TextBox",
+            "label_text": "کدملی",
+            "textbox_info": { "type": "Number" },
+            "validations": [
+              { "type": "Required" },
+              {
+                "type": "Number",
+                "regex_pattern": "/^\\d+$/"
+              }
+            ]
+          },
+          {
+            "control_id": "control_id_9",
+            "type": "FileUpload",
+            "label_text": "تصویر روی کارت ملی",
+            "description": "شما می‌توانید با کلیک کردن رو این قسمت فایل خود را انتخاب کنید .",
+            "file_upload_info": {
+              "file_type": "Image",
+              "allowed_extensions": ["jpg"],
+              "max_size": 1000
+            },
+            "validations": [{ "type": "Required" }]
+          }
+        ]
+      }
+    },
+    {
+      "control_id": "control_id_12",
+      "type": "PlaceHolder",
+      "label_text": "تشکر",
+      "placeholder_info": {
+        "description": "از زمان شما ممنونیم.",
+        "type": "End"
+      }
+    }
+  ]
+}

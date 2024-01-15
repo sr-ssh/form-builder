@@ -1,0 +1,34 @@
+{
+  "controls": [
+    {
+      "control_id": "control_id_city",
+      "type": "DropDown",
+      "label_text": "شهر",
+      "is_hidden": false,
+      "dropdown_info": {
+        "searchable": true,
+        "options": [
+          { "value": 0, "text": "تهران" },
+          { "value": 1, "text": "شهریار" },
+          { "value": 2, "text": "اسلام‌شهر" },
+          { "value": 3, "text": "ملارد" },
+          { "value": 4, "text": "بهارستان" },
+          { "value": 6, "text": "ورامین" },
+          { "value": 7, "text": "پاکدشت" },
+          { "value": 8, "text": "قدس" },
+          { "value": 9, "text": "ری" },
+          { "value": 10, "text": "دماوند" },
+          { "value": 11, "text": "پیشوا" },
+          { "value": 12, "text": "قرچک" },
+          { "value": 13, "text": "پردیس" },
+          { "value": 14, "text": "فیروزکوه" },
+          { "value": 15, "text": "شمیرانات" },
+          { "value": 16, "text": "روبار" },
+          { "value": 17, "text": "چهاردانگه" },
+          { "value": 18, "text": "آبعلی" }
+        ]
+      },
+      "validations": [{ "type": "Required" }]
+    }
+  ]
+}

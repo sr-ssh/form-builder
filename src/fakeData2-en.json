@@ -1,0 +1,296 @@
+{
+  "form_id": "form_id_1",
+  "type": "Form",
+  "title": "فرم ثبت نام",
+  "hide_question_number": false,
+  "start_time": 1703917976577,
+  "user_start_time": 1703917976577,
+  "max_duration": 200000,
+  "disabled_edit_answer": false,
+  "locale": "English",
+  "theme": {
+    "theme_id": "dfdd",
+    "name": "پیش فرض 1",
+    "is_default": true,
+    "padding": {
+      "horizontal": 10,
+      "vertical": 10
+    },
+    "background": {
+      "color": "#f5fdff"
+    },
+    "font_size": 14,
+    "labels_style": {
+      "font_size": 18,
+      "text_color": "#f15976"
+    },
+
+    "controls_style": {
+      "border": {
+        "top": "1px solid #67cae0",
+        "left": "1px solid #67cae0",
+        "right": "1px solid #67cae0",
+        "bottom": "1px solid #67cae0"
+      },
+      "shadow": "inset 0 0 0 .125rem #67cae0",
+      "padding": {
+        "horizontal": 20,
+        "vertical": 10
+      },
+      "margin": {
+        "horizontal": 20
+      },
+      "background_color": "#f5fdff",
+      "radius": 18,
+      "text_color": "#f15976"
+    },
+
+    "placeholders_style": {
+      "text_color": "#f15976",
+      "margin": {
+        "horizontal": 20
+      }
+    },
+
+    "groups_style": {},
+
+    "buttons_style": {
+      "border": {
+        "top": "1px solid #67cae0",
+        "left": "1px solid #67cae0",
+        "right": "1px solid #67cae0",
+        "bottom": "1px solid #67cae0"
+      },
+      "shadow": "none",
+      "background_color": "#67cae0",
+      "text_color": "#000"
+    }
+  },
+  "layout": { "floating_box": false },
+  "values": {
+    "control_id_1_1": "r.sadatshokouhi@gmail.com",
+    "control_id_1_2": 1,
+    "control_id_1_3": "Reihaneh",
+    "control_id_1_4": "Sadat Shokouhi",
+    "control_id_2_1": 7,
+    "control_id_2_3": "Vanak Square. Brazil Avenue",
+    "control_id_2_4": 123456789,
+    "control_id_3_3": "09307580142",
+    "control_id_3_4": "098765432123456",
+    "control_id_4_3": "34567812345"
+  },
+
+  "controls": [
+    {
+      "control_id": "control_id_0",
+      "type": "PlaceHolder",
+      "label_text": "Welcome",
+      "placeholder_info": {
+        "description": "You need 2 minutes to complete this form.",
+        "type": "Start",
+        "start_caption": "click to start"
+      }
+    },
+    {
+      "control_id": "control_id_1",
+      "type": "Group",
+      "group_info": {
+        "type": "FormSet",
+        "title": "Personal information",
+        "description": "Please complete the personal information of the developer",
+        "controls": [
+          {
+            "control_id": "control_id_1_1",
+            "type": "TextBox",
+            "label_text": "email",
+            "textbox_info": { "type": "Email" },
+            "validations": [
+              { "type": "Required" },
+              {
+                "type": "Email",
+                "regex_pattern": "/^[w.[a-z0-9]+@[a-z]+.[a-z]{2,3}/"
+              }
+            ]
+          },
+          {
+            "control_id": "control_id_1_2",
+            "type": "DropDown",
+            "label_text": "account type",
+            "dropdown_info": {
+              "searchable": false,
+              "options": [
+                { "value": 0, "text": "real" },
+                { "value": 1, "text": "legal" }
+              ]
+            },
+            "validations": [{ "type": "Required" }]
+          },
+          {
+            "control_id": "control_id_1_3",
+            "type": "TextBox",
+            "label_text": "first name",
+            "textbox_info": { "type": "Persian" },
+            "validations": [
+              { "type": "Required" },
+              {
+                "type": "Persian",
+                "regex_pattern": "/^[\u0600-\u06FF\\s]+$/"
+              }
+            ]
+          },
+          {
+            "control_id": "control_id_1_4",
+            "type": "TextBox",
+            "label_text": "last name",
+            "textbox_info": { "type": "Persian" },
+            "validations": [
+              { "type": "Required" },
+              {
+                "type": "Persian",
+                "regex_pattern": "/^[\u0600-\u06FF\\s]+$/"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "control_id": "control_id_2",
+      "type": "Group",
+      "group_info": {
+        "type": "FormSet",
+        "title": "Address Information",
+        "description": "Please complete your address information",
+        "controls": [
+          {
+            "control_id": "control_id_province",
+            "type": "DropDown",
+            "label_text": "Province",
+            "dropdown_info": {
+              "searchable": false,
+              "options": [
+                { "value": 0, "text": "Boushehr" },
+                { "value": 1, "text": "Tehran" },
+                { "value": 2, "text": "Khorasan Razavi" }
+              ]
+            },
+            "event_id": "control_id_event_id",
+            "validations": [{ "type": "Required" }]
+          },
+          {
+            "control_id": "control_id_city",
+            "type": "DropDown",
+            "is_hidden": true,
+            "label_text": "city",
+            "dropdown_info": {
+              "searchable": true,
+              "options": []
+            },
+            "validations": [{ "type": "Required" }]
+          },
+          {
+            "control_id": "control_id_2_3",
+            "type": "TextBox",
+            "label_text": "address",
+            "textbox_info": { "type": "Persian" },
+            "validations": [{ "type": "Required" }]
+          },
+          {
+            "control_id": "control_id_2_4",
+            "type": "TextBox",
+            "label_text": "postal code",
+            "textbox_info": { "type": "Number" },
+            "validations": [
+              { "type": "Required" },
+              {
+                "type": "Number",
+                "regex_pattern": "/^\\d+$/"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "control_id": "control_id_3",
+      "type": "Group",
+      "group_info": {
+        "type": "FormSet",
+        "title": "Contact Information",
+        "description": "Please complete your contact information",
+        "controls": [
+          {
+            "control_id": "control_id_3_3",
+            "type": "TextBox",
+            "label_text": "mobile number",
+            "textbox_info": { "type": "Mobile" },
+            "validations": [
+              { "type": "Required" },
+              {
+                "type": "Mobile",
+                "regex_pattern": "/^09\\d{9}$/"
+              }
+            ]
+          },
+          {
+            "control_id": "control_id_3_4",
+            "type": "TextBox",
+            "label_text": "emergency number",
+            "textbox_info": { "type": "Number" },
+            "validations": [
+              { "type": "Required" },
+              {
+                "type": "Number",
+                "regex_pattern": "/^\\d+$/"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "control_id": "control_id_4",
+      "type": "Group",
+      "group_info": {
+        "type": "FormSet",
+        "title": "National card pictures",
+        "controls": [
+          {
+            "control_id": "control_id_4_3",
+            "type": "TextBox",
+            "label_text": "national code",
+            "textbox_info": { "type": "Number" },
+            "validations": [
+              { "type": "Required" },
+              {
+                "type": "Number",
+                "regex_pattern": "/^\\d+$/"
+              }
+            ]
+          },
+          {
+            "control_id": "control_id_9",
+            "type": "FileUpload",
+            "label_text": "The picture of the national card",
+            "description": "You can select your file by clicking on this section.",
+            "file_upload_info": {
+              "file_type": "Image",
+              "allowed_extensions": ["jpg"],
+              "max_size": 1000
+            },
+            "validations": [{ "type": "Required" }]
+          }
+        ]
+      }
+    },
+    {
+      "control_id": "control_id_12",
+      "type": "PlaceHolder",
+      "label_text": "Thank you",
+      "placeholder_info": {
+        "description": "Thank you for your time.",
+        "type": "End"
+      }
+    }
+  ]
+}
