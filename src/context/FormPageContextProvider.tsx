@@ -19,6 +19,7 @@ import { ControlTypeEnum } from "../@types/controls/ControlTypes";
 import { PlaceHolderTypeEnum } from "../@types/controls/PlaceHolderTypes";
 import { PageNoTypeEnum } from "../@types/controls/GroupTypes";
 import { useGlobalLocales } from "../hooks/useGlobalLocales";
+import { AxiosApi } from "../axios";
 
 export type IndexListenersType = (indexes: PageIndexesType) => void;
 
@@ -233,13 +234,12 @@ export const FormPageContextProvider = memo(
         (data) => gotoNext(data),
       )();
 
-    const submitForm = () =>
+    const submitForm = async () =>
       pageStackRef.current[pageStackRef.current.length - 1].submitHandler?.(
-        (data) => {
+        async (data) => {
           if (!isDisabledForm()) {
-            console.log("APICALL__doneForm", {
-              form_id: form.form_id,
-            });
+            const res = await AxiosApi.DoneForm({ form_id: form.form_id });
+            console.log(res);
           }
           gotoNext(data);
         },
