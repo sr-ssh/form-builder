@@ -40,4 +40,5 @@ export type FormType = {
   form_status?: FormStatusEnum;
   locale?: LocaleEnum;
   required_answer?: boolean;
+  logo_url?: string;
 };

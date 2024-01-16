@@ -15,8 +15,9 @@ import rtlPlugin from "stylis-plugin-rtl";
 import { CacheProvider } from "@emotion/react";
 import createCache from "@emotion/cache";
 import { prefixer } from "stylis";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { AxiosApi } from "../../axios";
+import Logo from "./Logo";
 
 const NoActiveMessage = styled(Box)({
   display: "flex",
@@ -36,8 +37,8 @@ const LoadingStyle = styled(CircularProgress)({
 });
 
 const FormPage = () => {
-  const [formData, setFormData] = useState<FormType>();
-  // const formData = form as unknown as FormType;
+  // const [formData, setFormData] = useState<FormType>();
+  const formData = form as unknown as FormType;
   const formTheme = form.theme as ThemeType;
 
   const cacheRtl = createCache({
@@ -70,7 +71,7 @@ const FormPage = () => {
   useEffect(() => {
     AxiosApi.GetForm({ form_id: "6592bbc3eb4b963b4936e94f" })
       .then((res) => {
-        if (res?.form) setFormData(res.form);
+        // if (res?.form) setFormData(res.form);
       })
       .catch((err) => console.error(err));
   }, []);
@@ -93,6 +94,7 @@ const FormPage = () => {
             </NoActiveMessage>
             <Timer />
             <Box position="relative" flex="1 1 auto" height="100%">
+              {formData.layout?.has_logo && <Logo logo={formData.logo_url} />}
               <PartialTabContainer
                 className="form-wrapper"
                 containerName="FormContainer"

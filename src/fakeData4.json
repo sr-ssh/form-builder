@@ -9,6 +9,7 @@
   "has_prev": true,
   "enable_edit_form": false,
   "required_answer": false,
+  "logo_url": "https://m.rubika.ir/assets/icons/icon-192x192.png",
   "progress_display_mode": "PageNumber",
   "theme": {
     "padding": {
@@ -69,7 +70,7 @@
       "text_color": "#fff"
     }
   },
-  "layout": { "floating_box": false },
+  "layout": { "floating_box": false, "has_logo": true },
   "values": {},
   "controls": [
     {
