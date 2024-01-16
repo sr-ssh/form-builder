@@ -23,7 +23,7 @@ export const getValidationObject = (
   validation?.forEach((item) => {
     let regex: RegExp = /^/;
     if (item.regex_pattern) {
-      const regexPattern = item.regex_pattern.slice(1, -1);
+      const regexPattern = item.regex_pattern;
       regex = new RegExp(regexPattern);
     }
     switch (item.type) {
