@@ -10,7 +10,6 @@ export const useClickAsync = <T>(
 
   useEffect(() => {
     const element = elRef.current;
-    console.log("element", element);
     if (!element) {
       return;
     }

@@ -38,17 +38,17 @@ export const uploadFile = async (
         options.compressQuality !== null &&
         options.shouldCompress
       ) {
-        let comporessedFile;
+        let compressedFile;
         try {
-          comporessedFile = await compressAndResizeImage(
+          compressedFile = await compressAndResizeImage(
             file_inline.file_data,
             options.compressQuality,
             options.maxPixel,
           );
         } catch (error) {
-          comporessedFile = file_inline.file_data;
+          compressedFile = file_inline.file_data;
         }
-        file_inline.file_data = comporessedFile;
+        file_inline.file_data = compressedFile;
       }
     }
 

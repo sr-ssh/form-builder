@@ -23,6 +23,7 @@ import { useFormPage } from "../hooks/useFormPage";
 import { AxiosApi } from "../axios";
 import { FormStatusEnum, FormValuesType } from "../@types/FormTypes";
 import { PageIndexesType } from "../@types/FormPageTypes";
+import { uploadFile } from "../utils/fileUpload";
 
 export const FBContext = createContext<{
   registerControl: (control: ControlType) => any;
@@ -50,12 +51,12 @@ export const FBContextProvider = memo(
     children,
   }: {
     control: ControlType;
-    defaultValues: FormValuesType;
+    defaultValues?: FormValuesType;
     children: ReactNode;
   }) => {
     const mainControlRef = useRef<ControlType>(control);
     const controlDefaultValues = useRef<FormValuesType>(
-      getDefaultValues(control, defaultValues),
+      defaultValues ? getDefaultValues(control, defaultValues) : {},
     );
     const formSetListenRef = useRef<{
       [control_id: string]: {
@@ -73,7 +74,6 @@ export const FBContextProvider = memo(
       onIndexChanged: (indexes: PageIndexesType) => {
         const newControl = getControl(form.controls, indexes);
         if (newControl?.control_id === control.control_id) {
-          console.log("resetting", control);
           formController.reset(undefined, {
             keepErrors: true,
             keepDirty: true,
@@ -151,12 +151,58 @@ export const FBContextProvider = memo(
       }
     };
 
+    const handleFileInputChange = (currentControl: ControlType, file: File) => {
+      if (currentControl.type !== ControlTypeEnum.FileUpload) {
+        return;
+      }
+      if (!file) {
+        formController.setValue(currentControl.control_id, file);
+        return;
+      }
+      uploadFile(
+        {
+          file_data: file,
+          file_id: "",
+          file_name: file.name,
+          mime: file.type,
+          size: file.size,
+        },
+        () =>
+          AxiosApi.RequestSendFile({
+            form_id: form.form_id,
+            control_id: currentControl.control_id,
+            file_name: file.name,
+            size: file.size,
+          }),
+        AxiosApi.SendFile,
+        form.form_id,
+        control.control_id,
+      )
+        .then(
+          (result) =>
+            result.access_hash_rec &&
+            formController.setValue(
+              currentControl.control_id,
+              result.access_hash_rec,
+            ),
+        )
+        .catch((err) => {
+          // TODO remove this part after real apis
+          console.log(err);
+          formController.setValue(currentControl.control_id, "");
+        });
+    };
+
     const onChangedControlValue = (target: any) => {
-      const value =
-        target.value !== undefined ? target.value : target.files?.[0];
       let controls = mainControlRef.current.group_info?.controls;
       const thisControl =
         getControlById(controls || [], target.name) || mainControlRef.current;
+      let value;
+      if (thisControl.type === ControlTypeEnum.FileUpload) {
+        value = target.files?.[0];
+      } else {
+        value = target.value;
+      }
       if (
         thisControl.type === ControlTypeEnum.DatePicker ||
         (thisControl.type === ControlTypeEnum.MultipleOption &&
@@ -164,6 +210,7 @@ export const FBContextProvider = memo(
       ) {
         formController.setValue(target.name, value);
       }
+      handleFileInputChange(thisControl, value);
       if (controls) {
         const formSet = getControlParentById(
           mainControlRef.current,

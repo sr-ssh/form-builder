@@ -47,7 +47,7 @@ export const AxiosApi = {
     HttpMiddleware<GetEventControlsResponseDateType>({
       payload: {
         data,
-        method: ApiMethodEnum.DONE_FORM,
+        method: ApiMethodEnum.GET_EVENT_CONTROLS,
       },
     }),
   FakeGetEventControls: (value: string | number) => {
@@ -64,7 +64,7 @@ export const AxiosApi = {
     HttpMiddleware<RequestSendFileResponseDateType>({
       payload: {
         data,
-        method: ApiMethodEnum.DONE_FORM,
+        method: ApiMethodEnum.REQUEST_SEND_FILE,
       },
     }),
   SendFile: ({
@@ -77,6 +77,6 @@ export const AxiosApi = {
     PureHttpMiddleware<SendFileResponseDateType>({
       data,
       headers,
-      method: ApiMethodEnum.DONE_FORM,
+      method: ApiMethodEnum.SEND_FILE,
     }),
 };

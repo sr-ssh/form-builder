@@ -27,7 +27,7 @@ export type FormType = {
   layout?: LayoutType;
   theme: ThemeType;
   hide_question_number?: boolean;
-  values: FormValuesType;
+  values?: FormValuesType;
   has_next?: boolean;
   has_prev?: boolean;
   progress_display_mode?: ProgressDisplayModeEnum;

@@ -128,6 +128,7 @@ const FileUpload = ({ control }: FileUploadPropsType) => {
     if (file) {
       setFile(file);
       setFileUrl(await getDataUrl(file));
+      onChange(e);
     }
   };
 
