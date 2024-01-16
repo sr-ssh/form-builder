@@ -12,6 +12,10 @@ const BackgroundStyle = styled(Container)(() => {
     height: "100%",
     padding: "0 !important",
     maxWidth: "100% !important",
+    backgroundColor: backgroundStyles?.color || "#fff",
+    backgroundImage: `url("${backgroundStyles?.image_url}")`,
+    opacity: backgroundStyles?.image_opacity,
+    ...(imageAlign && getBackgroundPosition(imageAlign)),
     ".partial-tab-container": {
       backgroundColor: backgroundStyles?.color || "#fff",
       backgroundImage: `url("${backgroundStyles?.image_url}")`,

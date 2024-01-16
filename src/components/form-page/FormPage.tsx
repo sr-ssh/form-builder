@@ -93,8 +93,8 @@ const FormPage = () => {
               </Typography>
             </NoActiveMessage>
             <Timer />
+            {formData.layout?.has_logo && <Logo logo={formData.logo_url} />}
             <Box position="relative" flex="1 1 auto" height="100%">
-              {formData.layout?.has_logo && <Logo logo={formData.logo_url} />}
               <PartialTabContainer
                 className="form-wrapper"
                 containerName="FormContainer"

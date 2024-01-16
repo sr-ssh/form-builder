@@ -21,9 +21,7 @@ const PartialTabContainer = ({
       const newStyle = newViewEl.ref.style;
       let prevStyle = prevViewEl?.ref.style;
       if (containerEl && viewsInfo.length <= 1) {
-        console.log(containerEl.offsetWidth);
         containerEl.style.marginLeft = `${-containerEl.offsetWidth * 1.5}px`;
-        console.log(containerEl.style.marginLeft);
         containerEl.style.display = "block";
       } else {
         if (prevStyle) {
@@ -53,7 +51,6 @@ const PartialTabContainer = ({
         }
       } else {
         if (prevStyle) {
-          console.log("containerEl.style.marginLeft");
           prevStyle.transform = `translateX(${p * 100}%)`;
         }
         if (newStyle) {
@@ -71,7 +68,6 @@ const PartialTabContainer = ({
   let closeConfig: ViewEvent = {
     duration: 400,
     start(closeViewEl, activeViewEl) {
-      console.log("closing");
       const containerEl = containerRef.current;
       if (containerEl && viewsInfo.length <= 1) {
         containerEl.style.display = "block";
