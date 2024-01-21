@@ -95,30 +95,27 @@ export const FBContextProvider = memo(
     ) => {
       if (value !== undefined && thisControl.event_id) {
         // get the controls from api
-        // if (thisControl.control_id !== "control_id_province") return; // TODO remove this after real api added
-        // let newControls = AxiosApi.FakeGetEventControls(value);
+        if (thisControl.control_id !== "control_id_province") return; // TODO remove this after real api added
+        let newControls = AxiosApi.FakeGetEventControls(value);
 
-        AxiosApi.GetEventControls({
-          event_id: thisControl.event_id,
-          form_id: form.form_id,
-          control_id: thisControl.control_id,
-          control_value: value.toString(),
-        }).then((res) => {
-          let newControls = res?.controls;
+        // AxiosApi.GetEventControls({
+        //   event_id: thisControl.event_id,
+        //   form_id: form.form_id,
+        //   control_id: thisControl.control_id,
+        //   control_value: value.toString(),
+        // }).then((res) => {
+        //   let newControls = res?.controls;
 
-          let groupControls = hideControlsWithConditionOn(
-            formSet.group_info?.controls || [],
+        let groupControls = hideControlsWithConditionOn(
+          formSet.group_info?.controls || [],
+        );
+        if (newControls?.length) {
+          groupControls = updateArrayWithControlId(groupControls, newControls);
+          formSetListenRef.current[formSet.control_id]?.listenControlChanges(
+            groupControls,
           );
-          if (newControls?.length) {
-            groupControls = updateArrayWithControlId(
-              groupControls,
-              newControls,
-            );
-            formSetListenRef.current[formSet.control_id]?.listenControlChanges(
-              groupControls,
-            );
-          }
-        });
+        }
+        // });
       }
     };
 

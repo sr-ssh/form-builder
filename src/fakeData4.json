@@ -4,10 +4,10 @@
   "title": "فرم ثبت نام",
   "hide_question_number": false,
   "locale": "Persian",
-  "disabled_edit_answer": true,
+  "disabled_edit_answer": false,
   "has_next": true,
   "has_prev": true,
-  "enable_edit_form": false,
+  "enable_edit_form": true,
   "required_answer": false,
   "logo_url": "https://m.rubika.ir/assets/icons/icon-192x192.png",
   "progress_display_mode": "PageNumber",
@@ -71,7 +71,7 @@
     }
   },
   "layout": { "floating_box": false, "has_logo": true },
-  "values": {},
+  "values": { "control_id_1_0": "سیبشسب" },
   "controls": [
     {
       "control_id": "control_id_0",
@@ -464,6 +464,32 @@
                 { "value": 5, "text": "۴۵-۱۰۰" }
               ]
             }
+          },
+          {
+            "control_id": "control_id_province",
+            "type": "DropDown",
+            "label_text": "استان",
+            "dropdown_info": {
+              "searchable": false,
+              "options": [
+                { "value": 0, "text": "بوشهر" },
+                { "value": 1, "text": "تهران" },
+                { "value": 2, "text": "خراسان رضوی" }
+              ]
+            },
+            "event_id": "control_id_event_id",
+            "validations": [{ "type": "Required" }]
+          },
+          {
+            "control_id": "control_id_city",
+            "type": "DropDown",
+            "is_hidden": true,
+            "label_text": "شهر",
+            "dropdown_info": {
+              "searchable": true,
+              "options": []
+            },
+            "validations": [{ "type": "Required" }]
           }
         ]
       }

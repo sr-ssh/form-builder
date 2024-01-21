@@ -4,7 +4,7 @@
   "title": "فرم ثبت نام",
   "hide_question_number": false,
   "start_time": 1703917976577,
-  "disabled_edit_answer": true,
+  "disabled_edit_answer": false,
   "enable_edit_form": true,
   "locale": "Persian",
   "form_status": "Done",
@@ -110,7 +110,7 @@
               { "type": "Required" },
               {
                 "type": "Email",
-                "regex_pattern": "/^[w.[a-z0-9]+@[a-z]+.[a-z]{2,3}/"
+                "regex_pattern": "^[w.[a-z0-9]+@[a-z]+.[a-z]{2,3}"
               }
             ]
           },
@@ -136,7 +136,7 @@
               { "type": "Required" },
               {
                 "type": "Persian",
-                "regex_pattern": "/^[\u0600-\u06FF\\s]+$/"
+                "regex_pattern": "^[\u0600-\u06FF\\s]+$"
               }
             ]
           },
@@ -149,7 +149,7 @@
               { "type": "Required" },
               {
                 "type": "Persian",
-                "regex_pattern": "/^[\u0600-\u06FF\\s]+$/"
+                "regex_pattern": "^[\u0600-\u06FF\\s]+$"
               }
             ]
           }
@@ -199,7 +199,7 @@
               { "type": "Required" },
               {
                 "type": "Persian",
-                "regex_pattern": "/^[\u0600-\u06FF\\s]+$/"
+                "regex_pattern": "^[\u0600-\u06FF\\s]+$"
               }
             ]
           },
@@ -212,7 +212,7 @@
               { "type": "Required" },
               {
                 "type": "Number",
-                "regex_pattern": "/^\\d+$/"
+                "regex_pattern": "^\\d+$"
               }
             ]
           }
@@ -236,7 +236,7 @@
               { "type": "Required" },
               {
                 "type": "Mobile",
-                "regex_pattern": "/^09\\d{9}$/"
+                "regex_pattern": "^09\\d{9}$"
               }
             ]
           },
@@ -249,7 +249,7 @@
               { "type": "Required" },
               {
                 "type": "Number",
-                "regex_pattern": "/^\\d+$/"
+                "regex_pattern": "^\\d+$"
               }
             ]
           }
@@ -272,7 +272,7 @@
               { "type": "Required" },
               {
                 "type": "Number",
-                "regex_pattern": "/^\\d+$/"
+                "regex_pattern": "^\\d+$"
               }
             ]
           },
