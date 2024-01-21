@@ -16,7 +16,7 @@ type PlaceHolderPropsType = {
 };
 
 const PlaceHolder = ({ control }: PlaceHolderPropsType) => {
-  const placeHolderInfo = control.placeholder_info;
+  const placeHolderInfo = control.place_holder_info;
   const isStart = placeHolderInfo?.type === PlaceHolderTypeEnum.Start;
   const { submitNext, form } = useFormPage({});
   const theme = useTheme();

@@ -54,10 +54,10 @@ export const FormPageContextProvider = memo(
       let pagesStack = questionStackRef.current;
       if (
         (type === ControlTypeEnum.PlaceHolder &&
-          control?.placeholder_info?.type !== PlaceHolderTypeEnum.Note) ||
+          control?.place_holder_info?.type !== PlaceHolderTypeEnum.Note) ||
         !control
       ) {
-        if (control?.placeholder_info?.type !== PlaceHolderTypeEnum.Start) {
+        if (control?.place_holder_info?.type !== PlaceHolderTypeEnum.Start) {
           pagesStack = [];
         }
         return;
@@ -210,7 +210,7 @@ export const FormPageContextProvider = memo(
         currIndexes.indexes || [],
       );
       if (
-        currentControl?.placeholder_info?.type !== PlaceHolderTypeEnum.Start
+        currentControl?.place_holder_info?.type !== PlaceHolderTypeEnum.Start
       ) {
         questionStackRef.current.push([]);
       }
@@ -253,7 +253,7 @@ export const FormPageContextProvider = memo(
       let firstEndPlaceHolder = controls.findIndex(
         (item) =>
           item.type === ControlTypeEnum.PlaceHolder &&
-          item.placeholder_info?.type === PlaceHolderTypeEnum.End,
+          item.place_holder_info?.type === PlaceHolderTypeEnum.End,
       );
       firstEndPlaceHolder =
         firstEndPlaceHolder !== -1 ? firstEndPlaceHolder : controls.length;
@@ -261,7 +261,7 @@ export const FormPageContextProvider = memo(
         control_id: "send",
         type: ControlTypeEnum.PlaceHolder,
         label_text: lang("LAST_PAGE_LABEL"),
-        placeholder_info: {
+        place_holder_info: {
           description: lang("LAST_PAGE_DESCRIPTION"),
           type: PlaceHolderTypeEnum.End,
         },
@@ -276,7 +276,7 @@ export const FormPageContextProvider = memo(
         control_id: "timeout",
         type: ControlTypeEnum.PlaceHolder,
         label_text: lang("PLACEHOLDER_TIMEOUT_LABEL"),
-        placeholder_info: {
+        place_holder_info: {
           description: lang("PLACEHOLDER_TIMEOUT_DESC"),
           type: PlaceHolderTypeEnum.End,
         },

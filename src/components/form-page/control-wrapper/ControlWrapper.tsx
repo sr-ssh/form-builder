@@ -47,7 +47,7 @@ const ControlWrapper = ({
 
   const isFirstPage =
     type === ControlTypeEnum.PlaceHolder &&
-    control.placeholder_info?.type === PlaceHolderTypeEnum.Start;
+    control.place_holder_info?.type === PlaceHolderTypeEnum.Start;
 
   return (
     <Container>

@@ -29,7 +29,7 @@ const Submit = ({ control, form, submitNext }: SubmitPropsType) => {
     (type === ControlTypeEnum.Group ||
       type === ControlTypeEnum.DatePicker ||
       (type === ControlTypeEnum.PlaceHolder &&
-        control.placeholder_info?.type === PlaceHolderTypeEnum.Note) ||
+        control.place_holder_info?.type === PlaceHolderTypeEnum.Note) ||
       type === ControlTypeEnum.TextArea ||
       type === ControlTypeEnum.TextBox);
 

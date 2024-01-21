@@ -24,7 +24,7 @@ const Footer = () => {
   const isFinished = control?.control_id === "send";
   if (
     control?.type === ControlTypeEnum.PlaceHolder &&
-    control.placeholder_info?.type !== PlaceHolderTypeEnum.Note &&
+    control.place_holder_info?.type !== PlaceHolderTypeEnum.Note &&
     !isFinished
   ) {
     return null;

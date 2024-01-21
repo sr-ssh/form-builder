@@ -16,7 +16,7 @@ const DropDown = ({ control, isFloatingBox }: DropDownPropsType) => {
     useFBRegisterControl(control);
   const { isDisabled } = useFBControl(control);
 
-  const options = control.dropdown_info?.options;
+  const options = control.drop_down_info?.options;
 
   const selectedValues = React.useMemo(
     () => options?.filter((v) => v.value === defaultValue),
@@ -25,10 +25,10 @@ const DropDown = ({ control, isFloatingBox }: DropDownPropsType) => {
 
   return (
     <FormControl
-      key={control.dropdown_info?.options?.toString()}
+      key={control.drop_down_info?.options?.toString()}
       disabled={isDisabled}
     >
-      {control.dropdown_info?.searchable ? (
+      {control.drop_down_info?.searchable ? (
         <Autocomplete
           disabled={isDisabled}
           ref={ref}
@@ -72,7 +72,7 @@ const DropDown = ({ control, isFloatingBox }: DropDownPropsType) => {
               marginThreshold: 0,
             }}
           >
-            {control.dropdown_info?.options?.map((option) => (
+            {control.drop_down_info?.options?.map((option) => (
               <MenuItem key={option.value} value={option.value}>
                 {option.text}
               </MenuItem>

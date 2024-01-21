@@ -16,7 +16,7 @@ const TextBox = ({
 
   let inputType = "text";
 
-  switch (control?.textbox_info?.type) {
+  switch (control?.text_box_info?.type) {
     case TextBoxTypeEnum.Email:
       inputType = "email";
       break;

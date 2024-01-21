@@ -85,7 +85,7 @@
       "control_id": "control_id_0",
       "type": "PlaceHolder",
       "label_text": "Welcome",
-      "placeholder_info": {
+      "place_holder_info": {
         "description": "You need 2 minutes to complete this form.",
         "type": "Start",
         "start_caption": "click to start"
@@ -103,7 +103,7 @@
             "control_id": "control_id_1_1",
             "type": "TextBox",
             "label_text": "email",
-            "textbox_info": { "type": "Email" },
+            "text_box_info": { "type": "Email" },
             "validations": [
               { "type": "Required" },
               {
@@ -116,7 +116,7 @@
             "control_id": "control_id_1_2",
             "type": "DropDown",
             "label_text": "account type",
-            "dropdown_info": {
+            "drop_down_info": {
               "searchable": false,
               "options": [
                 { "value": 0, "text": "real" },
@@ -129,7 +129,7 @@
             "control_id": "control_id_1_3",
             "type": "TextBox",
             "label_text": "first name",
-            "textbox_info": { "type": "Persian" },
+            "text_box_info": { "type": "Persian" },
             "validations": [
               { "type": "Required" },
               {
@@ -142,7 +142,7 @@
             "control_id": "control_id_1_4",
             "type": "TextBox",
             "label_text": "last name",
-            "textbox_info": { "type": "Persian" },
+            "text_box_info": { "type": "Persian" },
             "validations": [
               { "type": "Required" },
               {
@@ -166,7 +166,7 @@
             "control_id": "control_id_province",
             "type": "DropDown",
             "label_text": "Province",
-            "dropdown_info": {
+            "drop_down_info": {
               "searchable": false,
               "options": [
                 { "value": 0, "text": "Boushehr" },
@@ -182,7 +182,7 @@
             "type": "DropDown",
             "is_hidden": true,
             "label_text": "city",
-            "dropdown_info": {
+            "drop_down_info": {
               "searchable": true,
               "options": []
             },
@@ -192,14 +192,14 @@
             "control_id": "control_id_2_3",
             "type": "TextBox",
             "label_text": "address",
-            "textbox_info": { "type": "Persian" },
+            "text_box_info": { "type": "Persian" },
             "validations": [{ "type": "Required" }]
           },
           {
             "control_id": "control_id_2_4",
             "type": "TextBox",
             "label_text": "postal code",
-            "textbox_info": { "type": "Number" },
+            "text_box_info": { "type": "Number" },
             "validations": [
               { "type": "Required" },
               {
@@ -223,7 +223,7 @@
             "control_id": "control_id_3_3",
             "type": "TextBox",
             "label_text": "mobile number",
-            "textbox_info": { "type": "Mobile" },
+            "text_box_info": { "type": "Mobile" },
             "validations": [
               { "type": "Required" },
               {
@@ -236,7 +236,7 @@
             "control_id": "control_id_3_4",
             "type": "TextBox",
             "label_text": "emergency number",
-            "textbox_info": { "type": "Number" },
+            "text_box_info": { "type": "Number" },
             "validations": [
               { "type": "Required" },
               {
@@ -259,7 +259,7 @@
             "control_id": "control_id_4_3",
             "type": "TextBox",
             "label_text": "national code",
-            "textbox_info": { "type": "Number" },
+            "text_box_info": { "type": "Number" },
             "validations": [
               { "type": "Required" },
               {
@@ -287,7 +287,7 @@
       "control_id": "control_id_12",
       "type": "PlaceHolder",
       "label_text": "Thank you",
-      "placeholder_info": {
+      "place_holder_info": {
         "description": "Thank you for your time.",
         "type": "End"
       }

@@ -30,7 +30,7 @@ const Timer = () => {
       const control = getControl(form.controls, indexes);
       if (
         control?.type === ControlTypeEnum.PlaceHolder &&
-        control.placeholder_info?.type !== PlaceHolderTypeEnum.Note
+        control.place_holder_info?.type !== PlaceHolderTypeEnum.Note
       ) {
         setShow(false);
       } else {

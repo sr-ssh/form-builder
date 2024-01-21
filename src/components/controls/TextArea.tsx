@@ -14,7 +14,7 @@ const TextArea = ({ control, isFloatingBox }: TextAreaPropsType) => {
   const { onChange, onBlur, name, ref } = useFBRegisterControl(control);
   const { isDisabled } = useFBControl(control);
 
-  const maxLine = control.textarea_info?.max_line;
+  const maxLine = control.text_area_info?.max_line;
 
   const handleChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
     if (maxLine && textAreaRef.current) {
@@ -41,7 +41,7 @@ const TextArea = ({ control, isFloatingBox }: TextAreaPropsType) => {
       onChange={handleChange}
       onBlur={onBlur}
       multiline={true}
-      rows={control.textarea_info?.line_count}
+      rows={control.text_area_info?.line_count}
       label={isFloatingBox ? control.label_text : ""}
       disabled={isDisabled}
     />

@@ -82,7 +82,7 @@
       "control_id": "control_id_0",
       "type": "PlaceHolder",
       "label_text": "خوش آمدید",
-      "placeholder_info": {
+      "place_holder_info": {
         "description": "برای پرکردن این پرسشنامه به ۲ دقیقه زمان نیاز دارید.",
         "type": "Start",
         "start_caption": "برای شروع کلیک کنید"
@@ -92,7 +92,7 @@
       "control_id": "control_id_1",
       "type": "TextBox",
       "label_text": "نام و نام‌خانوادگی",
-      "textbox_info": { "type": "Text" },
+      "text_box_info": { "type": "Text" },
       "description": "ینمبتی ینبتسی نتب نیتبنیب نیتبن نب نتب نیتب نتهتثنصضجتم یبخح.",
       "file_url": "https://dfstudio-d420.kxcdn.com/wordpress/wp-content/uploads/2019/06/digital_camera_photo-980x653.jpg",
       "validations": [
@@ -106,7 +106,7 @@
       "description": "ینمبتی ینبتسی نتب نیتبنیب نیتبن نب نتب نیتب نتهتثنصضجتم یبخح.",
       "label_text": "جنسیت",
       "file_url": "https://www.learningcontainer.com/wp-content/uploads/2020/05/sample-mp4-file.mp4",
-      "dropdown_info": {
+      "drop_down_info": {
         "searchable": true,
         "options": [
           { "value": 0, "text": "زن" },
@@ -196,13 +196,13 @@
             "description": "ینمبتی ینبتسی نتب نیتبنیب نیتبن نب نتب نیتب نتهتثنصضجتم یبخح.",
             "type": "TextArea",
             "label_text": "توضیحات",
-            "textarea_info": { "line_count": 3, "max_line": 4 }
+            "text_area_info": { "line_count": 3, "max_line": 4 }
           },
           {
             "control_id": "control_id_8",
             "type": "PlaceHolder",
             "label_text": "قوانین",
-            "placeholder_info": {
+            "place_holder_info": {
               "description": "قوانین را خوانده و تایید می‌نمایم.",
               "type": "End"
             }
@@ -226,13 +226,13 @@
       "description": "ینمبتی ینبتسی نتب نیتبنیب نیتبن نب نتب نیتب نتهتثنصضجتم یبخح.",
       "type": "TextArea",
       "label_text": "توضیحات",
-      "textarea_info": { "line_count": 3, "max_line": 4 }
+      "text_area_info": { "line_count": 3, "max_line": 4 }
     },
     {
       "control_id": "control_id_12",
       "type": "PlaceHolder",
       "label_text": "تشکر",
-      "placeholder_info": {
+      "place_holder_info": {
         "description": "از زمان شما ممنونیم.",
         "type": "End"
       }
@@ -241,7 +241,7 @@
       "control_id": "control_id_13",
       "type": "PlaceHolder",
       "label_text": "2قوانین",
-      "placeholder_info": {
+      "place_holder_info": {
         "description": "قوانین را خوانده و تایید می‌نمایم.",
         "type": "End"
       }

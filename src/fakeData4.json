@@ -77,7 +77,7 @@
       "control_id": "control_id_0",
       "type": "PlaceHolder",
       "label_text": "خوش آمدید",
-      "placeholder_info": {
+      "place_holder_info": {
         "description": "برای پرکردن این پرسشنامه به ۲ دقیقه زمان نیاز دارید.",
         "type": "Start",
         "start_caption": "برای شروع کلیک کنید"
@@ -97,7 +97,7 @@
             "type": "TextBox",
             "label_text": "نام و نام خانوادگی",
             "description": "حتما حروف فارسی وارد کنید.",
-            "textbox_info": { "type": "Persian" },
+            "text_box_info": { "type": "Persian" },
             "validations": [
               { "type": "Persian", "regex_pattern": "^[\u0600-\u06FF\\s]+$" }
             ]
@@ -106,7 +106,7 @@
             "control_id": "control_id_1_1",
             "type": "TextBox",
             "label_text": "سن",
-            "textbox_info": { "type": "Number" },
+            "text_box_info": { "type": "Number" },
             "validations": [
               {
                 "type": "Number",
@@ -118,7 +118,7 @@
             "control_id": "control_id_1_2",
             "type": "TextBox",
             "label_text": "ایمیل",
-            "textbox_info": { "type": "Email" },
+            "text_box_info": { "type": "Email" },
             "validations": [
               {
                 "type": "Email",
@@ -130,7 +130,7 @@
             "control_id": "control_id_1_3",
             "type": "TextBox",
             "label_text": "آدرس سایت مورد علاقه",
-            "textbox_info": { "type": "Url" },
+            "text_box_info": { "type": "Url" },
             "validations": [
               {
                 "type": "Url",
@@ -142,7 +142,7 @@
             "control_id": "control_id_1_4",
             "type": "TextBox",
             "label_text": "نام و نام خانوادگی به انگلیسی",
-            "textbox_info": { "type": "Latin" },
+            "text_box_info": { "type": "Latin" },
             "validations": [
               {
                 "type": "Latin",
@@ -154,7 +154,7 @@
             "control_id": "control_id_1_5",
             "type": "TextBox",
             "label_text": "شماره تلفن همراه",
-            "textbox_info": { "type": "Mobile" },
+            "text_box_info": { "type": "Mobile" },
             "validations": [
               {
                 "type": "Mobile",
@@ -166,7 +166,7 @@
             "control_id": "control_id_1_6",
             "type": "TextBox",
             "label_text": "کدپستی",
-            "textbox_info": { "type": "PostalCode" },
+            "text_box_info": { "type": "PostalCode" },
             "validations": [
               {
                 "type": "PostalCode",
@@ -178,7 +178,7 @@
             "control_id": "control_id_1_7",
             "type": "TextBox",
             "label_text": "کدملی",
-            "textbox_info": { "type": "NationalId" },
+            "text_box_info": { "type": "NationalId" },
             "validations": [
               {
                 "type": "NationalId",
@@ -204,7 +204,7 @@
             "control_id": "control_id_2_1",
             "type": "TextArea",
             "label_text": "توضیحات",
-            "textarea_info": { "line_count": 3, "max_line": 4 }
+            "text_area_info": { "line_count": 3, "max_line": 4 }
           },
           {
             "control_id": "control_id_2_2",
@@ -420,7 +420,7 @@
             "type": "DropDown",
             "label_text": "جنسیت",
             "file_url": "https://www.learningcontainer.com/wp-content/uploads/2020/05/sample-mp4-file.mp4",
-            "dropdown_info": {
+            "drop_down_info": {
               "searchable": false,
               "options": [
                 { "value": 0, "text": "زن" },
@@ -432,7 +432,7 @@
             "control_id": "control_id_5_2",
             "type": "DropDown",
             "label_text": "استان",
-            "dropdown_info": {
+            "drop_down_info": {
               "searchable": true,
               "options": [
                 { "value": 0, "text": "آذربایجان شرقی" },
@@ -453,7 +453,7 @@
             "control_id": "control_id_5_3",
             "type": "DropDown",
             "label_text": "سن",
-            "dropdown_info": {
+            "drop_down_info": {
               "searchable": false,
               "options": [
                 { "value": 0, "text": "۰-۱۵" },
@@ -469,7 +469,7 @@
             "control_id": "control_id_province",
             "type": "DropDown",
             "label_text": "استان",
-            "dropdown_info": {
+            "drop_down_info": {
               "searchable": false,
               "options": [
                 { "value": 0, "text": "بوشهر" },
@@ -485,7 +485,7 @@
             "type": "DropDown",
             "is_hidden": true,
             "label_text": "شهر",
-            "dropdown_info": {
+            "drop_down_info": {
               "searchable": true,
               "options": []
             },
@@ -504,7 +504,7 @@
             "control_id": "control_id_6_1",
             "type": "PlaceHolder",
             "label_text": "قوانین",
-            "placeholder_info": {
+            "place_holder_info": {
               "description": "لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد. کتابهای زیادی در شصت و سه درصد گذشته، حال و آینده شناخت فراوان جامعه و متخصصان را می طلبد تا با نرم افزارها شناخت بیشتری را برای طراحان رایانه ای علی الخصوص طراحان خلاقی و فرهنگ پیشرو در زبان فارسی ایجاد کرد. در این صورت می توان امید داشت که تمام و دشواری موجود در ارائه راهکارها و شرایط سخت تایپ به پایان رسد وزمان مورد نیاز شامل حروفچینی دستاوردهای اصلی و جوابگوی سوالات پیوسته اهل دنیای موجود طراحی اساسا مورد استفاده قرار گیرد.",
               "type": "Note"
             }
@@ -516,7 +516,7 @@
       "control_id": "control_id_12",
       "type": "PlaceHolder",
       "label_text": "تشکر",
-      "placeholder_info": {
+      "place_holder_info": {
         "description": "از زمان شما ممنونیم.",
         "type": "End"
       }

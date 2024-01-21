@@ -6,7 +6,7 @@ export const getProgress = (form: FormType, indexes: number[]) => {
   let allControls = 0;
   for (let i = 0; i < form.controls.length; i++) {
     const control = form.controls[i];
-    const placeHolderType = control.placeholder_info?.type;
+    const placeHolderType = control.place_holder_info?.type;
     if (
       !control.is_hidden &&
       placeHolderType !== PlaceHolderTypeEnum.Start &&

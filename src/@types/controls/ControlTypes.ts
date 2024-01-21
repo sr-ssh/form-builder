@@ -25,13 +25,13 @@ export type ControlType = {
   type: ControlTypeEnum;
   label_text: string;
   description?: string;
-  textbox_info?: TextBoxType;
-  textarea_info?: TextAreaType;
+  text_box_info?: TextBoxType;
+  text_area_info?: TextAreaType;
   file_upload_info?: FileUploadType;
   date_picker_info?: DatePickerType;
   multiple_option_info?: MultipleOptionType;
-  dropdown_info?: DropDownType;
-  placeholder_info?: PlaceHolderType;
+  drop_down_info?: DropDownType;
+  place_holder_info?: PlaceHolderType;
   group_info?: GroupType;
   file_url?: string;
   validations?: ValidationType[];

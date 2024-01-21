@@ -5,7 +5,7 @@
       "type": "DropDown",
       "label_text": "شهر",
       "is_hidden": false,
-      "dropdown_info": {
+      "drop_down_info": {
         "searchable": true,
         "options": [
           { "value": 0, "text": "مشهد" },

@@ -81,7 +81,7 @@
       "control_id": "control_id_0",
       "type": "PlaceHolder",
       "label_text": "خوش آمدید",
-      "placeholder_info": {
+      "place_holder_info": {
         "description": "برای پرکردن این پرسشنامه به ۲ دقیقه زمان نیاز دارید.",
         "type": "Start",
         "start_caption": "برای شروع کلیک کنید"
@@ -99,7 +99,7 @@
             "control_id": "control_id_1_1",
             "type": "TextBox",
             "label_text": "ایمیل",
-            "textbox_info": { "type": "Email" },
+            "text_box_info": { "type": "Email" },
             "validations": [
               { "type": "Required" },
               {
@@ -112,7 +112,7 @@
             "control_id": "control_id_1_2",
             "type": "DropDown",
             "label_text": "نوع اکانت کاربری",
-            "dropdown_info": {
+            "drop_down_info": {
               "searchable": false,
               "options": [
                 { "value": 0, "text": "حقوقی" },
@@ -125,7 +125,7 @@
             "control_id": "control_id_1_3",
             "type": "TextBox",
             "label_text": "نام",
-            "textbox_info": { "type": "Persian" },
+            "text_box_info": { "type": "Persian" },
             "validations": [
               { "type": "Required" },
               {
@@ -138,7 +138,7 @@
             "control_id": "control_id_1_4",
             "type": "TextBox",
             "label_text": "نام خانوادگی",
-            "textbox_info": { "type": "Persian" },
+            "text_box_info": { "type": "Persian" },
             "validations": [
               { "type": "Required" },
               {
@@ -162,7 +162,7 @@
             "control_id": "control_id_2_1",
             "type": "DropDown",
             "label_text": "استان",
-            "dropdown_info": {
+            "drop_down_info": {
               "searchable": true,
               "options": [
                 { "value": 0, "text": "آذربایجان شرقی" },
@@ -184,7 +184,7 @@
             "control_id": "control_id_2_2",
             "type": "DropDown",
             "label_text": "شهر",
-            "dropdown_info": {
+            "drop_down_info": {
               "searchable": false,
               "options": [
                 { "value": 0, "text": "تهران" },
@@ -205,7 +205,7 @@
             "control_id": "control_id_2_3",
             "type": "TextBox",
             "label_text": "آدرس",
-            "textbox_info": { "type": "Persian" },
+            "text_box_info": { "type": "Persian" },
             "validations": [
               { "type": "Required" },
               {
@@ -218,7 +218,7 @@
             "control_id": "control_id_2_4",
             "type": "TextBox",
             "label_text": "کدپستی",
-            "textbox_info": { "type": "Number" },
+            "text_box_info": { "type": "Number" },
             "validations": [
               { "type": "Required" },
               {
@@ -242,7 +242,7 @@
             "control_id": "control_id_3_3",
             "type": "TextBox",
             "label_text": "شماره تلفن همراه",
-            "textbox_info": { "type": "Mobile" },
+            "text_box_info": { "type": "Mobile" },
             "validations": [
               { "type": "Required" },
               {
@@ -255,7 +255,7 @@
             "control_id": "control_id_3_4",
             "type": "TextBox",
             "label_text": "شماره تماس اضطراری",
-            "textbox_info": { "type": "Number" },
+            "text_box_info": { "type": "Number" },
             "validations": [
               { "type": "Required" },
               {
@@ -278,7 +278,7 @@
             "control_id": "control_id_4_3",
             "type": "TextBox",
             "label_text": "کدملی",
-            "textbox_info": { "type": "Number" },
+            "text_box_info": { "type": "Number" },
             "validations": [
               { "type": "Required" },
               {
@@ -306,7 +306,7 @@
       "control_id": "control_id_12",
       "type": "PlaceHolder",
       "label_text": "تشکر",
-      "placeholder_info": {
+      "place_holder_info": {
         "description": "از زمان شما ممنونیم.",
         "type": "End"
       }
