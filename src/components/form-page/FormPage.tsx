@@ -10,14 +10,14 @@ import { FormPageContextProvider } from "../../context/FormPageContextProvider";
 import Footer from "./footer/Footer";
 import { Localizer } from "../shared/Localizer";
 import { CircularProgress, ThemeProvider, styled } from "@mui/material";
-import Timer from "./Timer";
+import Timer from "../shared/Timer";
 import rtlPlugin from "stylis-plugin-rtl";
 import { CacheProvider } from "@emotion/react";
 import createCache from "@emotion/cache";
 import { prefixer } from "stylis";
 import { useEffect } from "react";
 import { AxiosApi } from "../../axios";
-import Logo from "./Logo";
+import Logo from "../shared/Logo";
 
 const NoActiveMessage = styled(Box)({
   display: "flex",

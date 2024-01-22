@@ -1,7 +1,7 @@
 import { Box, Typography } from "@mui/material";
 import useCountdown from "../../hooks/useCountDown";
 import { useFormPage } from "../../hooks/useFormPage";
-import { Localizer } from "../shared/Localizer";
+import { Localizer } from "./Localizer";
 import styled from "@emotion/styled";
 import { useEffect, useState } from "react";
 import { PageIndexesType } from "../../@types/FormPageTypes";
