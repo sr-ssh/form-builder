@@ -21,6 +21,9 @@ const LabelText = styled(InputLabel)({
   display: "inline-block",
   maxWidth: "unset",
   transform: "none",
+  whiteSpace: "normal",
+  overflow: "normal",
+  textOverflow: "none",
 });
 
 const Required = styled("span")(({ theme }) => ({
