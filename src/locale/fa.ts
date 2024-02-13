@@ -36,4 +36,6 @@ export const globalLocales: GlobalLocalesType = {
   PLACEHOLDER_TIMEOUT_DESC: "زمان این پرسشنامه به پایان رسیده است.",
   TIMER_REMAIN_DURATION: "زمان پاسخ‌دهی",
   FOOTER_SEND_BUTTON: "ارسال",
+  BMI_TEXT: "توده شاخص بدنی یا BMI شما:",
+  CIGARETTE_UNIT: "واحد مصرف سیگار شما:",
 };

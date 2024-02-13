@@ -24,6 +24,8 @@ import { AxiosApi } from "../axios";
 import { FormStatusEnum, FormValuesType } from "../@types/FormTypes";
 import { PageIndexesType } from "../@types/FormPageTypes";
 import { uploadFile } from "../utils/fileUpload";
+import BMI from "../components/shared/BMI";
+import ShowNum from "../components/shared/BMI";
 
 export const FBContext = createContext<{
   registerControl: (control: ControlType) => any;
@@ -276,7 +278,7 @@ export const FBContextProvider = memo(
 
     const getFormValues = () => formController.getValues();
 
-    const BMI =
+    const bmi =
       parseFloat(getFormValues().control_id_1_5?.toString() || "0") /
       (parseFloat(getFormValues().control_id_1_4?.toString()) *
         parseFloat(getFormValues().control_id_1_4?.toString()));
@@ -307,6 +309,7 @@ export const FBContextProvider = memo(
     formController.watch("control_id_1_5");
     formController.watch("control_id_1_7_1");
     formController.watch("control_id_1_7_2");
+    formController.watch("control_id_1_6");
 
     return (
       <>
@@ -322,13 +325,12 @@ export const FBContextProvider = memo(
           }}
         >
           {children}
-          {getFormValues().control_id_1_4 && getFormValues().control_id_1_5 && (
-            <h1>your BMI: {BMI}</h1>
+          {control.control_id === "control_id_1" && (
+            <ShowNum num={bmi.toFixed(2)} label="BMI_TEXT" />
           )}
-          {getFormValues().control_id_1_7_1 &&
-            getFormValues().control_id_1_7_2 && (
-              <h1>your cigarette: {cigaretteUnit}</h1>
-            )}
+          {getFormValues().control_id_1_6 === "1" && (
+            <ShowNum num={cigaretteUnit.toString()} label="CIGARETTE_UNIT" />
+          )}
         </FBContext.Provider>
       </>
     );
