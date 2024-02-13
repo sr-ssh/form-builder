@@ -8,6 +8,7 @@
   "has_prev": true,
   "form_status": "Registration",
   "enable_edit_form": true,
+  "progress_display_mode": "None",
   "theme": {
     "theme_id": "dfdd",
     "name": "پیش فرض 1",
@@ -17,55 +18,43 @@
       "vertical": 10
     },
     "background": {
-      "color": "#f5fdff"
+      "color": "#FAFAFA"
     },
     "font_name": "IRANSans",
-    "font_size": 14,
+    "font_size": 16,
     "labels_style": {
-      "font_size": 18,
-      "font_weight": "600",
-      "text_color": "#f15976"
+      "font_size": 16,
+      "font_weight": "400",
+      "text_color": "#4B465C"
     },
 
     "controls_style": {
-      "border": {
-        "top": "1px solid #67cae0",
-        "left": "1px solid #67cae0",
-        "right": "1px solid #67cae0",
-        "bottom": "1px solid #67cae0"
-      },
-      "shadow": "inset 0 0 0 .125rem #67cae0",
       "padding": {
-        "horizontal": 20,
-        "vertical": 10
+        "horizontal": 20
       },
       "margin": {
         "horizontal": 20
       },
-      "background_color": "#f5fdff",
-      "radius": 18,
-      "text_color": "#f15976"
+      "background_color": "#fff",
+      "radius": 6,
+      "text_color": "#4B465C",
+      "font_size": 16
     },
 
     "placeholders_style": {
-      "text_color": "#f15976",
+      "font_size": 16,
+      "text_color": "#212121",
       "margin": {
-        "horizontal": 20
+        "horizontal": 150
       }
     },
 
     "groups_style": {},
 
     "buttons_style": {
-      "border": {
-        "top": "1px solid #67cae0",
-        "left": "1px solid #67cae0",
-        "right": "1px solid #67cae0",
-        "bottom": "1px solid #67cae0"
-      },
       "shadow": "none",
-      "background_color": "#67cae0",
-      "text_color": "#000"
+      "background_color": "#7367F0",
+      "text_color": "#fff"
     }
   },
   "layout": { "floating_box": false },
@@ -74,10 +63,11 @@
     {
       "control_id": "control_id_0",
       "type": "PlaceHolder",
-      "label_text": "خوش آمدید",
+      "label_text": "",
       "place_holder_info": {
-        "description": "این پرسشنامه جامع غربالگری و تشخیص زودرس سرطان های رایج قابل پیشگیری است. برای شروع کلیک کنید. ",
-        "type": "Start"
+        "description": "پرسشنامه غربالگری و تشخیص زودرس سرطان های رایج قابل پیشگیری ",
+        "type": "Start",
+        "start_caption": "ورود"
       }
     },
     {

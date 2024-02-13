@@ -90,7 +90,7 @@ const FormPage = () => {
           <BackgroundStyle>
             <NoActiveMessage>
               <Typography fontSize={14}>
-                <Localizer localeKey="FORM_DISABLED" />
+                {/* <Localizer localeKey="FORM_DISABLED" /> */}
               </Typography>
             </NoActiveMessage>
             <Timer />

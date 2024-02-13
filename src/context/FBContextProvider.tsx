@@ -281,8 +281,32 @@ export const FBContextProvider = memo(
       (parseFloat(getFormValues().control_id_1_4?.toString()) *
         parseFloat(getFormValues().control_id_1_4?.toString()));
 
+    let cigaretteInWeek = 0.0;
+    switch (getFormValues().control_id_1_7_1) {
+      case "0":
+        cigaretteInWeek = 0.25;
+        break;
+      case "1":
+        cigaretteInWeek = 0.5;
+        break;
+      case "2":
+        cigaretteInWeek = 1;
+        break;
+      case "3":
+        cigaretteInWeek = 2;
+        break;
+
+      default:
+        break;
+    }
+    const cigaretteUnit =
+      cigaretteInWeek *
+      parseFloat(getFormValues().control_id_1_7_2?.toString());
+
     formController.watch("control_id_1_4");
     formController.watch("control_id_1_5");
+    formController.watch("control_id_1_7_1");
+    formController.watch("control_id_1_7_2");
 
     return (
       <>
@@ -301,6 +325,10 @@ export const FBContextProvider = memo(
           {getFormValues().control_id_1_4 && getFormValues().control_id_1_5 && (
             <h1>your BMI: {BMI}</h1>
           )}
+          {getFormValues().control_id_1_7_1 &&
+            getFormValues().control_id_1_7_2 && (
+              <h1>your cigarette: {cigaretteUnit}</h1>
+            )}
         </FBContext.Provider>
       </>
     );
