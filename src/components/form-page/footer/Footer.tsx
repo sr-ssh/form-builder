@@ -3,15 +3,18 @@ import LinearProgressWithLabel from "./LinearProgressStyle";
 import NextButton from "./NextButton";
 import { getControl } from "../../../utils/controlUtils";
 import { useFormPage } from "../../../hooks/useFormPage";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { PageIndexesType } from "../../../@types/FormPageTypes";
 import { ControlTypeEnum } from "../../../@types/controls/ControlTypes";
 import { PlaceHolderTypeEnum } from "../../../@types/controls/PlaceHolderTypes";
 import { hexToRgbA } from "../../../utils/hexToRgbA";
-import { useTheme } from "@mui/material";
+import { Button, useTheme } from "@mui/material";
+import LoadingButton from "../../shared/LoadingButton";
+import { Localizer } from "../../shared/Localizer";
 
 const Footer = () => {
   const theme = useTheme();
+  const labelRef = useRef("");
   const border = theme.controlsStyles?.border;
   const [indexes, setIndexes] = useState<PageIndexesType>([0]);
   const { submitForm, submitNext, form, gotoPrev } = useFormPage({
@@ -29,6 +32,26 @@ const Footer = () => {
   ) {
     return null;
   }
+  switch (indexes[0]) {
+    case 1:
+      labelRef.current = "PLACEHOLDER_START_BUTTON";
+      break;
+    case 2:
+    case 7:
+      labelRef.current = "FOOTER_BUTTON_LABEL_NEXT";
+      break;
+    case 6:
+    case 10:
+      labelRef.current = "FOOTER_BUTTON_LABEL_RESULT";
+      break;
+    case 11:
+    case 12:
+      labelRef.current = "FOOTER_SEND_BUTTON";
+      break;
+    default:
+      // labelRef.current = "FOOTER_SEND_BUTTON";
+      break;
+  }
 
   return (
     <Box
@@ -40,15 +63,12 @@ const Footer = () => {
       borderTop={border?.top}
       sx={{ backgroundColor: hexToRgbA(theme?.background?.color, 0.5) }}
     >
-      <LinearProgressWithLabel form={form} indexes={indexes} />
-      <NextButton
-        submitForm={submitForm}
-        submitNext={submitNext}
-        isFinished={isFinished}
-        hasNext={form.has_next}
-        hasPrev={form.has_prev}
-        gotoPrev={gotoPrev}
-      />
+      <Button
+        onClick={isFinished ? submitForm : submitNext}
+        sx={{ width: "100%" }}
+      >
+        <Localizer localeKey={labelRef.current} />
+      </Button>
     </Box>
   );
 };

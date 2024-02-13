@@ -40,4 +40,7 @@ export const globalLocales: GlobalLocalesType = {
   CIGARETTE_UNIT: "واحد مصرف سیگار شما:",
   HEADER_TITLE_1: "غربالگری سرطان‌های قابل پیشگیری ",
   HEADER_TITLE_2: "نتیجه تست",
+
+  FOOTER_BUTTON_LABEL_NEXT: "بعدی",
+  FOOTER_BUTTON_LABEL_RESULT: "مشاهده نتیجه",
 };
