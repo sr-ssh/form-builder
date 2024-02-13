@@ -8,7 +8,7 @@ import placeHolderStyle from "../../utils/theme/placeHolderStyle";
 import { useFormPage } from "../../hooks/useFormPage";
 import { PlaceHolderTypeEnum } from "../../@types/controls/PlaceHolderTypes";
 import { Localizer } from "../shared/Localizer";
-import { SxProps, Theme, useTheme } from "@mui/material";
+import { Paper, SxProps, Theme, useTheme } from "@mui/material";
 import { formatDuration } from "../../utils/date";
 
 type PlaceHolderPropsType = {
@@ -40,7 +40,7 @@ const PlaceHolder = ({ control }: PlaceHolderPropsType) => {
     <Box
       display="grid"
       gap={2}
-      sx={placeHolderStyle(theme)}
+      sx={placeHolderStyle(theme, placeHolderInfo?.type)}
       textAlign={isStart ? "center" : "unset"}
     >
       <Typography>{placeHolderInfo?.description}</Typography>

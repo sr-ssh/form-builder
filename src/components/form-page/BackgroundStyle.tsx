@@ -24,7 +24,7 @@ const BackgroundStyle = styled(Container)(() => {
     },
     ".view-wrapper": {
       overflowY: "scroll",
-      paddingInline: formTheme?.padding?.horizontal + "px",
+      paddingInline: "16px",
       paddingBlock: formTheme?.padding?.vertical + "px",
     },
   };

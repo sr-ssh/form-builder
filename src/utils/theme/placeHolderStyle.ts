@@ -1,9 +1,14 @@
 import { Theme } from "@mui/material/styles";
+import { PlaceHolderTypeEnum } from "../../@types/controls/PlaceHolderTypes";
 
-const placeHolderStyle = ({ placeHoldersStyle, fontSize, fontName }: Theme) => {
+const placeHolderStyle = (
+  { placeHoldersStyle, fontSize, fontName }: Theme,
+  type?: PlaceHolderTypeEnum,
+) => {
   const border = placeHoldersStyle?.border;
+  const isNote = type === PlaceHolderTypeEnum.Note;
   return {
-    marginBlock: placeHoldersStyle?.margin?.horizontal + "px",
+    marginBlock: isNote ? 0 : placeHoldersStyle?.margin?.horizontal + "px",
     marginInline: placeHoldersStyle?.margin?.vertical + "px",
     backgroundColor: placeHoldersStyle?.background_color,
     fontSize: placeHoldersStyle?.font_size || fontSize + "px",
@@ -14,10 +19,12 @@ const placeHolderStyle = ({ placeHoldersStyle, fontSize, fontName }: Theme) => {
     borderBottom: border?.bottom,
     borderRight: border?.right,
     borderLeft: border?.left,
-    borderRadius: placeHoldersStyle?.radius + "px",
+    borderRadius: isNote ? "6px" : placeHoldersStyle?.radius + "px",
     boxShadow: placeHoldersStyle?.shadow,
-    paddingInline: placeHoldersStyle?.padding?.horizontal + "px",
-    paddingBlock: placeHoldersStyle?.padding?.vertical + "px",
+    paddingInline: isNote
+      ? "16px"
+      : placeHoldersStyle?.padding?.horizontal + "px",
+    paddingBlock: isNote ? "16px" : placeHoldersStyle?.padding?.vertical + "px",
   };
 };
 

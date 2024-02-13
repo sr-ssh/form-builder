@@ -13,7 +13,7 @@ import Submit from "./Submit";
 import Errors from "./Errors";
 import Description from "./Description";
 import File from "./File";
-import { styled } from "@mui/material";
+import { Paper, styled } from "@mui/material";
 
 const Container = styled(Box)({
   display: "flex",
@@ -49,25 +49,79 @@ const ControlWrapper = ({
     type === ControlTypeEnum.PlaceHolder &&
     control.place_holder_info?.type === PlaceHolderTypeEnum.Start;
 
+  let paperBorderColor;
+  if (
+    control.control_id === "control_id_suggestions_men_1" ||
+    control.control_id === "control_id_suggestions_men_3" ||
+    control.control_id === "control_id_suggestions_men_4" ||
+    control.control_id === "control_id_suggestions_men_6" ||
+    control.control_id === "control_id_suggestions_women_1" ||
+    control.control_id === "control_id_suggestions_women_3" ||
+    control.control_id === "control_id_suggestions_women_4" ||
+    control.control_id === "control_id_suggestions_women_6" ||
+    control.control_id === "control_id_suggestions_women_8"
+  ) {
+    paperBorderColor = "#E72828";
+  } else if (
+    control.control_id === "control_id_suggestions_men_2" ||
+    control.control_id === "control_id_suggestions_men_5" ||
+    control.control_id === "control_id_suggestions_women_2" ||
+    control.control_id === "control_id_suggestions_women_5" ||
+    control.control_id === "control_id_suggestions_women_7"
+  ) {
+    paperBorderColor = "#FF971C";
+  } else {
+    paperBorderColor = "#00BD62";
+  }
+
   return (
     <Container>
-      <FormControl
-        error={hasError}
-        sx={{ gap: 1, ...(isFirstPage ? { alignItems: "center" } : {}) }}
-      >
-        <Label
-          control={control}
-          getQuestionNumber={getQuestionNumber}
-          hideQuestionNumber={hideQuestionNumber}
-          isFloatingBox={isFloatingBox}
-        />
-        <Box display="flex" flexDirection="column">
-          <Description control={control} isFloatingBox={isFloatingBox} />
-          <File control={control} />
-          <>{children}</>
-        </Box>
-        <Errors getControlErrors={getControlErrors} />
-      </FormControl>
+      {control.place_holder_info?.type === PlaceHolderTypeEnum.Note ? (
+        <Paper
+          elevation={1}
+          sx={{ borderBlockStart: `6px solid ${paperBorderColor}` }}
+        >
+          <FormControl
+            error={hasError}
+            sx={{ gap: 1, ...(isFirstPage ? { alignItems: "center" } : {}) }}
+          >
+            <Box marginBlockStart={2} marginInlineStart={2}>
+              <Label
+                control={control}
+                getQuestionNumber={getQuestionNumber}
+                hideQuestionNumber={hideQuestionNumber}
+                isFloatingBox={isFloatingBox}
+              />
+            </Box>
+
+            <Box display="flex" flexDirection="column">
+              <Description control={control} isFloatingBox={isFloatingBox} />
+              <File control={control} />
+              <>{children}</>
+            </Box>
+            <Errors getControlErrors={getControlErrors} />
+          </FormControl>
+        </Paper>
+      ) : (
+        <FormControl
+          error={hasError}
+          sx={{ gap: 1, ...(isFirstPage ? { alignItems: "center" } : {}) }}
+        >
+          <Label
+            control={control}
+            getQuestionNumber={getQuestionNumber}
+            hideQuestionNumber={hideQuestionNumber}
+            isFloatingBox={isFloatingBox}
+          />
+          <Box display="flex" flexDirection="column">
+            <Description control={control} isFloatingBox={isFloatingBox} />
+            <File control={control} />
+            <>{children}</>
+          </Box>
+          <Errors getControlErrors={getControlErrors} />
+        </FormControl>
+      )}
+
       <Submit control={control} form={form} submitNext={submitNext} />
     </Container>
   );
