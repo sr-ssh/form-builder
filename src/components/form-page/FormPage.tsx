@@ -18,6 +18,7 @@ import { prefixer } from "stylis";
 import { useEffect } from "react";
 import { AxiosApi } from "../../axios";
 import Logo from "../shared/Logo";
+import MyStepper from "../shared/MyStepper";
 
 const NoActiveMessage = styled(Box)({
   display: "flex",
@@ -94,6 +95,7 @@ const FormPage = () => {
             </NoActiveMessage>
             <Timer />
             {formData.layout?.has_logo && <Logo logo={formData.logo_url} />}
+            <MyStepper />
             <Box position="relative" flex="1 1 auto" height="100%">
               <PartialTabContainer
                 className="form-wrapper"
