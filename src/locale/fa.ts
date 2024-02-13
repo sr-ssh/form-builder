@@ -38,4 +38,6 @@ export const globalLocales: GlobalLocalesType = {
   FOOTER_SEND_BUTTON: "ارسال",
   BMI_TEXT: "توده شاخص بدنی یا BMI شما:",
   CIGARETTE_UNIT: "واحد مصرف سیگار شما:",
+  HEADER_TITLE_1: "غربالگری سرطان‌های قابل پیشگیری ",
+  HEADER_TITLE_2: "نتیجه تست",
 };

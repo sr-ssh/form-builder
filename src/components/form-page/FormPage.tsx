@@ -1,4 +1,3 @@
-import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import PartialTabContainer from "../../core/components/containers/PartialTabContainer";
 import theme from "../../utils/theme/theme";
@@ -8,7 +7,6 @@ import { ThemeType } from "../../@types/ThemeTypes";
 import { FormType, LocaleEnum } from "../../@types/FormTypes";
 import { FormPageContextProvider } from "../../context/FormPageContextProvider";
 import Footer from "./footer/Footer";
-import { Localizer } from "../shared/Localizer";
 import { CircularProgress, ThemeProvider, styled } from "@mui/material";
 import Timer from "../shared/Timer";
 import rtlPlugin from "stylis-plugin-rtl";
@@ -19,19 +17,7 @@ import { useEffect } from "react";
 import { AxiosApi } from "../../axios";
 import Logo from "../shared/Logo";
 import MyStepper from "../shared/MyStepper";
-
-const NoActiveMessage = styled(Box)({
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "center",
-  backgroundColor: "#fff",
-  minHeight: "2.5rem",
-  height: "51px",
-  color: "#fff",
-  userSelect: "none",
-  boxShadow: "0px 4px 4px 0px #00000014",
-  zIndex: 2,
-});
+import Header from "./Header";
 
 const LoadingStyle = styled(CircularProgress)({
   position: "relative",
@@ -90,11 +76,7 @@ const FormPage = () => {
       <ThemeProvider theme={theme({ formTheme, locale: formData.locale })}>
         <FormPageContextProvider form={formData}>
           <BackgroundStyle>
-            <NoActiveMessage>
-              {/* <Typography fontSize={14}> */}
-              {/* <Localizer localeKey="FORM_DISABLED" /> */}
-              {/* </Typography> */}
-            </NoActiveMessage>
+            <Header />
             <Timer />
             {formData.layout?.has_logo && <Logo logo={formData.logo_url} />}
             <MyStepper />

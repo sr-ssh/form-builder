@@ -83,6 +83,8 @@ export default function MyStepper() {
     return null;
   }
 
+  if (isFinished) return null;
+
   if (control?.control_id === "control_id_2") {
     stepsRef.current = ["گوارش", "کبد", "سینه", "گردن رحم", "ریه"];
   }
