@@ -146,7 +146,7 @@
             "validations": [
               {
                 "type": "Number",
-                "regex_pattern": "^\\d+$"
+                "regex_pattern": "^[-+]?([0-9]+([.][0-9]*)?|[.][0-9]+)([eE][-+]?[0-9]+)?$"
               }
             ]
           },
@@ -158,7 +158,7 @@
             "validations": [
               {
                 "type": "Number",
-                "regex_pattern": "^\\d+$"
+                "regex_pattern": "^[-+]?([0-9]+([.][0-9]*)?|[.][0-9]+)([eE][-+]?[0-9]+)?$"
               }
             ]
           },

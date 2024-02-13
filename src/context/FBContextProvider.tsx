@@ -276,6 +276,14 @@ export const FBContextProvider = memo(
 
     const getFormValues = () => formController.getValues();
 
+    const BMI =
+      parseFloat(getFormValues().control_id_1_5?.toString() || "0") /
+      (parseFloat(getFormValues().control_id_1_4?.toString()) *
+        parseFloat(getFormValues().control_id_1_4?.toString()));
+
+    formController.watch("control_id_1_4");
+    formController.watch("control_id_1_5");
+
     return (
       <>
         <FBContext.Provider
@@ -290,6 +298,9 @@ export const FBContextProvider = memo(
           }}
         >
           {children}
+          {getFormValues().control_id_1_4 && getFormValues().control_id_1_5 && (
+            <h1>your BMI: {BMI}</h1>
+          )}
         </FBContext.Provider>
       </>
     );
