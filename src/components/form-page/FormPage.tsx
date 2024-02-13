@@ -24,11 +24,13 @@ const NoActiveMessage = styled(Box)({
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
-  backgroundColor: "#3390ec",
+  backgroundColor: "#fff",
   minHeight: "2.5rem",
-  height: "2.5rem",
+  height: "51px",
   color: "#fff",
   userSelect: "none",
+  boxShadow: "0px 4px 4px 0px #00000014",
+  zIndex: 2,
 });
 
 const LoadingStyle = styled(CircularProgress)({
@@ -89,9 +91,9 @@ const FormPage = () => {
         <FormPageContextProvider form={formData}>
           <BackgroundStyle>
             <NoActiveMessage>
-              <Typography fontSize={14}>
-                {/* <Localizer localeKey="FORM_DISABLED" /> */}
-              </Typography>
+              {/* <Typography fontSize={14}> */}
+              {/* <Localizer localeKey="FORM_DISABLED" /> */}
+              {/* </Typography> */}
             </NoActiveMessage>
             <Timer />
             {formData.layout?.has_logo && <Logo logo={formData.logo_url} />}
