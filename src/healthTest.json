@@ -115,13 +115,16 @@
           },
           {
             "control_id": "control_id_1_2",
-            "type": "DropDown",
+            "type": "MultipleOption",
             "label_text": "جنس",
-            "drop_down_info": {
-              "searchable": false,
+            "multiple_option_info": {
+              "type": "Text",
+              "multi_select": false,
+              "randomize_option_number": false,
+              "arrange_type": "Vertical",
               "options": [
-                { "value": 0, "text": "زن" },
-                { "value": 1, "text": "مرد" }
+                { "text": "زن", "value": 0 },
+                { "text": "مرد", "value": 1 }
               ]
             },
             "validations": []
@@ -164,13 +167,16 @@
           },
           {
             "control_id": "control_id_1_6",
-            "type": "DropDown",
+            "type": "MultipleOption",
             "label_text": "مصرف سیگار",
-            "drop_down_info": {
-              "searchable": false,
+            "multiple_option_info": {
+              "type": "Text",
+              "multi_select": false,
+              "randomize_option_number": false,
+              "arrange_type": "Vertical",
               "options": [
-                { "value": 0, "text": "خیر" },
-                { "value": 1, "text": "بله" }
+                { "text": "خیر", "value": 0 },
+                { "text": "بله", "value": 1 }
               ]
             },
             "validations": [],
@@ -197,10 +203,13 @@
               "controls": [
                 {
                   "control_id": "control_id_1_7_1",
-                  "type": "DropDown",
+                  "type": "MultipleOption",
                   "label_text": "تعداد بسته مصرفی در روز",
-                  "drop_down_info": {
-                    "searchable": false,
+                  "multiple_option_info": {
+                    "type": "Text",
+                    "multi_select": false,
+                    "randomize_option_number": false,
+                    "arrange_type": "Vertical",
                     "options": [
                       { "value": 0, "text": "یک چهارم بسته" },
                       { "value": 1, "text": "نصف بسته" },
@@ -241,7 +250,7 @@
               "type": "Text",
               "multi_select": false,
               "randomize_option_number": false,
-              "arrange_type": "Horizontal",
+              "arrange_type": "Vertical",
               "options": [
                 { "text": "بلی", "value": 0 },
                 { "text": "خیر", "value": 1 }
@@ -256,7 +265,7 @@
               "type": "Text",
               "multi_select": false,
               "randomize_option_number": false,
-              "arrange_type": "Horizontal",
+              "arrange_type": "Vertical",
               "options": [
                 { "text": "بلی", "value": 0 },
                 { "text": "خیر", "value": 1 }
@@ -271,7 +280,7 @@
               "type": "Text",
               "multi_select": false,
               "randomize_option_number": false,
-              "arrange_type": "Horizontal",
+              "arrange_type": "Vertical",
               "options": [
                 { "text": "بلی", "value": 0 },
                 { "text": "خیر", "value": 1 }
@@ -286,7 +295,7 @@
               "type": "Text",
               "multi_select": false,
               "randomize_option_number": false,
-              "arrange_type": "Horizontal",
+              "arrange_type": "Vertical",
               "options": [
                 { "text": "بلی", "value": 0 },
                 { "text": "خیر", "value": 1 }
@@ -301,7 +310,7 @@
               "type": "Text",
               "multi_select": false,
               "randomize_option_number": false,
-              "arrange_type": "Horizontal",
+              "arrange_type": "Vertical",
               "options": [
                 { "text": "بلی", "value": 0 },
                 { "text": "خیر", "value": 1 }
@@ -316,7 +325,7 @@
               "type": "Text",
               "multi_select": false,
               "randomize_option_number": false,
-              "arrange_type": "Horizontal",
+              "arrange_type": "Vertical",
               "options": [
                 { "text": "بلی", "value": 0 },
                 { "text": "خیر", "value": 1 }
@@ -331,7 +340,7 @@
               "type": "Text",
               "multi_select": false,
               "randomize_option_number": false,
-              "arrange_type": "Horizontal",
+              "arrange_type": "Vertical",
               "options": [
                 { "text": "بلی", "value": 0 },
                 { "text": "خیر", "value": 1 }
@@ -346,7 +355,7 @@
               "type": "Text",
               "multi_select": false,
               "randomize_option_number": false,
-              "arrange_type": "Horizontal",
+              "arrange_type": "Vertical",
               "options": [
                 { "text": "بلی", "value": 0 },
                 { "text": "خیر", "value": 1 }
@@ -361,7 +370,7 @@
               "type": "Text",
               "multi_select": false,
               "randomize_option_number": false,
-              "arrange_type": "Horizontal",
+              "arrange_type": "Vertical",
               "options": [
                 { "text": "بلی", "value": 0 },
                 { "text": "خیر", "value": 1 }
@@ -376,7 +385,7 @@
               "type": "Text",
               "multi_select": false,
               "randomize_option_number": false,
-              "arrange_type": "Horizontal",
+              "arrange_type": "Vertical",
               "options": [
                 { "text": "بلی", "value": 0 },
                 { "text": "خیر", "value": 1 }
@@ -391,7 +400,7 @@
               "type": "Text",
               "multi_select": false,
               "randomize_option_number": false,
-              "arrange_type": "Horizontal",
+              "arrange_type": "Vertical",
               "options": [
                 { "text": "بلی", "value": 0 },
                 { "text": "خیر", "value": 1 }
@@ -415,7 +424,7 @@
               "type": "Text",
               "multi_select": false,
               "randomize_option_number": false,
-              "arrange_type": "Horizontal",
+              "arrange_type": "Vertical",
               "options": [
                 { "text": "بلی", "value": 0 },
                 { "text": "خیر", "value": 1 }
@@ -430,7 +439,7 @@
               "type": "Text",
               "multi_select": false,
               "randomize_option_number": false,
-              "arrange_type": "Horizontal",
+              "arrange_type": "Vertical",
               "options": [
                 { "text": "بلی", "value": 0 },
                 { "text": "خیر", "value": 1 }
@@ -445,7 +454,7 @@
               "type": "Text",
               "multi_select": false,
               "randomize_option_number": false,
-              "arrange_type": "Horizontal",
+              "arrange_type": "Vertical",
               "options": [
                 { "text": "بلی", "value": 0 },
                 { "text": "خیر", "value": 1 }
@@ -460,7 +469,7 @@
               "type": "Text",
               "multi_select": false,
               "randomize_option_number": false,
-              "arrange_type": "Horizontal",
+              "arrange_type": "Vertical",
               "options": [
                 { "text": "بلی", "value": 0 },
                 { "text": "خیر", "value": 1 }
@@ -475,7 +484,7 @@
               "type": "Text",
               "multi_select": false,
               "randomize_option_number": false,
-              "arrange_type": "Horizontal",
+              "arrange_type": "Vertical",
               "options": [
                 { "text": "بلی", "value": 0 },
                 { "text": "خیر", "value": 1 }
@@ -490,7 +499,7 @@
               "type": "Text",
               "multi_select": false,
               "randomize_option_number": false,
-              "arrange_type": "Horizontal",
+              "arrange_type": "Vertical",
               "options": [
                 { "text": "بلی", "value": 0 },
                 { "text": "خیر", "value": 1 }
@@ -505,7 +514,7 @@
               "type": "Text",
               "multi_select": false,
               "randomize_optionnumber": false,
-              "arrange_type": "Horizontal",
+              "arrange_type": "Vertical",
               "options": [
                 { "text": "بلی", "value": 0 },
                 { "text": "خیر", "value": 1 }
@@ -529,7 +538,7 @@
               "type": "Text",
               "multi_select": false,
               "randomize_option_number": false,
-              "arrange_type": "Horizontal",
+              "arrange_type": "Vertical",
               "options": [
                 { "text": "بلی", "value": 0 },
                 { "text": "خیر", "value": 1 }
@@ -544,7 +553,7 @@
               "type": "Text",
               "multi_select": false,
               "randomize_option_number": false,
-              "arrange_type": "Horizontal",
+              "arrange_type": "Vertical",
               "options": [
                 { "text": "بلی", "value": 0 },
                 { "text": "خیر", "value": 1 }
@@ -568,7 +577,7 @@
               "type": "Text",
               "multi_select": false,
               "randomize_option_number": false,
-              "arrange_type": "Horizontal",
+              "arrange_type": "Vertical",
               "options": [
                 { "text": "بلی", "value": 0 },
                 { "text": "خیر", "value": 1 }
@@ -607,7 +616,7 @@
               "type": "Text",
               "multi_select": false,
               "randomize_option_number": false,
-              "arrange_type": "Horizontal",
+              "arrange_type": "Vertical",
               "options": [
                 { "text": "بلی", "value": 0 },
                 { "text": "خیر", "value": 1 }
@@ -633,7 +642,7 @@
               "type": "Text",
               "multi_select": false,
               "randomize_option_number": false,
-              "arrange_type": "Horizontal",
+              "arrange_type": "Vertical",
               "options": [
                 { "text": "بلی", "value": 0 },
                 { "text": "خیر", "value": 1 }
@@ -648,7 +657,7 @@
               "type": "Text",
               "multi_select": false,
               "randomize_option_number": false,
-              "arrange_type": "Horizontal",
+              "arrange_type": "Vertical",
               "options": [
                 { "text": "بلی", "value": 0 },
                 { "text": "خیر", "value": 1 }
@@ -663,7 +672,7 @@
               "type": "Text",
               "multi_select": false,
               "randomize_option_number": false,
-              "arrange_type": "Horizontal",
+              "arrange_type": "Vertical",
               "options": [
                 { "text": "بلی", "value": 0 },
                 { "text": "خیر", "value": 1 }
@@ -678,7 +687,7 @@
               "type": "Text",
               "multi_select": false,
               "randomize_option_number": false,
-              "arrange_type": "Horizontal",
+              "arrange_type": "Vertical",
               "options": [
                 { "text": "بلی", "value": 0 },
                 { "text": "خیر", "value": 1 }
@@ -693,7 +702,7 @@
               "type": "Text",
               "multi_select": false,
               "randomize_option_number": false,
-              "arrange_type": "Horizontal",
+              "arrange_type": "Vertical",
               "options": [
                 { "text": "بلی", "value": 0 },
                 { "text": "خیر", "value": 1 }
@@ -708,7 +717,7 @@
               "type": "Text",
               "multi_select": false,
               "randomize_option_number": false,
-              "arrange_type": "Horizontal",
+              "arrange_type": "Vertical",
               "options": [
                 { "text": "بلی", "value": 0 },
                 { "text": "خیر", "value": 1 }
@@ -723,7 +732,7 @@
               "type": "Text",
               "multi_select": false,
               "randomize_option_number": false,
-              "arrange_type": "Horizontal",
+              "arrange_type": "Vertical",
               "options": [
                 {
                   "text": "بلی",
@@ -744,7 +753,7 @@
               "type": "Text",
               "multi_select": false,
               "randomize_option_number": false,
-              "arrange_type": "Horizontal",
+              "arrange_type": "Vertical",
               "options": [
                 {
                   "text": "بلی",
@@ -765,7 +774,7 @@
               "type": "Text",
               "multi_select": false,
               "randomize_option_number": false,
-              "arrange_type": "Horizontal",
+              "arrange_type": "Vertical",
               "options": [
                 {
                   "text": "بلی",
@@ -786,7 +795,7 @@
               "type": "Text",
               "multi_select": false,
               "randomize_option_number": false,
-              "arrange_type": "Horizontal",
+              "arrange_type": "Vertical",
               "options": [
                 {
                   "text": "بلی",
@@ -807,7 +816,7 @@
               "type": "Text",
               "multi_select": false,
               "randomize_option_number": false,
-              "arrange_type": "Horizontal",
+              "arrange_type": "Vertical",
               "options": [
                 {
                   "text": "بلی",
@@ -837,7 +846,7 @@
               "type": "Text",
               "multi_select": false,
               "randomize_option_number": false,
-              "arrange_type": "Horizontal",
+              "arrange_type": "Vertical",
               "options": [
                 {
                   "text": "بلی",
@@ -858,7 +867,7 @@
               "type": "Text",
               "multi_select": false,
               "randomize_option_number": false,
-              "arrange_type": "Horizontal",
+              "arrange_type": "Vertical",
               "options": [
                 {
                   "text": "بلی",
@@ -879,7 +888,7 @@
               "type": "Text",
               "multi_select": false,
               "randomize_option_number": false,
-              "arrange_type": "Horizontal",
+              "arrange_type": "Vertical",
               "options": [
                 {
                   "text": "بلی",
@@ -900,7 +909,7 @@
               "type": "Text",
               "multi_select": false,
               "randomize_option_number": false,
-              "arrange_type": "Horizontal",
+              "arrange_type": "Vertical",
               "options": [
                 {
                   "text": "بلی",
@@ -921,7 +930,7 @@
               "type": "Text",
               "multi_select": false,
               "randomize_option_number": false,
-              "arrange_type": "Horizontal",
+              "arrange_type": "Vertical",
               "options": [
                 {
                   "text": "بلی",
@@ -942,7 +951,7 @@
               "type": "Text",
               "multi_select": false,
               "randomize_option_number": false,
-              "arrange_type": "Horizontal",
+              "arrange_type": "Vertical",
               "options": [
                 {
                   "text": "بلی",
@@ -963,7 +972,7 @@
               "type": "Text",
               "multi_select": false,
               "randomize_option_number": false,
-              "arrange_type": "Horizontal",
+              "arrange_type": "Vertical",
               "options": [
                 {
                   "text": "بلی",
@@ -993,7 +1002,7 @@
               "type": "Text",
               "multi_select": false,
               "randomize_option_number": false,
-              "arrange_type": "Horizontal",
+              "arrange_type": "Vertical",
               "options": [
                 {
                   "text": "بلی",
@@ -1014,7 +1023,7 @@
               "type": "Text",
               "multi_select": false,
               "randomize_option_number": false,
-              "arrange_type": "Horizontal",
+              "arrange_type": "Vertical",
               "options": [
                 {
                   "text": "بلی",
@@ -1059,7 +1068,7 @@
               "type": "Text",
               "multi_select": false,
               "randomize_option_number": false,
-              "arrange_type": "Horizontal",
+              "arrange_type": "Vertical",
               "options": [
                 {
                   "text": "بلی",
