@@ -83,7 +83,7 @@ export default function MyStepper() {
     return null;
   }
 
-  if (isFinished) return null;
+  if (isFinished || indexes[0] === 11 || indexes[0] === 12) return null;
 
   if (control?.control_id === "control_id_2") {
     stepsRef.current = ["گوارش", "کبد", "سینه", "گردن رحم", "ریه"];
@@ -102,7 +102,6 @@ export default function MyStepper() {
                 {...(activeStep === index
                   ? { StepIconComponent: () => <div>{label}</div> }
                   : {})}
-                // icon={index === activeStep ? label : index + 1}
               ></StepLabelStyle>
             </Step>
           );

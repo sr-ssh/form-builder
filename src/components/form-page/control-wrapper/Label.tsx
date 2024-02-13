@@ -6,7 +6,8 @@ import {
 import InputLabel from "@mui/material/InputLabel";
 import Box from "@mui/material/Box";
 import { ValidationTypeEnum } from "../../../@types/ValidationTypes";
-import { styled } from "@mui/material";
+import { Chip, styled } from "@mui/material";
+import { PlaceHolderTypeEnum } from "../../../@types/controls/PlaceHolderTypes";
 
 const QuestionNumberLabel = styled(InputLabel)({
   position: "static",
@@ -61,6 +62,37 @@ const Label = ({
     (item) => item.type === ValidationTypeEnum.Required,
   );
 
+  let chipLabel, chipColor, chipBg;
+  if (
+    control.control_id === "control_id_suggestions_men_1" ||
+    control.control_id === "control_id_suggestions_men_3" ||
+    control.control_id === "control_id_suggestions_men_4" ||
+    control.control_id === "control_id_suggestions_men_6" ||
+    control.control_id === "control_id_suggestions_women_1" ||
+    control.control_id === "control_id_suggestions_women_3" ||
+    control.control_id === "control_id_suggestions_women_4" ||
+    control.control_id === "control_id_suggestions_women_6" ||
+    control.control_id === "control_id_suggestions_women_8"
+  ) {
+    chipLabel = "پرخطر";
+    chipColor = "#E72828";
+    chipBg = "#FFE0E0";
+  } else if (
+    control.control_id === "control_id_suggestions_men_2" ||
+    control.control_id === "control_id_suggestions_men_5" ||
+    control.control_id === "control_id_suggestions_women_2" ||
+    control.control_id === "control_id_suggestions_women_5" ||
+    control.control_id === "control_id_suggestions_women_7"
+  ) {
+    chipLabel = "خطر متوسط";
+    chipColor = "#FF971C";
+    chipBg = "#FFEFDC";
+  } else {
+    chipLabel = "وضعیت سالم";
+    chipColor = "#00BD62";
+    chipBg = "#E0FFEA";
+  }
+
   return (
     <Box display="flex" alignItems="center">
       {hasQuestionNumber ? (
@@ -74,6 +106,16 @@ const Label = ({
         {label}
         {isRequired ? <Required>*</Required> : null}
       </LabelText>
+      {control.place_holder_info?.type === PlaceHolderTypeEnum.Note && (
+        <Chip
+          label={chipLabel}
+          sx={{
+            backgroundColor: chipBg,
+            color: chipColor,
+            marginInlineStart: 2,
+          }}
+        />
+      )}
     </Box>
   );
 };
