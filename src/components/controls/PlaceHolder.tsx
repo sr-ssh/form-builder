@@ -36,8 +36,6 @@ const PlaceHolder = ({ control }: PlaceHolderPropsType) => {
     hasRemainDuration = remainDuration > 0;
   }
 
-  const style = placeHolderStyle(theme);
-
   return (
     <Box
       display="grid"

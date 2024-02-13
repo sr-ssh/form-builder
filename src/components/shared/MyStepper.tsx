@@ -3,8 +3,6 @@ import Box from "@mui/material/Box";
 import Stepper from "@mui/material/Stepper";
 import Step from "@mui/material/Step";
 import StepLabel from "@mui/material/StepLabel";
-import Button from "@mui/material/Button";
-import Typography from "@mui/material/Typography";
 import { useFormPage } from "../../hooks/useFormPage";
 import { getControl } from "../../utils/controlUtils";
 import { ControlTypeEnum } from "../../@types/controls/ControlTypes";
@@ -12,19 +10,46 @@ import { PlaceHolderTypeEnum } from "../../@types/controls/PlaceHolderTypes";
 import { PageIndexesType } from "../../@types/FormPageTypes";
 import styled from "@emotion/styled";
 
+const StepperStyle = styled(Stepper)({
+  paddingInline: 16,
+  ".MuiStep-root": {
+    padding: 0,
+  },
+  ".MuiStepConnector-line": {
+    borderColor: "#ECEBFF",
+    borderTopWidth: 2,
+    transform: "scaleX(1.3)",
+    position: "relative",
+    right: 1,
+  },
+  ".Mui-active, .Mui-completed": {
+    ".MuiStepConnector-line": {
+      borderColor: "#7367F0",
+    },
+  },
+});
+
 const StepLabelStyle = styled(StepLabel)({
-  zIndex: 1,
+  position: "relative",
+  zIndex: 2,
   display: "flex",
   borderRadius: "50%",
   justifyContent: "center",
   alignItems: "center",
+  fontFamily: "IRANSans",
   ".Mui-completed .MuiSvgIcon-root, .Mui-active .MuiSvgIcon-root ": {
     color: "#7367F0",
+  },
+  ".MuiSvgIcon-root": {
+    color: "#ECEBFF",
+    ".MuiStepIcon-text": {
+      fill: "#7367F0",
+    },
   },
   ".Mui-active": {
     backgroundColor: "#7367F0",
     color: "#FFF",
-    paddingInline: 9,
+    paddingInline: 12,
     paddingBlock: 1,
     display: "flex",
     borderRadius: "42px",
@@ -66,8 +91,8 @@ export default function MyStepper() {
   }
 
   return (
-    <Box sx={{ width: "100%" }}>
-      <Stepper activeStep={activeStep}>
+    <Box sx={{ width: "100%", marginBlock: 3 }}>
+      <StepperStyle activeStep={activeStep}>
         {stepsRef.current.map((label, index) => {
           return (
             <Step key={label}>
@@ -80,7 +105,7 @@ export default function MyStepper() {
             </Step>
           );
         })}
-      </Stepper>
+      </StepperStyle>
     </Box>
   );
 }
