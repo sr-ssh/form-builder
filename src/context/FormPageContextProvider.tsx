@@ -7,6 +7,7 @@ import {
   getControlParentById,
   getNextIndex,
   persianAlphabet,
+  showResult,
 } from "../utils/controlUtils";
 import { FieldValues } from "react-hook-form";
 import { closeView, openView } from "../core/utils/viewManager";
@@ -184,6 +185,12 @@ export const FormPageContextProvider = memo(
       indexesRef.current = nextIndexes;
       indexListenersRef.current.forEach((listener) => listener(nextIndexes!));
       questionStackRef.current.push([]);
+      // check for which result page to show, hide and show the controls of the last page
+      const result = showResult(nextIndexes, pageStackRef.current, form);
+      // nextIndexes = result?.nextIndexes;
+      if (result) {
+        form = result.form;
+      }
       openPage(nextIndexes, data);
     };
 

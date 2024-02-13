@@ -107,7 +107,6 @@
             "label_text": "سن",
             "text_box_info": { "type": "Number" },
             "validations": [
-              { "type": "Required" },
               {
                 "type": "Number",
                 "regex_pattern": "^\\d+$"
@@ -125,7 +124,7 @@
                 { "value": 1, "text": "مرد" }
               ]
             },
-            "validations": [{ "type": "Required" }]
+            "validations": []
           },
           {
             "control_id": "control_id_1_3",
@@ -133,7 +132,6 @@
             "label_text": "دور کمر (سانتی متر)",
             "text_box_info": { "type": "Number" },
             "validations": [
-              { "type": "Required" },
               {
                 "type": "Number",
                 "regex_pattern": "^\\d+$"
@@ -146,7 +144,6 @@
             "label_text": "قد (متر)",
             "text_box_info": { "type": "Number" },
             "validations": [
-              { "type": "Required" },
               {
                 "type": "Number",
                 "regex_pattern": "^\\d+$"
@@ -159,7 +156,6 @@
             "label_text": "وزن (کیلوگرم)",
             "text_box_info": { "type": "Number" },
             "validations": [
-              { "type": "Required" },
               {
                 "type": "Number",
                 "regex_pattern": "^\\d+$"
@@ -177,7 +173,7 @@
                 { "value": 1, "text": "بله" }
               ]
             },
-            "validations": [{ "type": "Required" }],
+            "validations": [],
             "conditions": [
               {
                 "type": "ThenShow",
@@ -585,6 +581,20 @@
     {
       "control_id": "control_id_6",
       "type": "Group",
+      "conditions": [
+        {
+          "type": "ThenGo",
+          "then_control_id": "control_id_suggestions_women",
+          "when_control_id": "control_id_6_1",
+          "conditions": [
+            {
+              "control_id": "control_id_6_1",
+              "condition_type": "NotEqual",
+              "condition_value": 5
+            }
+          ]
+        }
+      ],
       "group_info": {
         "type": "FormSet",
         "controls": [
@@ -611,6 +621,7 @@
       "control_id": "control_id_7",
       "type": "Group",
       "label_text": "men",
+
       "group_info": {
         "type": "FormSet",
         "controls": [
@@ -1022,11 +1033,25 @@
     {
       "control_id": "control_id_10",
       "type": "Group",
+      "conditions": [
+        {
+          "type": "ThenGo",
+          "then_control_id": "control_id_suggestions_men",
+          "when_control_id": "control_id_10_1",
+          "conditions": [
+            {
+              "control_id": "control_id_10_1",
+              "condition_type": "NotEqual",
+              "condition_value": 5
+            }
+          ]
+        }
+      ],
       "group_info": {
         "type": "FormSet",
         "controls": [
           {
-            "control_id": "control_id_4_1",
+            "control_id": "control_id_10_1",
             "type": "MultipleOption",
             "label_text": "مصرف سیگار بیش از 20 واحد (واحد مصرف سیگار: حاصل ضرب تعداد بسته سیگار مصرفی در روز × تعداد سال مصرف)",
             "description": "به طور مثال اگر یک بسته سیگار در روز به مدت 30 سال استفاده دارید، حاصل این ضرب 30 خواهد بود",
@@ -1045,6 +1070,186 @@
                   "value": 1
                 }
               ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "control_id": "control_id_suggestions_women",
+      "type": "Group",
+      "label_text": "پیشنهادات",
+      "group_info": {
+        "type": "FormSet",
+        "controls": [
+          {
+            "control_id": "control_id_suggestions_women_1",
+            "type": "PlaceHolder",
+            "label_text": "گوارش",
+            "is_hidden": true,
+            "place_holder_info": {
+              "description": "شما در گروه با خطر بیشتر برای ابتال به بیماری های گوارشی بوده و نیازمند مراجعه به متخصص گوارش برای ارزیابی بیشتر هستید.",
+              "type": "Note"
+            }
+          },
+          {
+            "control_id": "control_id_suggestions_women_2",
+            "type": "PlaceHolder",
+            "label_text": "گوارش",
+            "is_hidden": true,
+            "place_holder_info": {
+              "description": "شما در گروه با خطر متوسط برای ابتال به بیماری های گوارشی بوده و نیازمند مراجعه جهت انجام آزمایش مدفوع برای بررسی خون مخفی )آزمون FIT )بصورت سالیانه یکبار و عفونت هلیکوباکتر پیلوری )Ag pylori Helicobacter )در قالب تست های آزمایشگاهی یا کیت های خانگی هستید. ",
+              "type": "Note"
+            }
+          },
+          {
+            "control_id": "control_id_suggestions_women_3",
+            "type": "PlaceHolder",
+            "label_text": "کبد",
+            "is_hidden": true,
+            "place_holder_info": {
+              "description": "شما در معرض خطر بیشتر برای ابتال به بیماری های مزمن کبدی از جمله کبد چرب قرار دارید و نیازمند مراجعه به پزشک جهت انجام بررسی ها تکمیلی از جمله سونوگرافی و آزمایشات کبدی هستید.",
+              "type": "Note"
+            }
+          },
+          {
+            "control_id": "control_id_suggestions_women_4",
+            "type": "PlaceHolder",
+            "label_text": "سینه",
+            "is_hidden": true,
+            "place_holder_info": {
+              "description": "شما در گروه با خطر بیشتر برای ابتال به بیماری های سینه بوده و نیازمند مراجعه به متخصص زنان برای ارزیابی بیشتر هستید.",
+              "type": "Note"
+            }
+          },
+          {
+            "control_id": "control_id_suggestions_women_5",
+            "type": "PlaceHolder",
+            "label_text": "سینه",
+            "is_hidden": true,
+            "place_holder_info": {
+              "description": "شما در گروه با خطر متوسط برای ابتال به بیماری های سینه بوده و نیازمند انجام ماموگرافی بصورت سالیانه یکبار برای ارزیابی بیشتر هستید.",
+              "type": "Note"
+            }
+          },
+          {
+            "control_id": "control_id_suggestions_women_6",
+            "type": "PlaceHolder",
+            "label_text": "گردن رحم",
+            "is_hidden": true,
+            "place_holder_info": {
+              "description": "شما در گروه با خطر بیشتر برای ابتال به بیماری های گردن رحم بوده و نیازمند مراجعه به متخصص زنان برای ارزیابی بیشتر هستید.",
+              "type": "Note"
+            }
+          },
+          {
+            "control_id": "control_id_suggestions_women_7",
+            "type": "PlaceHolder",
+            "label_text": "گردن رحم",
+            "is_hidden": true,
+            "place_holder_info": {
+              "description": "شما در گروه با خطر متوسط برای ابتال به بیماری های گردن بوده و نیازمند انجام پاپ اسمیر برای ارزیابی بیشتر هستید. این ارزیابی در سنین 21 تا 29 سال به شکل سیتولوژی هر 3 سال یکبار و در سنین 30 تا 65 سال به صورت سیتولوژی هر 3 سال یکبار یا بررسی عفونت زگیل تناسلی )HPV )هر 5 سال یکبار می باشد. ",
+              "type": "Note"
+            }
+          },
+          {
+            "control_id": "control_id_suggestions_women_8",
+            "type": "PlaceHolder",
+            "label_text": "ریه",
+            "is_hidden": true,
+            "place_holder_info": {
+              "description": "شما در گروه با خطر بیشتر برای ابتال به بیماری های گوارشی بوده و نیازمند مراجعه به متخصص ریه برای ارزیابی بیشتر هستید.",
+              "type": "Note"
+            }
+          },
+          {
+            "control_id": "control_id_suggestions_women_9",
+            "type": "PlaceHolder",
+            "label_text": "",
+            "is_hidden": true,
+            "place_holder_info": {
+              "description": "ظرف یک سال آینده نیاز به اقدام خاصی نیست. برای حفظ سلامتی خود بعد از یک سال مجدداً تست غربالگری تشخیص زودرس سرطان‌های رایج را تکرار نمایید.",
+              "type": "Note"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "control_id": "control_id_suggestions_men",
+      "type": "Group",
+      "label_text": "پیشنهادات",
+      "group_info": {
+        "type": "FormSet",
+        "controls": [
+          {
+            "control_id": "control_id_suggestions_men_1",
+            "type": "PlaceHolder",
+            "label_text": "گوارش",
+            "is_hidden": true,
+            "place_holder_info": {
+              "description": "شما در گروه با خطر بیشتر برای ابتال به بیماری های گوارشی بوده و نیازمند مراجعه به متخصص گوارش برای ارزیابی بیشتر هستید.",
+              "type": "Note"
+            }
+          },
+          {
+            "control_id": "control_id_suggestions_men_2",
+            "type": "PlaceHolder",
+            "label_text": "گوارش",
+            "is_hidden": true,
+            "place_holder_info": {
+              "description": "شما در گروه با خطر متوسط برای ابتال به بیماری های گوارشی بوده و نیازمند مراجعه جهت انجام آزمایش مدفوع برای بررسی خون مخفی )آزمون FIT )بصورت سالیانه یکبار و عفونت هلیکوباکتر پیلوری )Ag pylori Helicobacter )در قالب تست های آزمایشگاهی یا کیت های خانگی هستید. ",
+              "type": "Note"
+            }
+          },
+          {
+            "control_id": "control_id_suggestions_men_3",
+            "type": "PlaceHolder",
+            "label_text": "کبد",
+            "is_hidden": true,
+            "place_holder_info": {
+              "description": "شما در معرض خطر بیشتر برای ابتال به بیماری های مزمن کبدی از جمله کبد چرب قرار دارید و نیازمند مراجعه به پزشک جهت انجام بررسی ها تکمیلی از جمله سونوگرافی و آزمایشات کبدی هستید.",
+              "type": "Note"
+            }
+          },
+          {
+            "control_id": "control_id_suggestions_men_4",
+            "type": "PlaceHolder",
+            "label_text": "پروستات",
+            "is_hidden": true,
+            "place_holder_info": {
+              "description": "شما در گروه با خطر بیشتر برای ابتال به بیماری های پروستات بوده و نیازمند مراجعه به متخصص جراح کلیه و مجاری ادراری برای ارزیابی بیشتر هستید.",
+              "type": "Note"
+            }
+          },
+          {
+            "control_id": "control_id_suggestions_men_5",
+            "type": "PlaceHolder",
+            "label_text": "پروستات",
+            "is_hidden": true,
+            "place_holder_info": {
+              "description": "شما در گروه با خطر متوسط برای ابتال به بیماری های پروستات بوده و نیازمند مراجعه جهت انجام آزمایش پروستات )PSA )بصورت سالیانه یکبار هستید.",
+              "type": "Note"
+            }
+          },
+          {
+            "control_id": "control_id_suggestions_men_6",
+            "type": "PlaceHolder",
+            "label_text": "ریه",
+            "is_hidden": true,
+            "place_holder_info": {
+              "description": "شما در گروه با خطر بیشتر برای ابتال به بیماری های گوارشی بوده و نیازمند مراجعه به متخصص ریه برای ارزیابی بیشتر هستید.",
+              "type": "Note"
+            }
+          },
+          {
+            "control_id": "control_id_suggestions_men_7",
+            "type": "PlaceHolder",
+            "label_text": "",
+            "is_hidden": true,
+            "place_holder_info": {
+              "description": "ظرف یک سال آینده نیاز به اقدام خاصی نیست. برای حفظ سلامتی خود بعد از یک سال مجدداً تست غربالگری تشخیص زودرس سرطان‌های رایج را تکرار نمایید.",
+              "type": "Note"
             }
           }
         ]

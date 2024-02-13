@@ -10,7 +10,7 @@ import {
 import { ControlType, ControlTypeEnum } from "../@types/controls/ControlTypes";
 import { FormType, FormValuesType } from "../@types/FormTypes";
 import { GroupTypesEnum } from "../@types/controls/GroupTypes";
-import { PageIndexesType } from "../@types/FormPageTypes";
+import { FormPageViewDataType, PageIndexesType } from "../@types/FormPageTypes";
 
 export const getControl = (
   controls: ControlType[],
@@ -104,8 +104,8 @@ export const passCondition = (
         overallValue === undefined
           ? currValue
           : prevCond?.composition_type === ConditionCompositionEnum.And
-            ? overallValue && currValue
-            : overallValue || currValue;
+          ? overallValue && currValue
+          : overallValue || currValue;
     }
 
     if (
@@ -220,14 +220,14 @@ const getParentWithLeftChildren = (
   if (
     parentControl?.group_info?.controls &&
     parentControl?.group_info?.controls?.length >
-    index[index.length - 1 - i] + 1
+      index[index.length - 1 - i] + 1
   ) {
     index[index.length - 1 - i] = index[index.length - 1 - i] + 1;
     return i === 0 ? index.slice(0) : index.slice(0, -i);
   } else if (
     parentControl?.group_info?.controls &&
     parentControl?.group_info?.controls?.length <=
-    index[index.length - 1 - i] + 1
+      index[index.length - 1 - i] + 1
   ) {
     return getParentWithLeftChildren(controls, index, i + 1);
   } else if (
@@ -336,6 +336,273 @@ export const checkEmptyValue = (value: any) => {
     return true;
   }
   return false;
+};
+
+const showControl = (form: FormType, parentId: string, controlId: string) => {
+  form.controls.forEach((control) => {
+    if (control.control_id === parentId) {
+      control.group_info?.controls?.map((c) => {
+        if (c.control_id === controlId) {
+          c.is_hidden = false;
+        }
+      });
+    }
+  });
+  return form;
+};
+// check for which result page to show, hide and show the controls of the last page
+export const showResult = (
+  nextIndexes: PageIndexesType,
+  pages: FormPageViewDataType[],
+  form: FormType,
+) => {
+  const nextControl = getControl(form.controls, nextIndexes);
+  if (nextControl?.control_id === "control_id_suggestions_men") {
+    let hasIssues = false;
+    const ageGroup = pages
+      .find((page) => page.indexes?.[0] === 1)
+      ?.getFormValues?.();
+    const group1Values = pages
+      .find((page) => page.indexes?.[0] === 7)
+      ?.getFormValues?.();
+    const group2Values = pages
+      .find((page) => page.indexes?.[0] === 8)
+      ?.getFormValues?.();
+    const group3Values = pages
+      .find((page) => page.indexes?.[0] === 9)
+      ?.getFormValues?.();
+    const group4Values = pages
+      .find((page) => page.indexes?.[0] === 10)
+      ?.getFormValues?.();
+    if (
+      group1Values &&
+      (group1Values.control_id_7_1 === "0" ||
+        group1Values.control_id_7_2 === "0" ||
+        group1Values.control_id_7_3 === "0" ||
+        group1Values.control_id_7_4 === "0" ||
+        group1Values.control_id_7_5 === "0" ||
+        group1Values.control_id_7_6 === "0" ||
+        group1Values.control_id_7_7 === "0" ||
+        group1Values.control_id_7_8 === "0" ||
+        group1Values.control_id_7_9 === "0" ||
+        group1Values.control_id_7_10 === "0" ||
+        group1Values.control_id_7_11 === "0")
+    ) {
+      hasIssues = true;
+      form = showControl(
+        form,
+        "control_id_suggestions_men",
+        "control_id_suggestions_men_1",
+      );
+    } else {
+      if (
+        ageGroup &&
+        Number(ageGroup.control_id_1_1) > 45 &&
+        Number(ageGroup.control_id_1_1) < 75
+      ) {
+        hasIssues = true;
+        form = showControl(
+          form,
+          "control_id_suggestions_men",
+          "control_id_suggestions_men_2",
+        );
+      }
+    }
+
+    if (
+      group2Values &&
+      (group2Values.control_id_8_1 === "0" ||
+        group2Values.control_id_8_2 === "0" ||
+        group2Values.control_id_8_3 === "0" ||
+        group2Values.control_id_8_4 === "0" ||
+        group2Values.control_id_8_5 === "0" ||
+        group2Values.control_id_8_6 === "0" ||
+        group2Values.control_id_8_7 === "0")
+    ) {
+      hasIssues = true;
+      form = showControl(
+        form,
+        "control_id_suggestions_men",
+        "control_id_suggestions_men_3",
+      );
+    }
+    if (
+      group3Values &&
+      (group3Values.control_id_9_1 === "0" ||
+        group3Values.control_id_9_2 === "0")
+    ) {
+      hasIssues = true;
+      form = showControl(
+        form,
+        "control_id_suggestions_men",
+        "control_id_suggestions_men_4",
+      );
+    } else {
+      if (
+        ageGroup &&
+        Number(ageGroup.control_id_1_1) > 50 &&
+        Number(ageGroup.control_id_1_1) < 69
+      ) {
+        hasIssues = true;
+        form = showControl(
+          form,
+          "control_id_suggestions_men",
+          "control_id_suggestions_men_5",
+        );
+      }
+    }
+    if (group4Values && group4Values.control_id_10_1 === "0") {
+      hasIssues = true;
+      form = showControl(
+        form,
+        "control_id_suggestions_men",
+        "control_id_suggestions_men_6",
+      );
+    }
+    if (!hasIssues) {
+      form = showControl(
+        form,
+        "control_id_suggestions_men",
+        "control_id_suggestions_men_7",
+      );
+    }
+    return { form, nextIndexes };
+  }
+  if (nextControl?.control_id === "control_id_suggestions_women") {
+    let hasIssues = false;
+    const ageGroup = pages
+      .find((page) => page.indexes?.[0] === 1)
+      ?.getFormValues?.();
+    const group1Values = pages
+      .find((page) => page.indexes?.[0] === 2)
+      ?.getFormValues?.();
+    const group2Values = pages
+      .find((page) => page.indexes?.[0] === 3)
+      ?.getFormValues?.();
+    const group3Values = pages
+      .find((page) => page.indexes?.[0] === 4)
+      ?.getFormValues?.();
+    const group4Values = pages
+      .find((page) => page.indexes?.[0] === 5)
+      ?.getFormValues?.();
+    const group5Values = pages
+      .find((page) => page.indexes?.[0] === 6)
+      ?.getFormValues?.();
+    if (
+      group1Values &&
+      (group1Values.control_id_2_1 === "0" ||
+        group1Values.control_id_2_2 === "0" ||
+        group1Values.control_id_2_3 === "0" ||
+        group1Values.control_id_2_4 === "0" ||
+        group1Values.control_id_2_5 === "0" ||
+        group1Values.control_id_2_6 === "0" ||
+        group1Values.control_id_2_7 === "0" ||
+        group1Values.control_id_2_8 === "0" ||
+        group1Values.control_id_2_9 === "0" ||
+        group1Values.control_id_2_10 === "0" ||
+        group1Values.control_id_2_11 === "0")
+    ) {
+      hasIssues = true;
+      form = showControl(
+        form,
+        "control_id_suggestions_women",
+        "control_id_suggestions_women_1",
+      );
+    } else {
+      if (
+        ageGroup &&
+        Number(ageGroup.control_id_1_1) > 45 &&
+        Number(ageGroup.control_id_1_1) < 75
+      ) {
+        hasIssues = true;
+        form = showControl(
+          form,
+          "control_id_suggestions_women",
+          "control_id_suggestions_women_2",
+        );
+      }
+    }
+
+    if (
+      group2Values &&
+      (group2Values.control_id_3_1 === "0" ||
+        group2Values.control_id_3_2 === "0" ||
+        group2Values.control_id_3_3 === "0" ||
+        group2Values.control_id_3_4 === "0" ||
+        group2Values.control_id_3_5 === "0" ||
+        group2Values.control_id_3_6 === "0" ||
+        group2Values.control_id_3_7 === "0")
+    ) {
+      hasIssues = true;
+      form = showControl(
+        form,
+        "control_id_suggestions_women",
+        "control_id_suggestions_women_3",
+      );
+    }
+    if (
+      group3Values &&
+      (group3Values.control_id_4_1 === "0" ||
+        group3Values.control_id_4_2 === "0")
+    ) {
+      hasIssues = true;
+      form = showControl(
+        form,
+        "control_id_suggestions_women",
+        "control_id_suggestions_women_4",
+      );
+    } else {
+      if (
+        ageGroup &&
+        Number(ageGroup.control_id_1_1) > 40 &&
+        Number(ageGroup.control_id_1_1) < 75
+      ) {
+        hasIssues = true;
+        form = showControl(
+          form,
+          "control_id_suggestions_women",
+          "control_id_suggestions_women_5",
+        );
+      }
+    }
+    if (group4Values && group4Values.control_id_5_1 === "0") {
+      hasIssues = true;
+      form = showControl(
+        form,
+        "control_id_suggestions_women",
+        "control_id_suggestions_women_6",
+      );
+    } else {
+      if (
+        ageGroup &&
+        Number(ageGroup.control_id_1_1) > 21 &&
+        Number(ageGroup.control_id_1_1) < 65
+      ) {
+        hasIssues = true;
+        form = showControl(
+          form,
+          "control_id_suggestions_women",
+          "control_id_suggestions_women_7",
+        );
+      }
+    }
+    if (group4Values && group4Values.control_id_6_1 === "0") {
+      hasIssues = true;
+      form = showControl(
+        form,
+        "control_id_suggestions_women",
+        "control_id_suggestions_women_8",
+      );
+    }
+    if (!hasIssues) {
+      form = showControl(
+        form,
+        "control_id_suggestions_women",
+        "control_id_suggestions_women_9",
+      );
+    }
+    return { form, nextIndexes };
+  } else return { form, nextIndexes };
 };
 
 export const persianAlphabet = [
