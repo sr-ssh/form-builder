@@ -560,38 +560,14 @@
     {
       "control_id": "control_id_5",
       "type": "Group",
-      "group_info": {
-        "type": "FormSet",
-        "controls": [
-          {
-            "control_id": "control_id_5_1",
-            "type": "MultipleOption",
-            "label_text": "خونریزی واژینال در مواقع غیرطبیعی (در زمان های بین قاعدگی، بعد از رابطه جنسی یا بعد از یائسگی) و یا خونریزی طولانی تر و شدید تر از حد معمول در قاعدگی",
-            "multiple_option_info": {
-              "type": "Text",
-              "multi_select": false,
-              "randomize_option_number": false,
-              "arrange_type": "Vertical",
-              "options": [
-                { "text": "بلی", "value": 0 },
-                { "text": "خیر", "value": 1 }
-              ]
-            }
-          }
-        ]
-      }
-    },
-    {
-      "control_id": "control_id_6",
-      "type": "Group",
       "conditions": [
         {
           "type": "ThenGo",
           "then_control_id": "control_id_suggestions_women",
-          "when_control_id": "control_id_6_1",
+          "when_control_id": "control_id_5_1",
           "conditions": [
             {
-              "control_id": "control_id_6_1",
+              "control_id": "control_id_5_1",
               "condition_type": "NotEqual",
               "condition_value": 5
             }
@@ -602,10 +578,9 @@
         "type": "FormSet",
         "controls": [
           {
-            "control_id": "control_id_6_1",
+            "control_id": "control_id_5_1",
             "type": "MultipleOption",
-            "label_text": "مصرف سیگار بیش از 20 واحد (واحد مصرف سیگار: حاصل ضرب تعداد بسته سیگار مصرفی در روز × تعداد سال مصرف)",
-            "description": "به طور مثال اگر یک بسته سیگار در روز به مدت 30 سال استفاده دارید، حاصل این ضرب 30 خواهد بود",
+            "label_text": "خونریزی واژینال در مواقع غیرطبیعی (در زمان های بین قاعدگی، بعد از رابطه جنسی یا بعد از یائسگی) و یا خونریزی طولانی تر و شدید تر از حد معمول در قاعدگی",
             "multiple_option_info": {
               "type": "Text",
               "multi_select": false,
@@ -984,6 +959,20 @@
     {
       "control_id": "control_id_9",
       "type": "Group",
+      "conditions": [
+        {
+          "type": "ThenGo",
+          "then_control_id": "control_id_suggestions_men",
+          "when_control_id": "control_id_9_1",
+          "conditions": [
+            {
+              "control_id": "control_id_9_1",
+              "condition_type": "NotEqual",
+              "condition_value": 5
+            }
+          ]
+        }
+      ],
       "group_info": {
         "type": "FormSet",
         "controls": [
@@ -1012,51 +1001,6 @@
             "control_id": "control_id_9_2",
             "type": "MultipleOption",
             "label_text": "سابقه خانوادگی سرطان پروستات در خویشان درجه اول در سنین پایین (کمتر از 65 سال)",
-            "multiple_option_info": {
-              "type": "Text",
-              "multi_select": false,
-              "randomize_option_number": false,
-              "arrange_type": "Vertical",
-              "options": [
-                {
-                  "text": "بلی",
-                  "value": 0
-                },
-                {
-                  "text": "خیر",
-                  "value": 1
-                }
-              ]
-            }
-          }
-        ]
-      }
-    },
-    {
-      "control_id": "control_id_10",
-      "type": "Group",
-      "conditions": [
-        {
-          "type": "ThenGo",
-          "then_control_id": "control_id_suggestions_men",
-          "when_control_id": "control_id_10_1",
-          "conditions": [
-            {
-              "control_id": "control_id_10_1",
-              "condition_type": "NotEqual",
-              "condition_value": 5
-            }
-          ]
-        }
-      ],
-      "group_info": {
-        "type": "FormSet",
-        "controls": [
-          {
-            "control_id": "control_id_10_1",
-            "type": "MultipleOption",
-            "label_text": "مصرف سیگار بیش از 20 واحد (واحد مصرف سیگار: حاصل ضرب تعداد بسته سیگار مصرفی در روز × تعداد سال مصرف)",
-            "description": "به طور مثال اگر یک بسته سیگار در روز به مدت 30 سال استفاده دارید، حاصل این ضرب 30 خواهد بود",
             "multiple_option_info": {
               "type": "Text",
               "multi_select": false,

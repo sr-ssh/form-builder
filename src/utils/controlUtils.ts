@@ -12,6 +12,7 @@ import { FormType, FormValuesType } from "../@types/FormTypes";
 import { GroupTypesEnum } from "../@types/controls/GroupTypes";
 import { FormPageViewDataType, PageIndexesType } from "../@types/FormPageTypes";
 import { convertLocale } from "../hooks/useGlobalLocales";
+import { checkCigaretteUnit } from "./checkCigaretteUnit";
 
 export const getControl = (
   controls: ControlType[],
@@ -467,13 +468,19 @@ export const showResult = (
         );
       }
     }
-    if (group4Values && group4Values.control_id_10_1 === "0") {
-      hasIssues = true;
-      form = showControl(
-        form,
-        "control_id_suggestions_men",
-        "control_id_suggestions_men_6",
+    if (ageGroup && ageGroup.control_id_1_6 !== "0") {
+      const cigaretteUnit = checkCigaretteUnit(
+        ageGroup.control_id_1_7_1?.toString(),
+        parseFloat(ageGroup.control_id_1_7_2?.toString()),
       );
+      if (cigaretteUnit > 20) {
+        hasIssues = true;
+        form = showControl(
+          form,
+          "control_id_suggestions_men",
+          "control_id_suggestions_men_6",
+        );
+      }
     }
     if (!hasIssues) {
       form = showControl(
@@ -603,13 +610,19 @@ export const showResult = (
         );
       }
     }
-    if (group5Values && group5Values.control_id_6_1 === "0") {
-      hasIssues = true;
-      form = showControl(
-        form,
-        "control_id_suggestions_women",
-        "control_id_suggestions_women_8",
+    if (ageGroup && ageGroup.control_id_1_6 !== "0") {
+      const cigaretteUnit = checkCigaretteUnit(
+        ageGroup.control_id_1_7_1?.toString(),
+        parseFloat(ageGroup.control_id_1_7_2?.toString()),
       );
+      if (cigaretteUnit > 20) {
+        hasIssues = true;
+        form = showControl(
+          form,
+          "control_id_suggestions_women",
+          "control_id_suggestions_women_8",
+        );
+      }
     }
     if (!hasIssues) {
       form = showControl(

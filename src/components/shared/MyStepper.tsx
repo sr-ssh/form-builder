@@ -63,8 +63,8 @@ export default function MyStepper() {
 
   const { form } = useFormPage({
     onIndexChanged: (nextIndexes: number[]) => {
-      if (nextIndexes[0] >= 7) {
-        setActiveStep(nextIndexes[0] - 7);
+      if (nextIndexes[0] >= 6) {
+        setActiveStep(nextIndexes[0] - 6);
       } else {
         setActiveStep(nextIndexes[0] - 2);
       }
@@ -83,13 +83,13 @@ export default function MyStepper() {
     return null;
   }
 
-  if (isFinished || indexes[0] === 11 || indexes[0] === 12) return null;
+  if (isFinished || indexes[0] === 9 || indexes[0] === 10) return null;
 
   if (control?.control_id === "control_id_2") {
-    stepsRef.current = ["گوارش", "کبد", "سینه", "گردن رحم", "ریه"];
+    stepsRef.current = ["گوارش", "کبد", "سینه", "گردن رحم"];
   }
   if (control?.control_id === "control_id_7") {
-    stepsRef.current = ["گوارش", "کبد", "پروستات", "ریه"];
+    stepsRef.current = ["گوارش", "کبد", "پروستات"];
   }
 
   return (

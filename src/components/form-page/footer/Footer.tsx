@@ -37,17 +37,17 @@ const Footer = () => {
       labelRef.current = "PLACEHOLDER_START_BUTTON";
       break;
     case 2:
-    case 5:
+    case 4:
+    case 6:
     case 7:
-    case 9:
       labelRef.current = "FOOTER_BUTTON_LABEL_NEXT";
       break;
-    case 6:
-    case 10:
+    case 5:
+    case 8:
       labelRef.current = "FOOTER_BUTTON_LABEL_RESULT";
       break;
-    case 11:
-    case 12:
+    case 9:
+    case 10:
       labelRef.current = "FOOTER_SEND_BUTTON";
       break;
     default:

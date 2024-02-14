@@ -26,6 +26,7 @@ import { PageIndexesType } from "../@types/FormPageTypes";
 import { uploadFile } from "../utils/fileUpload";
 import BMI from "../components/shared/ShowNum";
 import ShowNum from "../components/shared/ShowNum";
+import { checkCigaretteUnit } from "../utils/checkCigaretteUnit";
 
 export const FBContext = createContext<{
   registerControl: (control: ControlType) => any;
@@ -283,27 +284,10 @@ export const FBContextProvider = memo(
       ((parseFloat(getFormValues().control_id_1_4?.toString()) / 100) *
         (parseFloat(getFormValues().control_id_1_4?.toString()) / 100));
 
-    let cigaretteInWeek = 0.0;
-    switch (getFormValues().control_id_1_7_1) {
-      case "0":
-        cigaretteInWeek = 0.25;
-        break;
-      case "1":
-        cigaretteInWeek = 0.5;
-        break;
-      case "2":
-        cigaretteInWeek = 1;
-        break;
-      case "3":
-        cigaretteInWeek = 2;
-        break;
-
-      default:
-        break;
-    }
-    const cigaretteUnit =
-      cigaretteInWeek *
-      parseFloat(getFormValues().control_id_1_7_2?.toString());
+    const cigaretteUnit = checkCigaretteUnit(
+      getFormValues().control_id_1_7_1?.toString(),
+      parseFloat(getFormValues().control_id_1_7_2?.toString()),
+    );
 
     formController.watch("control_id_1_4");
     formController.watch("control_id_1_5");
