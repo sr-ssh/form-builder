@@ -411,36 +411,6 @@
         "type": "FormSet",
         "controls": [
           {
-            "control_id": "control_id_3_1",
-            "type": "MultipleOption",
-            "label_text": "دور کمر بیش از 90 سانتی‌متر در خانم‌ها",
-            "multiple_option_info": {
-              "type": "Text",
-              "multi_select": false,
-              "randomize_option_number": false,
-              "arrange_type": "Vertical",
-              "options": [
-                { "text": "بلی", "value": 0 },
-                { "text": "خیر", "value": 1 }
-              ]
-            }
-          },
-          {
-            "control_id": "control_id_3_2",
-            "type": "MultipleOption",
-            "label_text": "توده شاخص بدنی یا BMI (حاصل کسر وزن به کیلوگرم تقسیم بر قد به متر به توان 2) بیش از 25",
-            "multiple_option_info": {
-              "type": "Text",
-              "multi_select": false,
-              "randomize_option_number": false,
-              "arrange_type": "Vertical",
-              "options": [
-                { "text": "بلی", "value": 0 },
-                { "text": "خیر", "value": 1 }
-              ]
-            }
-          },
-          {
             "control_id": "control_id_3_3",
             "type": "MultipleOption",
             "label_text": "سابقه کبد چرب یا بیماری‌های مزمن کبدی",
@@ -806,48 +776,6 @@
       "group_info": {
         "type": "FormSet",
         "controls": [
-          {
-            "control_id": "control_id_8_1",
-            "type": "MultipleOption",
-            "label_text": "دور کمر بیش از 102 سانتی‌متر در مردان",
-            "multiple_option_info": {
-              "type": "Text",
-              "multi_select": false,
-              "randomize_option_number": false,
-              "arrange_type": "Vertical",
-              "options": [
-                {
-                  "text": "بلی",
-                  "value": 0
-                },
-                {
-                  "text": "خیر",
-                  "value": 1
-                }
-              ]
-            }
-          },
-          {
-            "control_id": "control_id_8_2",
-            "type": "MultipleOption",
-            "label_text": "توده شاخص بدنی یا BMI (حاصل کسر وزن به کیلوگرم تقسیم بر قد به متر به توان 2) بیش از 25",
-            "multiple_option_info": {
-              "type": "Text",
-              "multi_select": false,
-              "randomize_option_number": false,
-              "arrange_type": "Vertical",
-              "options": [
-                {
-                  "text": "بلی",
-                  "value": 0
-                },
-                {
-                  "text": "خیر",
-                  "value": 1
-                }
-              ]
-            }
-          },
           {
             "control_id": "control_id_8_3",
             "type": "MultipleOption",

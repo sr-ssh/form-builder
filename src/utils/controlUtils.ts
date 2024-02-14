@@ -374,11 +374,20 @@ export const showResult = (
 ) => {
   const nextControl = getControl(form.controls, nextIndexes);
   form = hideAllSuggestions(form);
+
+  const ageGroup = pages
+    .find((page) => page.indexes?.[0] === 1)
+    ?.getFormValues?.();
+  const bmi =
+    (ageGroup &&
+      parseFloat(ageGroup.control_id_1_5?.toString() || "0") /
+        ((parseFloat(ageGroup.control_id_1_4?.toString()) / 100) *
+          (parseFloat(ageGroup.control_id_1_4?.toString()) / 100))) ||
+    0;
+  const waist = Number(ageGroup?.control_id_1_3?.toString());
+
   if (nextControl?.control_id === "control_id_suggestions_men") {
     let hasIssues = false;
-    const ageGroup = pages
-      .find((page) => page.indexes?.[0] === 1)
-      ?.getFormValues?.();
     const group1Values = pages
       .find((page) => page.indexes?.[0] === 7)
       ?.getFormValues?.();
@@ -428,13 +437,13 @@ export const showResult = (
 
     if (
       group2Values &&
-      (group2Values.control_id_8_1 === "0" ||
-        group2Values.control_id_8_2 === "0" ||
-        group2Values.control_id_8_3 === "0" ||
+      (group2Values.control_id_8_3 === "0" ||
         group2Values.control_id_8_4 === "0" ||
         group2Values.control_id_8_5 === "0" ||
         group2Values.control_id_8_6 === "0" ||
-        group2Values.control_id_8_7 === "0")
+        group2Values.control_id_8_7 === "0" ||
+        bmi > 25 ||
+        waist > 102)
     ) {
       hasIssues = true;
       form = showControl(
@@ -493,9 +502,6 @@ export const showResult = (
   }
   if (nextControl?.control_id === "control_id_suggestions_women") {
     let hasIssues = false;
-    const ageGroup = pages
-      .find((page) => page.indexes?.[0] === 1)
-      ?.getFormValues?.();
     const group1Values = pages
       .find((page) => page.indexes?.[0] === 2)
       ?.getFormValues?.();
@@ -511,7 +517,6 @@ export const showResult = (
     const group5Values = pages
       .find((page) => page.indexes?.[0] === 6)
       ?.getFormValues?.();
-    console.log(group1Values);
     if (
       group1Values &&
       (group1Values.control_id_2_1 === "0" ||
@@ -546,16 +551,15 @@ export const showResult = (
         );
       }
     }
-
     if (
-      group2Values &&
-      (group2Values.control_id_3_1 === "0" ||
-        group2Values.control_id_3_2 === "0" ||
-        group2Values.control_id_3_3 === "0" ||
-        group2Values.control_id_3_4 === "0" ||
-        group2Values.control_id_3_5 === "0" ||
-        group2Values.control_id_3_6 === "0" ||
-        group2Values.control_id_3_7 === "0")
+      (group2Values &&
+        (group2Values.control_id_3_3 === "0" ||
+          group2Values.control_id_3_4 === "0" ||
+          group2Values.control_id_3_5 === "0" ||
+          group2Values.control_id_3_6 === "0" ||
+          group2Values.control_id_3_7 === "0")) ||
+      bmi > 25 ||
+      waist > 90
     ) {
       hasIssues = true;
       form = showControl(
