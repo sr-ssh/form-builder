@@ -11,6 +11,7 @@ import { ControlType, ControlTypeEnum } from "../@types/controls/ControlTypes";
 import { FormType, FormValuesType } from "../@types/FormTypes";
 import { GroupTypesEnum } from "../@types/controls/GroupTypes";
 import { FormPageViewDataType, PageIndexesType } from "../@types/FormPageTypes";
+import { convertLocale } from "../hooks/useGlobalLocales";
 
 export const getControl = (
   controls: ControlType[],
@@ -350,6 +351,20 @@ const showControl = (form: FormType, parentId: string, controlId: string) => {
   });
   return form;
 };
+
+const hideAllSuggestions = (form: FormType) => {
+  form.controls.forEach((control) => {
+    if (
+      control.control_id === "control_id_suggestions_men" ||
+      control.control_id === "control_id_suggestions_women"
+    ) {
+      control.group_info?.controls?.map((c) => {
+        c.is_hidden = true;
+      });
+    }
+  });
+  return form;
+};
 // check for which result page to show, hide and show the controls of the last page
 export const showResult = (
   nextIndexes: PageIndexesType,
@@ -357,6 +372,7 @@ export const showResult = (
   form: FormType,
 ) => {
   const nextControl = getControl(form.controls, nextIndexes);
+  form = hideAllSuggestions(form);
   if (nextControl?.control_id === "control_id_suggestions_men") {
     let hasIssues = false;
     const ageGroup = pages
@@ -488,6 +504,7 @@ export const showResult = (
     const group5Values = pages
       .find((page) => page.indexes?.[0] === 6)
       ?.getFormValues?.();
+    console.log(group1Values);
     if (
       group1Values &&
       (group1Values.control_id_2_1 === "0" ||
@@ -586,7 +603,7 @@ export const showResult = (
         );
       }
     }
-    if (group4Values && group4Values.control_id_6_1 === "0") {
+    if (group5Values && group5Values.control_id_6_1 === "0") {
       hasIssues = true;
       form = showControl(
         form,
