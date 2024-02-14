@@ -66,7 +66,7 @@ const FormPage = () => {
       <ThemeProvider theme={theme({ formTheme, locale: formData.locale })}>
         <FormPageContextProvider form={formData}>
           <BackgroundStyle>
-            <Header />
+            {/* <Header /> */}
             <Timer />
             {formData.layout?.has_logo && <Logo logo={formData.logo_url} />}
             <MyStepper />

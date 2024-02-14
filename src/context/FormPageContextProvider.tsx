@@ -169,6 +169,10 @@ export const FormPageContextProvider = memo(
           form_id: form.form_id,
           answers: setAnswer(data),
         });
+        AxiosApi.SendAnswer({
+          form_id: form.form_id,
+          answers: setAnswer(data),
+        });
       }
       const controlId = getControl(
         form.controls,
@@ -244,10 +248,10 @@ export const FormPageContextProvider = memo(
     const submitForm = async () =>
       pageStackRef.current[pageStackRef.current.length - 1].submitHandler?.(
         async (data) => {
-          if (!isDisabledForm()) {
-            const res = await AxiosApi.DoneForm({ form_id: form.form_id });
-            console.log(res);
-          }
+          // if (!isDisabledForm()) {
+          //   const res = await AxiosApi.DoneForm({ form_id: form.form_id });
+          //   console.log(res);
+          // }
           gotoNext(data);
         },
       )();

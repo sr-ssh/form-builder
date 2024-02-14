@@ -93,7 +93,7 @@ export default function MyStepper() {
   }
 
   return (
-    <Box sx={{ width: "100%", marginBlock: 3 }}>
+    <Box sx={{ width: "100%", marginBlockStart: 3, marginBlockEnd: 1 }}>
       <StepperStyle activeStep={activeStep}>
         {stepsRef.current.map((label, index) => {
           return (

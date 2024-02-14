@@ -9,6 +9,7 @@
   "form_status": "Registration",
   "enable_edit_form": true,
   "progress_display_mode": "None",
+  "required_answer": true,
   "theme": {
     "theme_id": "dfdd",
     "name": "پیش فرض 1",
@@ -652,7 +653,7 @@
           {
             "control_id": "control_id_7_6",
             "type": "MultipleOption",
-            "label_text": "سوزش سردل یا تلخی دهان مداوم به مدت بیش از یک ماه و یا گیر کردن لقمه ¬های غذایی حین بلع",
+            "label_text": "سوزش سردل یا تلخی دهان مداوم به مدت بیش از یک ماه و یا گیر کردن لقمه‌های غذایی حین بلع",
             "multiple_option_info": {
               "type": "Text",
               "multi_select": false,
