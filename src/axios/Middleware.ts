@@ -1,26 +1,30 @@
 import axios, { AxiosResponse } from "axios";
 import {
-  ApiErrorStatusEnum,
   AxiosResponseType,
   HttpMiddlewareType,
   PureHttpMiddlewareType,
 } from "../@types/AxiosTypes";
-import { ApiURL, defaultPayload } from "../utils/constant";
-import { getQueryParam } from "../core/utils/historyManager";
+import { ApiURL } from "../utils/constant";
+import { getUserToken } from "../utils/app";
+import { getSerializedQueryParam } from "../utils/common";
 
-const axiosInstance = axios.create({
-  baseURL: ApiURL.BASE,
-});
+const axiosInstance = axios.create();
 
-const AxiosErrorHandler = async (status?: string, message?: string) => {
-  switch (status) {
-    case ApiErrorStatusEnum.SERVER_ERROR:
+const AxiosErrorHandler = async (type?: 0 | 1 | 2 | 3, message?: string) => {
+  switch (type) {
+    case 0:
       // eslint-disable-next-line no-throw-literal
-      throw { status, message } as unknown as Error;
+      throw { type, message } as unknown as Error;
+    case 2:
+      // eslint-disable-next-line no-throw-literal
+      throw { type, message } as unknown as Error;
+    case 3:
+      // eslint-disable-next-line no-throw-literal
+      throw { type, message } as unknown as Error;
 
     default:
       // eslint-disable-next-line no-throw-literal
-      throw { status, message } as unknown as Error;
+      throw { type, message } as unknown as Error;
   }
 };
 
@@ -30,10 +34,10 @@ const AxiosHandler = async <T extends AxiosResponseType>(
   try {
     const res = (await axiosPromise) as AxiosResponse<T, any>;
 
-    if (res?.data?.status && res?.data?.status?.toLowerCase() === "ok") {
+    if (res?.data?.type && Number(res?.data?.type) === 1) {
       return res.data;
     } else {
-      return await AxiosErrorHandler(res?.data?.status, res?.data?.message);
+      return await AxiosErrorHandler(res?.data?.type, res?.data?.message);
     }
   } catch (error) {
     throw error;
@@ -46,21 +50,24 @@ export const PureHttpMiddleware = <T>(config: PureHttpMiddlewareType) =>
 export const RawHttpMiddleware = <T extends AxiosResponseType>({
   payload,
   method = "post",
-  headers,
+  headers = {},
+  needAuth = false,
 }: HttpMiddlewareType) => {
-  const token = getQueryParam("token");
+  const token = getUserToken() || getSerializedQueryParam("token");
 
-  const data = {
-    ...defaultPayload,
-    ...payload,
-    token,
-  };
+  const { method: apiMethod, data } = payload;
+
+  const url = ApiURL.BASE + apiMethod;
 
   return AxiosHandler<T>(
     axiosInstance.request({
+      url,
       method,
       data,
-      headers,
+      headers: {
+        ...headers,
+        ...(needAuth && token && { token }),
+      },
     }),
   );
 };

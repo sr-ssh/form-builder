@@ -35,6 +35,7 @@ export const AxiosApi = {
         data,
         method: ApiMethodEnum.SEND_ANSWER,
       },
+      needAuth: true,
     }),
   DoneForm: (data: DoneFormRequestDateType) =>
     HttpMiddleware<DoneFormResponseDateType>({

@@ -1,12 +1,8 @@
 import { AxiosRequestConfig } from "axios";
 import { ApiMethodEnum } from "./AxiosApiTypes";
 
-export enum ApiErrorStatusEnum {
-  SERVER_ERROR = "SERVER_ERROR",
-}
-
 export type AxiosResponseType<T = any> = {
-  status: string;
+  type: 0 | 1 | 2 | 3;
   message?: string;
   data?: T;
 };
@@ -20,6 +16,7 @@ export type HttpMiddlewareType = {
   payload: HttpMiddlewarePayloadType;
   method?: "post" | "get" | "patch" | "put";
   headers?: Record<string, string>;
+  needAuth?: boolean;
 };
 
 export type PureHttpMiddlewareType = AxiosRequestConfig;

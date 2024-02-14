@@ -619,8 +619,7 @@
     {
       "control_id": "control_id_7",
       "type": "Group",
-      "label_text": "men",
-
+      "label_text": "",
       "group_info": {
         "type": "FormSet",
         "controls": [
