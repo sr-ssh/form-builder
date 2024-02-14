@@ -97,6 +97,7 @@
             "label_text": "سن",
             "text_box_info": { "type": "Number" },
             "validations": [
+              { "type": "Required" },
               {
                 "type": "Number",
                 "regex_pattern": "^\\d+$"
@@ -117,7 +118,7 @@
                 { "text": "مرد", "value": 1 }
               ]
             },
-            "validations": []
+            "validations": [{ "type": "Required" }]
           },
           {
             "control_id": "control_id_1_3",
@@ -125,6 +126,7 @@
             "label_text": "دور کمر (سانتی متر)",
             "text_box_info": { "type": "Number" },
             "validations": [
+              { "type": "Required" },
               {
                 "type": "Number",
                 "regex_pattern": "^\\d+$"
@@ -134,9 +136,10 @@
           {
             "control_id": "control_id_1_4",
             "type": "TextBox",
-            "label_text": "قد (متر)",
+            "label_text": "قد (سانتی‌متر)",
             "text_box_info": { "type": "Number" },
             "validations": [
+              { "type": "Required" },
               {
                 "type": "Number",
                 "regex_pattern": "^[-+]?([0-9]+([.][0-9]*)?|[.][0-9]+)([eE][-+]?[0-9]+)?$"
@@ -149,6 +152,7 @@
             "label_text": "وزن (کیلوگرم)",
             "text_box_info": { "type": "Number" },
             "validations": [
+              { "type": "Required" },
               {
                 "type": "Number",
                 "regex_pattern": "^[-+]?([0-9]+([.][0-9]*)?|[.][0-9]+)([eE][-+]?[0-9]+)?$"
@@ -169,7 +173,7 @@
                 { "text": "بله", "value": 1 }
               ]
             },
-            "validations": [],
+            "validations": [{ "type": "Required" }],
             "conditions": [
               {
                 "type": "ThenShow",

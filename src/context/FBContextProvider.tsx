@@ -280,8 +280,8 @@ export const FBContextProvider = memo(
 
     const bmi =
       parseFloat(getFormValues().control_id_1_5?.toString() || "0") /
-      (parseFloat(getFormValues().control_id_1_4?.toString()) *
-        parseFloat(getFormValues().control_id_1_4?.toString()));
+      ((parseFloat(getFormValues().control_id_1_4?.toString()) / 100) *
+        (parseFloat(getFormValues().control_id_1_4?.toString()) / 100));
 
     let cigaretteInWeek = 0.0;
     switch (getFormValues().control_id_1_7_1) {
