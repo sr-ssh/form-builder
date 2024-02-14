@@ -386,6 +386,13 @@ export const showResult = (
     0;
   const waist = Number(ageGroup?.control_id_1_3?.toString());
 
+  const cigaretteUnit = ageGroup
+    ? checkCigaretteUnit(
+        ageGroup?.control_id_1_7_1?.toString() || "0",
+        parseFloat(ageGroup?.control_id_1_7_2?.toString()),
+      )
+    : 0;
+
   if (nextControl?.control_id === "control_id_suggestions_men") {
     let hasIssues = false;
     const group1Values = pages
@@ -420,19 +427,23 @@ export const showResult = (
         "control_id_suggestions_men",
         "control_id_suggestions_men_1",
       );
+    } else if (
+      ageGroup &&
+      Number(ageGroup.control_id_1_1) > 45 &&
+      Number(ageGroup.control_id_1_1) < 75
+    ) {
+      hasIssues = true;
+      form = showControl(
+        form,
+        "control_id_suggestions_men",
+        "control_id_suggestions_men_2",
+      );
     } else {
-      if (
-        ageGroup &&
-        Number(ageGroup.control_id_1_1) > 45 &&
-        Number(ageGroup.control_id_1_1) < 75
-      ) {
-        hasIssues = true;
-        form = showControl(
-          form,
-          "control_id_suggestions_men",
-          "control_id_suggestions_men_2",
-        );
-      }
+      form = showControl(
+        form,
+        "control_id_suggestions_men",
+        "control_id_suggestions_men_2_1",
+      );
     }
 
     if (
@@ -451,6 +462,12 @@ export const showResult = (
         "control_id_suggestions_men",
         "control_id_suggestions_men_3",
       );
+    } else {
+      form = showControl(
+        form,
+        "control_id_suggestions_men",
+        "control_id_suggestions_men_3_1",
+      );
     }
     if (
       group3Values &&
@@ -463,35 +480,32 @@ export const showResult = (
         "control_id_suggestions_men",
         "control_id_suggestions_men_4",
       );
-    } else {
-      if (
-        ageGroup &&
-        Number(ageGroup.control_id_1_1) > 50 &&
-        Number(ageGroup.control_id_1_1) < 69
-      ) {
-        hasIssues = true;
-        form = showControl(
-          form,
-          "control_id_suggestions_men",
-          "control_id_suggestions_men_5",
-        );
-      }
-    }
-    if (ageGroup && ageGroup.control_id_1_6 !== "0") {
-      const cigaretteUnit = checkCigaretteUnit(
-        ageGroup.control_id_1_7_1?.toString(),
-        parseFloat(ageGroup.control_id_1_7_2?.toString()),
+    } else if (
+      ageGroup &&
+      Number(ageGroup.control_id_1_1) > 50 &&
+      Number(ageGroup.control_id_1_1) < 69
+    ) {
+      hasIssues = true;
+      form = showControl(
+        form,
+        "control_id_suggestions_men",
+        "control_id_suggestions_men_5",
       );
-      if (cigaretteUnit > 20) {
-        hasIssues = true;
-        form = showControl(
-          form,
-          "control_id_suggestions_men",
-          "control_id_suggestions_men_6",
-        );
-      }
+    } else {
+      form = showControl(
+        form,
+        "control_id_suggestions_men",
+        "control_id_suggestions_men_5_1",
+      );
     }
-    if (!hasIssues) {
+    if (ageGroup && ageGroup.control_id_1_6 !== "0" && cigaretteUnit > 20) {
+      hasIssues = true;
+      form = showControl(
+        form,
+        "control_id_suggestions_men",
+        "control_id_suggestions_men_6",
+      );
+    } else {
       form = showControl(
         form,
         "control_id_suggestions_men",
@@ -537,19 +551,23 @@ export const showResult = (
         "control_id_suggestions_women",
         "control_id_suggestions_women_1",
       );
+    } else if (
+      ageGroup &&
+      Number(ageGroup.control_id_1_1) > 45 &&
+      Number(ageGroup.control_id_1_1) < 75
+    ) {
+      hasIssues = true;
+      form = showControl(
+        form,
+        "control_id_suggestions_women",
+        "control_id_suggestions_women_2",
+      );
     } else {
-      if (
-        ageGroup &&
-        Number(ageGroup.control_id_1_1) > 45 &&
-        Number(ageGroup.control_id_1_1) < 75
-      ) {
-        hasIssues = true;
-        form = showControl(
-          form,
-          "control_id_suggestions_women",
-          "control_id_suggestions_women_2",
-        );
-      }
+      form = showControl(
+        form,
+        "control_id_suggestions_women",
+        "control_id_suggestions_women_2_1",
+      );
     }
     if (
       (group2Values &&
@@ -567,6 +585,12 @@ export const showResult = (
         "control_id_suggestions_women",
         "control_id_suggestions_women_3",
       );
+    } else {
+      form = showControl(
+        form,
+        "control_id_suggestions_women",
+        "control_id_suggestions_women_3_1",
+      );
     }
     if (
       group3Values &&
@@ -579,19 +603,23 @@ export const showResult = (
         "control_id_suggestions_women",
         "control_id_suggestions_women_4",
       );
+    } else if (
+      ageGroup &&
+      Number(ageGroup.control_id_1_1) > 40 &&
+      Number(ageGroup.control_id_1_1) < 75
+    ) {
+      hasIssues = true;
+      form = showControl(
+        form,
+        "control_id_suggestions_women",
+        "control_id_suggestions_women_5",
+      );
     } else {
-      if (
-        ageGroup &&
-        Number(ageGroup.control_id_1_1) > 40 &&
-        Number(ageGroup.control_id_1_1) < 75
-      ) {
-        hasIssues = true;
-        form = showControl(
-          form,
-          "control_id_suggestions_women",
-          "control_id_suggestions_women_5",
-        );
-      }
+      form = showControl(
+        form,
+        "control_id_suggestions_women",
+        "control_id_suggestions_women_5_1",
+      );
     }
     if (group4Values && group4Values.control_id_5_1 === "0") {
       hasIssues = true;
@@ -600,35 +628,32 @@ export const showResult = (
         "control_id_suggestions_women",
         "control_id_suggestions_women_6",
       );
-    } else {
-      if (
-        ageGroup &&
-        Number(ageGroup.control_id_1_1) > 21 &&
-        Number(ageGroup.control_id_1_1) < 65
-      ) {
-        hasIssues = true;
-        form = showControl(
-          form,
-          "control_id_suggestions_women",
-          "control_id_suggestions_women_7",
-        );
-      }
-    }
-    if (ageGroup && ageGroup.control_id_1_6 !== "0") {
-      const cigaretteUnit = checkCigaretteUnit(
-        ageGroup.control_id_1_7_1?.toString(),
-        parseFloat(ageGroup.control_id_1_7_2?.toString()),
+    } else if (
+      ageGroup &&
+      Number(ageGroup.control_id_1_1) > 21 &&
+      Number(ageGroup.control_id_1_1) < 65
+    ) {
+      hasIssues = true;
+      form = showControl(
+        form,
+        "control_id_suggestions_women",
+        "control_id_suggestions_women_7",
       );
-      if (cigaretteUnit > 20) {
-        hasIssues = true;
-        form = showControl(
-          form,
-          "control_id_suggestions_women",
-          "control_id_suggestions_women_8",
-        );
-      }
+    } else {
+      form = showControl(
+        form,
+        "control_id_suggestions_women",
+        "control_id_suggestions_women_7_1",
+      );
     }
-    if (!hasIssues) {
+    if (ageGroup && ageGroup.control_id_1_6 !== "0" && cigaretteUnit > 20) {
+      hasIssues = true;
+      form = showControl(
+        form,
+        "control_id_suggestions_women",
+        "control_id_suggestions_women_8",
+      );
+    } else {
       form = showControl(
         form,
         "control_id_suggestions_women",

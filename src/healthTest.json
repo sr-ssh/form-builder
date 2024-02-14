@@ -977,12 +977,32 @@
             }
           },
           {
+            "control_id": "control_id_suggestions_women_2_1",
+            "type": "PlaceHolder",
+            "label_text": "گوارش",
+            "is_hidden": true,
+            "place_holder_info": {
+              "description": "ظرف یک سال آینده نیاز به اقدام خاصی نیست. برای حفظ سلامتی خود بعد از یک سال مجدداً تست غربالگری تشخیص زودرس سرطان‌های رایج را تکرار نمایید.",
+              "type": "Note"
+            }
+          },
+          {
             "control_id": "control_id_suggestions_women_3",
             "type": "PlaceHolder",
             "label_text": "کبد",
             "is_hidden": true,
             "place_holder_info": {
               "description": "شما در معرض خطر بیشتر برای ابتلا به بیماری های مزمن کبدی از جمله کبد چرب قرار دارید و نیازمند مراجعه به پزشک جهت انجام بررسی ها تکمیلی از جمله سونوگرافی و آزمایشات کبدی هستید.",
+              "type": "Note"
+            }
+          },
+          {
+            "control_id": "control_id_suggestions_women_3_1",
+            "type": "PlaceHolder",
+            "label_text": "کبد",
+            "is_hidden": true,
+            "place_holder_info": {
+              "description": "ظرف یک سال آینده نیاز به اقدام خاصی نیست. برای حفظ سلامتی خود بعد از یک سال مجدداً تست غربالگری تشخیص زودرس سرطان‌های رایج را تکرار نمایید.",
               "type": "Note"
             }
           },
@@ -1007,6 +1027,16 @@
             }
           },
           {
+            "control_id": "control_id_suggestions_women_5_1",
+            "type": "PlaceHolder",
+            "label_text": "سینه",
+            "is_hidden": true,
+            "place_holder_info": {
+              "description": "ظرف یک سال آینده نیاز به اقدام خاصی نیست. برای حفظ سلامتی خود بعد از یک سال مجدداً تست غربالگری تشخیص زودرس سرطان‌های رایج را تکرار نمایید.",
+              "type": "Note"
+            }
+          },
+          {
             "control_id": "control_id_suggestions_women_6",
             "type": "PlaceHolder",
             "label_text": "گردن رحم",
@@ -1027,6 +1057,16 @@
             }
           },
           {
+            "control_id": "control_id_suggestions_women_7_1",
+            "type": "PlaceHolder",
+            "label_text": "گردن رحم",
+            "is_hidden": true,
+            "place_holder_info": {
+              "description": "ظرف یک سال آینده نیاز به اقدام خاصی نیست. برای حفظ سلامتی خود بعد از یک سال مجدداً تست غربالگری تشخیص زودرس سرطان‌های رایج را تکرار نمایید.",
+              "type": "Note"
+            }
+          },
+          {
             "control_id": "control_id_suggestions_women_8",
             "type": "PlaceHolder",
             "label_text": "ریه",
@@ -1039,7 +1079,7 @@
           {
             "control_id": "control_id_suggestions_women_9",
             "type": "PlaceHolder",
-            "label_text": "",
+            "label_text": "ریه",
             "is_hidden": true,
             "place_holder_info": {
               "description": "ظرف یک سال آینده نیاز به اقدام خاصی نیست. برای حفظ سلامتی خود بعد از یک سال مجدداً تست غربالگری تشخیص زودرس سرطان‌های رایج را تکرار نمایید.",
@@ -1077,12 +1117,32 @@
             }
           },
           {
+            "control_id": "control_id_suggestions_men_2_1",
+            "type": "PlaceHolder",
+            "label_text": "گوارش",
+            "is_hidden": true,
+            "place_holder_info": {
+              "description": "ظرف یک سال آینده نیاز به اقدام خاصی نیست. برای حفظ سلامتی خود بعد از یک سال مجدداً تست غربالگری تشخیص زودرس سرطان‌های رایج را تکرار نمایید.",
+              "type": "Note"
+            }
+          },
+          {
             "control_id": "control_id_suggestions_men_3",
             "type": "PlaceHolder",
             "label_text": "کبد",
             "is_hidden": true,
             "place_holder_info": {
               "description": "شما در معرض خطر بیشتر برای ابتلا به بیماری های مزمن کبدی از جمله کبد چرب قرار دارید و نیازمند مراجعه به پزشک جهت انجام بررسی ها تکمیلی از جمله سونوگرافی و آزمایشات کبدی هستید.",
+              "type": "Note"
+            }
+          },
+          {
+            "control_id": "control_id_suggestions_men_3_1",
+            "type": "PlaceHolder",
+            "label_text": "کبد",
+            "is_hidden": true,
+            "place_holder_info": {
+              "description": "ظرف یک سال آینده نیاز به اقدام خاصی نیست. برای حفظ سلامتی خود بعد از یک سال مجدداً تست غربالگری تشخیص زودرس سرطان‌های رایج را تکرار نمایید.",
               "type": "Note"
             }
           },
@@ -1107,6 +1167,16 @@
             }
           },
           {
+            "control_id": "control_id_suggestions_men_5_1",
+            "type": "PlaceHolder",
+            "label_text": "پروستات",
+            "is_hidden": true,
+            "place_holder_info": {
+              "description": "ظرف یک سال آینده نیاز به اقدام خاصی نیست. برای حفظ سلامتی خود بعد از یک سال مجدداً تست غربالگری تشخیص زودرس سرطان‌های رایج را تکرار نمایید.",
+              "type": "Note"
+            }
+          },
+          {
             "control_id": "control_id_suggestions_men_6",
             "type": "PlaceHolder",
             "label_text": "ریه",
@@ -1119,7 +1189,7 @@
           {
             "control_id": "control_id_suggestions_men_7",
             "type": "PlaceHolder",
-            "label_text": "",
+            "label_text": "ریه",
             "is_hidden": true,
             "place_holder_info": {
               "description": "ظرف یک سال آینده نیاز به اقدام خاصی نیست. برای حفظ سلامتی خود بعد از یک سال مجدداً تست غربالگری تشخیص زودرس سرطان‌های رایج را تکرار نمایید.",
