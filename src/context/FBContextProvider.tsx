@@ -24,8 +24,8 @@ import { AxiosApi } from "../axios";
 import { FormStatusEnum, FormValuesType } from "../@types/FormTypes";
 import { PageIndexesType } from "../@types/FormPageTypes";
 import { uploadFile } from "../utils/fileUpload";
-import BMI from "../components/shared/BMI";
-import ShowNum from "../components/shared/BMI";
+import BMI from "../components/shared/ShowNum";
+import ShowNum from "../components/shared/ShowNum";
 
 export const FBContext = createContext<{
   registerControl: (control: ControlType) => any;

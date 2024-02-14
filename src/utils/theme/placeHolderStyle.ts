@@ -7,8 +7,9 @@ const placeHolderStyle = (
 ) => {
   const border = placeHoldersStyle?.border;
   const isNote = type === PlaceHolderTypeEnum.Note;
+  const isStart = type === PlaceHolderTypeEnum.Start;
   return {
-    marginBlock: isNote ? 0 : placeHoldersStyle?.margin?.horizontal + "px",
+    marginBlock: isStart ? placeHoldersStyle?.margin?.horizontal + "px" : 0,
     marginInline: placeHoldersStyle?.margin?.vertical + "px",
     backgroundColor: placeHoldersStyle?.background_color,
     fontSize: placeHoldersStyle?.font_size || fontSize + "px",

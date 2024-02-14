@@ -18,13 +18,9 @@ const ShowNum = ({ num, label }: { num: string; label: string }) => {
   return (
     <BoxStyle>
       <Localizer localeKey={label} />
-      {num !== "NaN" ? (
-        <Box fontSize={20} fontWeight={500}>
-          {num}
-        </Box>
-      ) : (
-        <CircularProgress size={25} color="inherit" />
-      )}
+      <Box fontSize={20} fontWeight={500}>
+        {num !== "NaN" ? num : "0"}
+      </Box>
     </BoxStyle>
   );
 };

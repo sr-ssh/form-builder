@@ -1077,7 +1077,7 @@
     {
       "control_id": "control_id_suggestions_women",
       "type": "Group",
-      "label_text": "پیشنهادات",
+      "label_text": "",
       "group_info": {
         "type": "FormSet",
         "controls": [
@@ -1177,7 +1177,7 @@
     {
       "control_id": "control_id_suggestions_men",
       "type": "Group",
-      "label_text": "پیشنهادات",
+      "label_text": "",
       "group_info": {
         "type": "FormSet",
         "controls": [
@@ -1260,15 +1260,6 @@
       "label_text": "تشکر",
       "place_holder_info": {
         "description": "از زمان شما ممنونیم.",
-        "type": "End"
-      }
-    },
-    {
-      "control_id": "control_id_13",
-      "type": "PlaceHolder",
-      "label_text": "2قوانین",
-      "place_holder_info": {
-        "description": "قوانین را خوانده و تایید می‌نمایم.",
         "type": "End"
       }
     }

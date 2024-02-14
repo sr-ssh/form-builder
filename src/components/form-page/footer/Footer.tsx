@@ -37,7 +37,9 @@ const Footer = () => {
       labelRef.current = "PLACEHOLDER_START_BUTTON";
       break;
     case 2:
+    case 5:
     case 7:
+    case 9:
       labelRef.current = "FOOTER_BUTTON_LABEL_NEXT";
       break;
     case 6:

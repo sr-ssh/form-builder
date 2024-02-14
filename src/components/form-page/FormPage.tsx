@@ -13,8 +13,6 @@ import rtlPlugin from "stylis-plugin-rtl";
 import { CacheProvider } from "@emotion/react";
 import createCache from "@emotion/cache";
 import { prefixer } from "stylis";
-import { useEffect } from "react";
-import { AxiosApi } from "../../axios";
 import Logo from "../shared/Logo";
 import MyStepper from "../shared/MyStepper";
 import Header from "./Header";
@@ -56,14 +54,6 @@ const FormPage = () => {
       document.documentElement?.setAttribute("dir", "rtl");
       break;
   }
-
-  useEffect(() => {
-    AxiosApi.GetForm({ form_id: "6592bbc3eb4b963b4936e94f" })
-      .then((res) => {
-        // if (res?.form) setFormData(res.form);
-      })
-      .catch((err) => console.error(err));
-  }, []);
 
   if (!formData || !formData.controls) {
     return <LoadingStyle />;

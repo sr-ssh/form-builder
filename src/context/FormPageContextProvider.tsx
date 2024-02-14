@@ -302,7 +302,7 @@ export const FormPageContextProvider = memo(
       if (form.end_time && form.end_time <= now) {
         timeout();
       } else {
-        addSendPage();
+        // addSendPage();
         openPage([0]);
       }
       // eslint-disable-next-line react-hooks/exhaustive-deps
