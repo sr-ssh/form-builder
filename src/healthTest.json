@@ -199,6 +199,7 @@
                   "control_id": "control_id_1_7_1",
                   "type": "MultipleOption",
                   "label_text": "تعداد بسته مصرفی در روز",
+                  "validations": [{ "type": "Required" }],
                   "multiple_option_info": {
                     "type": "Text",
                     "multi_select": false,
@@ -218,6 +219,7 @@
                   "type": "TextBox",
                   "text_box_info": { "type": "Number" },
                   "validations": [
+                    { "type": "Required" },
                     {
                       "type": "Number",
                       "regex_pattern": "^\\d+$"
