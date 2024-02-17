@@ -6,9 +6,17 @@ import RadioGroup from "@mui/material/RadioGroup";
 import Radio from "@mui/material/Radio";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import { ArrangeTypeEnum } from "../../../@types/MultipleOptionTypes";
-import groupStyle from "../../../utils/theme/groupStyle";
-import { useTheme } from "@mui/material";
+import { styled, useTheme } from "@mui/material";
 import { useFBControl } from "../../../hooks/useFBControl";
+import multiSelectStyle from "../../../utils/theme/multiSelectStyle";
+
+const RadioStyle = styled(Radio)({
+  paddingBlock: 0,
+  ".MuiButtonBase-root": {},
+  ".MuiSvgIcon-root": {
+    width: "18px",
+  },
+});
 
 type UniSelectPropsType = {
   control: ControlType;
@@ -31,7 +39,7 @@ const UniSelect = ({ control }: UniSelectPropsType) => {
       sx={{
         flexDirection:
           info?.arrange_type === ArrangeTypeEnum.Horizontal ? "row" : "column",
-        ...groupStyle(theme.controlsStyles),
+        ...multiSelectStyle(theme.controlsStyles),
         margin: 0,
       }}
       defaultValue={defaultValue || info?.default_selected_index}
@@ -44,7 +52,7 @@ const UniSelect = ({ control }: UniSelectPropsType) => {
           key={option.value}
           value={option.value}
           disabled={isDisabled}
-          control={<Radio />}
+          control={<RadioStyle />}
           label={
             option.image_url ? (
               <img alt={option.text} src={option.image_url} width="200px" />

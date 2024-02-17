@@ -10,9 +10,9 @@ import {
   ArrangeTypeEnum,
   MultipleOptionTypeEnum,
 } from "../../../@types/MultipleOptionTypes";
-import groupStyle from "../../../utils/theme/groupStyle";
 import { useTheme } from "@mui/material";
 import { useFBControl } from "../../../hooks/useFBControl";
+import multiSelectStyle from "../../../utils/theme/multiSelectStyle";
 
 type MultiSelectPropsType = {
   control: ControlType;
@@ -37,7 +37,7 @@ const MultiSelect = ({ control }: MultiSelectPropsType) => {
       sx={{
         flexDirection:
           info.arrange_type === ArrangeTypeEnum.Horizontal ? "row" : "column",
-        ...groupStyle(theme.controlsStyles),
+        ...multiSelectStyle(theme.controlsStyles),
       }}
     >
       {options?.map((option) => (
