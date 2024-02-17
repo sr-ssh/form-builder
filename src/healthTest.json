@@ -56,6 +56,7 @@
       "shadow": "none",
       "background_color": "#7367F0",
       "text_color": "#fff",
+      "radius": 6,
       "border": {
         "top": "none",
         "left": "none",
