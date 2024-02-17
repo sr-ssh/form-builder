@@ -9,7 +9,7 @@
   "form_status": "Registration",
   "enable_edit_form": true,
   "progress_display_mode": "None",
-  "required_answer": false,
+  "required_answer": true,
   "theme": {
     "theme_id": "dfdd",
     "name": "پیش فرض 1",
