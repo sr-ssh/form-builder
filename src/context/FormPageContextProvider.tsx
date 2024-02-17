@@ -49,7 +49,7 @@ export const FormPageContextProvider = memo(
     const indexListenersRef = useRef<IndexListenersType[]>([]);
     const indexesRef = useRef<PageIndexesType>([0]);
     const passedPagesRef = useRef<string[]>([]);
-    const guid = useRef("");
+    const guidRef = useRef(undefined);
     const { lang } = useGlobalLocales();
 
     const addNewQuestion = (id: string) => {
@@ -107,7 +107,7 @@ export const FormPageContextProvider = memo(
         type: "FormContainer",
         data,
         component: FormPageItem,
-        onClosed: () => configClose(),
+        onClosing: () => configClose(),
       });
     };
 
@@ -193,15 +193,18 @@ export const FormPageContextProvider = memo(
     const gotoNext = (data: FieldValues) => {
       if (Object.keys(data).length && !isDisabledPage()) {
         console.log("APICALL__sendAnswer", {
-          form_id: guid.current,
+          form_id: guidRef.current,
           answers: setAnswer(data),
         });
         AxiosApi.SendAnswer({
-          form_id: guid.current,
+          form_id: guidRef.current,
           answers: setAnswer(data),
         })
           .then((res) => {
-            guid.current = (res as any)?.form_id;
+            const guid = (res as any)?.form_id;
+            if (guid) {
+              guidRef.current = guid;
+            }
             callNext(data);
           })
           .catch((err) => {
@@ -261,7 +264,6 @@ export const FormPageContextProvider = memo(
     const submitNext = async () =>
       pageStackRef.current[pageStackRef.current.length - 1].submitHandler?.(
         async (data) => {
-          console.log("first");
           gotoNext(data);
         },
       )();
@@ -275,6 +277,7 @@ export const FormPageContextProvider = memo(
           // }
           // gotoNext(data);
           closeView("1", ViewContainerType.MasterTab, "All");
+          (window as any).androidApp?.closeApp();
         },
       )();
 

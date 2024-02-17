@@ -20,6 +20,7 @@ const BackgroundStyle = styled(Container)(() => {
       backgroundColor: backgroundStyles?.color || "#fff",
       backgroundImage: `url("${backgroundStyles?.image_url}")`,
       opacity: backgroundStyles?.image_opacity,
+      width: "100%",
       ...(imageAlign && getBackgroundPosition(imageAlign)),
     },
     ".view-wrapper": {

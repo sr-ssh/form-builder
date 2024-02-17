@@ -70,7 +70,12 @@ const FormPage = () => {
             {/* <Timer /> */}
             {formData.layout?.has_logo && <Logo logo={formData.logo_url} />}
             <MyStepper />
-            <Box position="relative" flex="1 1 auto" height="100%">
+            <Box
+              position="relative"
+              flex="1 1 auto"
+              height="100%"
+              width={"100%"}
+            >
               <PartialTabContainer
                 className="form-wrapper"
                 containerName="FormContainer"

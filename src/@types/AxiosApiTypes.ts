@@ -31,7 +31,7 @@ export type QuestionAnswerType = {
 };
 
 export type SendAnswerRequestDateType = {
-  form_id: string;
+  form_id?: string;
   answers?: QuestionAnswerType[];
 };
 
