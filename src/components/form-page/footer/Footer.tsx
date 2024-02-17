@@ -55,6 +55,10 @@ const Footer = () => {
       break;
   }
 
+  if (isFinished) {
+    return null;
+  }
+
   return (
     <Box
       display="flex"
