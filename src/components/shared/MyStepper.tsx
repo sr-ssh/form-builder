@@ -39,6 +39,7 @@ const StepLabelStyle = styled(StepLabel)({
   fontFamily: "IRANSans",
   ".Mui-completed .MuiSvgIcon-root, .Mui-active .MuiSvgIcon-root ": {
     color: "#7367F0",
+    backgroundColor: "#FAFAFA",
   },
   ".MuiSvgIcon-root": {
     color: "#ECEBFF",
