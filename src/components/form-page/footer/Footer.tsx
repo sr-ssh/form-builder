@@ -1,6 +1,4 @@
 import Box from "@mui/material/Box";
-import LinearProgressWithLabel from "./LinearProgressStyle";
-import NextButton from "./NextButton";
 import { getControl } from "../../../utils/controlUtils";
 import { useFormPage } from "../../../hooks/useFormPage";
 import { useRef, useState } from "react";
@@ -8,7 +6,7 @@ import { PageIndexesType } from "../../../@types/FormPageTypes";
 import { ControlTypeEnum } from "../../../@types/controls/ControlTypes";
 import { PlaceHolderTypeEnum } from "../../../@types/controls/PlaceHolderTypes";
 import { hexToRgbA } from "../../../utils/hexToRgbA";
-import { Button, useTheme } from "@mui/material";
+import { useTheme } from "@mui/material";
 import LoadingButton from "../../shared/LoadingButton";
 import { Localizer } from "../../shared/Localizer";
 
@@ -24,7 +22,9 @@ const Footer = () => {
   });
 
   const control = getControl(form.controls, indexes);
-  const isFinished = control?.control_id === "send";
+  const isFinished =
+    control?.control_id === "control_id_suggestions_men" ||
+    control?.control_id === "control_id_suggestions_women";
   if (
     control?.type === ControlTypeEnum.PlaceHolder &&
     control.place_holder_info?.type !== PlaceHolderTypeEnum.Note &&
@@ -65,12 +65,23 @@ const Footer = () => {
       borderTop={border?.top}
       sx={{ backgroundColor: hexToRgbA(theme?.background?.color, 0.5) }}
     >
-      <LoadingButton
-        onClick={isFinished ? submitForm : submitNext}
-        sx={{ width: "100%" }}
-      >
-        <Localizer localeKey={labelRef.current} />
-      </LoadingButton>
+      {isFinished ? (
+        <LoadingButton
+          key={"submitForm"}
+          onClick={submitForm}
+          sx={{ width: "100%" }}
+        >
+          <Localizer localeKey={labelRef.current} />
+        </LoadingButton>
+      ) : (
+        <LoadingButton
+          key={"submitNext"}
+          onClick={submitNext}
+          sx={{ width: "100%" }}
+        >
+          <Localizer localeKey={labelRef.current} />
+        </LoadingButton>
+      )}
     </Box>
   );
 };

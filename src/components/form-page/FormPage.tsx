@@ -67,7 +67,7 @@ const FormPage = () => {
         <FormPageContextProvider form={formData}>
           <BackgroundStyle>
             {/* <Header /> */}
-            <Timer />
+            {/* <Timer /> */}
             {formData.layout?.has_logo && <Logo logo={formData.logo_url} />}
             <MyStepper />
             <Box position="relative" flex="1 1 auto" height="100%">
