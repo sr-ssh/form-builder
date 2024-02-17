@@ -26,14 +26,12 @@ function App() {
 
   return (
     <>
-      {/* <CacheProvider value={cacheRtl}> */}
       <MasterTabContainer />
       <TabContainer />
       <ModalContainer />
       <BottomSheetContainer />
       <ToastContainer />
       <OverlayContainer />
-      {/* </CacheProvider> */}
     </>
   );
 }

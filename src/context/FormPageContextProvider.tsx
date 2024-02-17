@@ -21,6 +21,9 @@ import { PlaceHolderTypeEnum } from "../@types/controls/PlaceHolderTypes";
 import { PageNoTypeEnum } from "../@types/controls/GroupTypes";
 import { useGlobalLocales } from "../hooks/useGlobalLocales";
 import { AxiosApi } from "../axios";
+import { openToast } from "../core/utils/commonViews";
+import { MessageType } from "../core/@types/commonView";
+import { v4 as uuidv4 } from "uuid";
 
 export type IndexListenersType = (indexes: PageIndexesType) => void;
 
@@ -47,6 +50,7 @@ export const FormPageContextProvider = memo(
     const indexListenersRef = useRef<IndexListenersType[]>([]);
     const indexesRef = useRef<PageIndexesType>([0]);
     const passedPagesRef = useRef<string[]>([]);
+    const guid = useRef(uuidv4());
     const { lang } = useGlobalLocales();
 
     const addNewQuestion = (id: string) => {
@@ -166,36 +170,75 @@ export const FormPageContextProvider = memo(
     const gotoNext = (data: FieldValues) => {
       if (Object.keys(data).length && !isDisabledPage()) {
         console.log("APICALL__sendAnswer", {
-          form_id: form.form_id,
+          form_id: guid.current,
           answers: setAnswer(data),
         });
         AxiosApi.SendAnswer({
-          form_id: form.form_id,
+          form_id: guid.current,
           answers: setAnswer(data),
-        });
+        })
+          .then(() => {
+            const controlId = getControl(
+              form.controls,
+              indexesRef.current,
+            )?.control_id;
+            const passedPages = passedPagesRef.current;
+            if (controlId && !passedPages.includes(controlId)) {
+              passedPages.push(controlId);
+            }
+            let nextIndexes = getNextIndex(
+              form,
+              indexesRef.current || [],
+              data,
+            );
+            if (!nextIndexes || !nextIndexes.length) {
+              return;
+            }
+            indexesRef.current = nextIndexes;
+            indexListenersRef.current.forEach((listener) =>
+              listener(nextIndexes!),
+            );
+            questionStackRef.current.push([]);
+            // check for which result page to show, hide and show the controls of the last page
+            const result = showResult(nextIndexes, pageStackRef.current, form);
+            // nextIndexes = result?.nextIndexes;
+            if (result) {
+              form = result.form;
+            }
+            openPage(nextIndexes, data);
+            // resolve();
+          })
+          .catch((err) => {
+            console.log(err);
+            openToast({
+              message: "مشکلی پیش آمده است.",
+              type: MessageType.Error,
+            });
+          });
+      } else {
+        const controlId = getControl(
+          form.controls,
+          indexesRef.current,
+        )?.control_id;
+        const passedPages = passedPagesRef.current;
+        if (controlId && !passedPages.includes(controlId)) {
+          passedPages.push(controlId);
+        }
+        let nextIndexes = getNextIndex(form, indexesRef.current || [], data);
+        if (!nextIndexes || !nextIndexes.length) {
+          return;
+        }
+        indexesRef.current = nextIndexes;
+        indexListenersRef.current.forEach((listener) => listener(nextIndexes!));
+        questionStackRef.current.push([]);
+        // check for which result page to show, hide and show the controls of the last page
+        const result = showResult(nextIndexes, pageStackRef.current, form);
+        // nextIndexes = result?.nextIndexes;
+        if (result) {
+          form = result.form;
+        }
+        openPage(nextIndexes, data);
       }
-      const controlId = getControl(
-        form.controls,
-        indexesRef.current,
-      )?.control_id;
-      const passedPages = passedPagesRef.current;
-      if (controlId && !passedPages.includes(controlId)) {
-        passedPages.push(controlId);
-      }
-      let nextIndexes = getNextIndex(form, indexesRef.current || [], data);
-      if (!nextIndexes || !nextIndexes.length) {
-        return;
-      }
-      indexesRef.current = nextIndexes;
-      indexListenersRef.current.forEach((listener) => listener(nextIndexes!));
-      questionStackRef.current.push([]);
-      // check for which result page to show, hide and show the controls of the last page
-      const result = showResult(nextIndexes, pageStackRef.current, form);
-      // nextIndexes = result?.nextIndexes;
-      if (result) {
-        form = result.form;
-      }
-      openPage(nextIndexes, data);
     };
 
     const configClose = () => {
@@ -240,9 +283,9 @@ export const FormPageContextProvider = memo(
       indexListenersRef.current.push(listener);
     };
 
-    const submitNext = () =>
+    const submitNext = async () =>
       pageStackRef.current[pageStackRef.current.length - 1].submitHandler?.(
-        (data) => gotoNext(data),
+        async (data) => gotoNext(data),
       )();
 
     const submitForm = async () =>
@@ -304,7 +347,7 @@ export const FormPageContextProvider = memo(
       document.title = form.title || "Form Builder";
       const now = Math.floor(new Date().getTime());
       if (form.end_time && form.end_time <= now) {
-        timeout();
+        // timeout();
       } else {
         // addSendPage();
         openPage([0]);

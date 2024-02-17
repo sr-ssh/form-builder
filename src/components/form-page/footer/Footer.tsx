@@ -17,7 +17,7 @@ const Footer = () => {
   const labelRef = useRef("");
   const border = theme.controlsStyles?.border;
   const [indexes, setIndexes] = useState<PageIndexesType>([0]);
-  const { submitForm, submitNext, form, gotoPrev } = useFormPage({
+  const { submitForm, submitNext, form } = useFormPage({
     onIndexChanged: (indexes: number[]) => {
       setIndexes(indexes);
     },
@@ -65,12 +65,12 @@ const Footer = () => {
       borderTop={border?.top}
       sx={{ backgroundColor: hexToRgbA(theme?.background?.color, 0.5) }}
     >
-      <Button
+      <LoadingButton
         onClick={isFinished ? submitForm : submitNext}
         sx={{ width: "100%" }}
       >
         <Localizer localeKey={labelRef.current} />
-      </Button>
+      </LoadingButton>
     </Box>
   );
 };

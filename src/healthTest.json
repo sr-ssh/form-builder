@@ -55,7 +55,13 @@
     "buttons_style": {
       "shadow": "none",
       "background_color": "#7367F0",
-      "text_color": "#fff"
+      "text_color": "#fff",
+      "border": {
+        "top": "none",
+        "left": "none",
+        "right": "none",
+        "bottom": "none"
+      }
     }
   },
   "layout": { "floating_box": false },
@@ -1200,15 +1206,6 @@
             }
           }
         ]
-      }
-    },
-    {
-      "control_id": "control_id_12",
-      "type": "PlaceHolder",
-      "label_text": "تشکر",
-      "place_holder_info": {
-        "description": "از زمان شما ممنونیم.",
-        "type": "End"
       }
     }
   ]
