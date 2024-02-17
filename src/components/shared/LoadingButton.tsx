@@ -1,5 +1,4 @@
 import { ReactNode, useState } from "react";
-import { useClickAsync } from "../../core/hooks/useClickAsync";
 import {
   Button,
   CircularProgress,
@@ -9,9 +8,7 @@ import {
 } from "@mui/material";
 
 const ButtonStyle = styled(Button)({
-  ".loading": {
-    backgroundColor: "red",
-  },
+  height: 38,
 });
 
 const LoadingButton = ({
@@ -28,11 +25,16 @@ const LoadingButton = ({
   const handleAsyncSubmit = async () => {
     setLoading(true);
     await onClick?.();
+    setLoading(false);
   };
-  const clickRef = useClickAsync(handleAsyncSubmit, () => setLoading(false));
-  console.log(loading);
+
   return (
-    <ButtonStyle ref={clickRef} variant="outlined" disabled={loading} sx={sx}>
+    <ButtonStyle
+      onClick={handleAsyncSubmit}
+      variant="outlined"
+      disabled={loading}
+      sx={sx}
+    >
       {loading ? (
         <CircularProgress size={20} color="inherit" />
       ) : (

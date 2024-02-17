@@ -190,30 +190,29 @@ export const FormPageContextProvider = memo(
       openPage(nextIndexes, data);
     };
 
-    const gotoNext = (data: FieldValues) => {
+    const gotoNext = async (data: FieldValues) => {
       if (Object.keys(data).length && !isDisabledPage()) {
         console.log("APICALL__sendAnswer", {
           form_id: guidRef.current,
           answers: setAnswer(data),
         });
-        AxiosApi.SendAnswer({
-          form_id: guidRef.current,
-          answers: setAnswer(data),
-        })
-          .then((res) => {
-            const guid = (res as any)?.form_id;
-            if (guid) {
-              guidRef.current = guid;
-            }
-            callNext(data);
-          })
-          .catch((err) => {
-            console.log(err);
-            openToast({
-              message: "مشکلی پیش آمده است.",
-              type: MessageType.Error,
-            });
+        try {
+          const res = await AxiosApi.SendAnswer({
+            form_id: guidRef.current,
+            answers: setAnswer(data),
           });
+          const guid = (res as any)?.form_id;
+          if (guid) {
+            guidRef.current = guid;
+          }
+          callNext(data);
+        } catch (err) {
+          console.log(err);
+          openToast({
+            message: "مشکلی پیش آمده است.",
+            type: MessageType.Error,
+          });
+        }
       } else {
         callNext(data);
       }
@@ -264,7 +263,7 @@ export const FormPageContextProvider = memo(
     const submitNext = async () =>
       pageStackRef.current[pageStackRef.current.length - 1].submitHandler?.(
         async (data) => {
-          gotoNext(data);
+          await gotoNext(data);
         },
       )();
 

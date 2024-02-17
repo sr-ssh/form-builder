@@ -11,7 +11,6 @@ import { ControlType, ControlTypeEnum } from "../@types/controls/ControlTypes";
 import { FormType, FormValuesType } from "../@types/FormTypes";
 import { GroupTypesEnum } from "../@types/controls/GroupTypes";
 import { FormPageViewDataType, PageIndexesType } from "../@types/FormPageTypes";
-import { convertLocale } from "../hooks/useGlobalLocales";
 import { checkCigaretteUnit } from "./checkCigaretteUnit";
 
 export const getControl = (
