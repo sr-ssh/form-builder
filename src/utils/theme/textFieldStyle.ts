@@ -42,7 +42,7 @@ const textFieldStyleOverride = ({
           zIndex: 1,
           // for webkit autofill
           margin: 2,
-          padding: "14.5px 12px",
+          padding: "7.5px 12px",
         },
         ".MuiOutlinedInput-notchedOutline": {
           backgroundColor: controls_style?.background_color,

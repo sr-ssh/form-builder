@@ -31,7 +31,7 @@
 
     "controls_style": {
       "padding": {
-        "horizontal": 20
+        "horizontal": 0
       },
       "margin": {
         "horizontal": 20
