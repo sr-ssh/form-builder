@@ -10,9 +10,13 @@ import { styled, useTheme } from "@mui/material";
 import { useFBControl } from "../../../hooks/useFBControl";
 import multiSelectStyle from "../../../utils/theme/multiSelectStyle";
 
+const RadioGroupStyle = styled(RadioGroup)({
+  ".MuiTypography-root": { fontSize: 15 },
+});
+
 const RadioStyle = styled(Radio)({
   paddingBlock: 0,
-  ".MuiButtonBase-root": {},
+  ".MuiTypography-root": { fontSize: 15 },
   ".MuiSvgIcon-root": {
     width: "18px",
   },
@@ -35,7 +39,7 @@ const UniSelect = ({ control }: UniSelectPropsType) => {
     : info?.options;
 
   return (
-    <RadioGroup
+    <RadioGroupStyle
       sx={{
         flexDirection:
           info?.arrange_type === ArrangeTypeEnum.Horizontal ? "row" : "column",
@@ -62,7 +66,7 @@ const UniSelect = ({ control }: UniSelectPropsType) => {
           }
         />
       ))}
-    </RadioGroup>
+    </RadioGroupStyle>
   );
 };
 
