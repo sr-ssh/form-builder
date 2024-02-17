@@ -396,16 +396,13 @@ export const showResult = (
   if (nextControl?.control_id === "control_id_suggestions_men") {
     let hasIssues = false;
     const group1Values = pages
-      .find((page) => page.indexes?.[0] === 7)
+      .find((page) => page.indexes?.[0] === 6)
       ?.getFormValues?.();
     const group2Values = pages
-      .find((page) => page.indexes?.[0] === 8)
+      .find((page) => page.indexes?.[0] === 7)
       ?.getFormValues?.();
     const group3Values = pages
-      .find((page) => page.indexes?.[0] === 9)
-      ?.getFormValues?.();
-    const group4Values = pages
-      .find((page) => page.indexes?.[0] === 10)
+      .find((page) => page.indexes?.[0] === 8)
       ?.getFormValues?.();
     if (
       group1Values &&
@@ -527,9 +524,6 @@ export const showResult = (
       ?.getFormValues?.();
     const group4Values = pages
       .find((page) => page.indexes?.[0] === 5)
-      ?.getFormValues?.();
-    const group5Values = pages
-      .find((page) => page.indexes?.[0] === 6)
       ?.getFormValues?.();
     if (
       group1Values &&
