@@ -27,7 +27,7 @@ type UniSelectPropsType = {
 };
 
 const UniSelect = ({ control }: UniSelectPropsType) => {
-  const { onChange, onBlur, name, defaultValue } =
+  const { onChange, onBlur, name, defaultValue, ref } =
     useFBRegisterControl(control);
   const { isDisabled } = useFBControl(control);
   const theme = useTheme();
@@ -57,6 +57,7 @@ const UniSelect = ({ control }: UniSelectPropsType) => {
           value={option.value}
           disabled={isDisabled}
           control={<RadioStyle />}
+          ref={ref}
           label={
             option.image_url ? (
               <img alt={option.text} src={option.image_url} width="200px" />
