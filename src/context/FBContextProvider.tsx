@@ -5,6 +5,7 @@ import {
   FieldErrorsImpl,
   FieldValues,
   Merge,
+  SubmitErrorHandler,
   SubmitHandler,
   useForm,
 } from "react-hook-form";
@@ -35,6 +36,7 @@ export const FBContext = createContext<{
   ) => FieldError | Merge<FieldError, FieldErrorsImpl<any>> | undefined;
   submitForm: (
     callback: SubmitHandler<FieldValues>,
+    errorCallback?: SubmitErrorHandler<FormValuesType>,
   ) => (
     e?: React.BaseSyntheticEvent<object, any, any> | undefined,
   ) => Promise<void>;
@@ -268,8 +270,10 @@ export const FBContextProvider = memo(
       return false;
     };
 
-    const submitForm = (callback: SubmitHandler<FieldValues>) =>
-      formController.handleSubmit(callback);
+    const submitForm = (
+      callback: SubmitHandler<FieldValues>,
+      errorCallback?: SubmitErrorHandler<FormValuesType>,
+    ) => formController.handleSubmit(callback, errorCallback);
 
     const getControlErrors = (id: string) =>
       formController.formState.errors[id];

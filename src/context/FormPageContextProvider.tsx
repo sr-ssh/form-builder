@@ -265,6 +265,12 @@ export const FormPageContextProvider = memo(
         async (data) => {
           await gotoNext(data);
         },
+        () => {
+          const els = document.getElementsByClassName("Mui-error");
+          if (els?.length > 0) {
+            els[0].scrollIntoView({ behavior: "smooth" });
+          }
+        },
       )();
 
     const submitForm = async () =>
