@@ -13,7 +13,7 @@ import Submit from "./Submit";
 import Errors from "./Errors";
 import Description from "./Description";
 import File from "./File";
-import { Paper, styled } from "@mui/material";
+import { Paper, styled, useTheme } from "@mui/material";
 
 const Container = styled(Box)({
   display: "flex",
@@ -41,6 +41,7 @@ const ControlWrapper = ({
   const { getQuestionNumber, form, submitNext } = useFormPage({
     id: control.control_id,
   });
+  const theme = useTheme();
 
   const type = control.type;
   const hasError = !!getControlErrors()?.type;
@@ -70,6 +71,14 @@ const ControlWrapper = ({
     control.control_id === "control_id_suggestions_women_7"
   ) {
     paperBorderColor = "#FF971C";
+  } else if (
+    control.control_id === "control_id_suggestions_women_2_2" ||
+    control.control_id === "control_id_suggestions_women_5_2" ||
+    control.control_id === "control_id_suggestions_women_7_2" ||
+    control.control_id === "control_id_suggestions_men_2_2" ||
+    control.control_id === "control_id_suggestions_men_5_2"
+  ) {
+    paperBorderColor = theme.palette.info.main;
   } else {
     paperBorderColor = "#00BD62";
   }

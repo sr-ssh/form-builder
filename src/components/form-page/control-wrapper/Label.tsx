@@ -6,7 +6,7 @@ import {
 import InputLabel from "@mui/material/InputLabel";
 import Box from "@mui/material/Box";
 import { ValidationTypeEnum } from "../../../@types/ValidationTypes";
-import { Chip, styled } from "@mui/material";
+import { Chip, styled, useTheme } from "@mui/material";
 import { PlaceHolderTypeEnum } from "../../../@types/controls/PlaceHolderTypes";
 
 const QuestionNumberLabel = styled(InputLabel)({
@@ -46,6 +46,7 @@ const Label = ({
 }: LabelPropsType) => {
   const id = control?.control_id;
   const label = control?.label_text;
+  const theme = useTheme();
 
   const isFloatingDropDown =
     control.type === ControlTypeEnum.DropDown && isFloatingBox;
@@ -87,6 +88,16 @@ const Label = ({
     chipLabel = "خطر متوسط";
     chipColor = "#FF971C";
     chipBg = "#FFEFDC";
+  } else if (
+    control.control_id === "control_id_suggestions_women_2_2" ||
+    control.control_id === "control_id_suggestions_women_5_2" ||
+    control.control_id === "control_id_suggestions_women_7_2" ||
+    control.control_id === "control_id_suggestions_men_2_2" ||
+    control.control_id === "control_id_suggestions_men_5_2"
+  ) {
+    chipLabel = "مراجعه به پزشک";
+    chipColor = theme.palette.info.main;
+    chipBg = "#e0f1ff";
   } else {
     chipLabel = "وضعیت سالم";
     chipColor = "#00BD62";

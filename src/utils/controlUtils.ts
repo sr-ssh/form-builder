@@ -352,6 +352,24 @@ const showControl = (form: FormType, parentId: string, controlId: string) => {
   return form;
 };
 
+const hideControl = (form: FormType, parentIds: string[]) => {
+  form.controls.forEach((control) => {
+    if (parentIds.includes(control.control_id)) {
+      control.is_hidden = true;
+    }
+  });
+  return form;
+};
+
+const showParentControl = (form: FormType, parentIds: string[]) => {
+  form.controls.forEach((control) => {
+    if (parentIds.includes(control.control_id)) {
+      control.is_hidden = false;
+    }
+  });
+  return form;
+};
+
 const hideAllSuggestions = (form: FormType) => {
   form.controls.forEach((control) => {
     if (
@@ -417,7 +435,6 @@ export const showResult = (
         group1Values.control_id_7_10 === "0" ||
         group1Values.control_id_7_11 === "0")
     ) {
-      hasIssues = true;
       form = showControl(
         form,
         "control_id_suggestions_men",
@@ -428,11 +445,16 @@ export const showResult = (
       Number(ageGroup.control_id_1_1) > 45 &&
       Number(ageGroup.control_id_1_1) < 75
     ) {
-      hasIssues = true;
       form = showControl(
         form,
         "control_id_suggestions_men",
         "control_id_suggestions_men_2",
+      );
+    } else if (ageGroup && Number(ageGroup.control_id_1_1) >= 75) {
+      form = showControl(
+        form,
+        "control_id_suggestions_men",
+        "control_id_suggestions_men_2_2",
       );
     } else {
       form = showControl(
@@ -452,7 +474,6 @@ export const showResult = (
         bmi > 25 ||
         waist > 102)
     ) {
-      hasIssues = true;
       form = showControl(
         form,
         "control_id_suggestions_men",
@@ -470,7 +491,6 @@ export const showResult = (
       (group3Values.control_id_9_1 === "0" ||
         group3Values.control_id_9_2 === "0")
     ) {
-      hasIssues = true;
       form = showControl(
         form,
         "control_id_suggestions_men",
@@ -481,11 +501,16 @@ export const showResult = (
       Number(ageGroup.control_id_1_1) > 50 &&
       Number(ageGroup.control_id_1_1) < 69
     ) {
-      hasIssues = true;
       form = showControl(
         form,
         "control_id_suggestions_men",
         "control_id_suggestions_men_5",
+      );
+    } else if (ageGroup && Number(ageGroup.control_id_1_1) >= 69) {
+      form = showControl(
+        form,
+        "control_id_suggestions_men",
+        "control_id_suggestions_men_5_2",
       );
     } else {
       form = showControl(
@@ -538,7 +563,6 @@ export const showResult = (
         group1Values.control_id_2_10 === "0" ||
         group1Values.control_id_2_11 === "0")
     ) {
-      hasIssues = true;
       form = showControl(
         form,
         "control_id_suggestions_women",
@@ -549,11 +573,16 @@ export const showResult = (
       Number(ageGroup.control_id_1_1) > 45 &&
       Number(ageGroup.control_id_1_1) < 75
     ) {
-      hasIssues = true;
       form = showControl(
         form,
         "control_id_suggestions_women",
         "control_id_suggestions_women_2",
+      );
+    } else if (ageGroup && Number(ageGroup.control_id_1_1) >= 75) {
+      form = showControl(
+        form,
+        "control_id_suggestions_women",
+        "control_id_suggestions_women_2_2",
       );
     } else {
       form = showControl(
@@ -607,6 +636,13 @@ export const showResult = (
         "control_id_suggestions_women",
         "control_id_suggestions_women_5",
       );
+    } else if (ageGroup && Number(ageGroup.control_id_1_1) >= 75) {
+      hasIssues = true;
+      form = showControl(
+        form,
+        "control_id_suggestions_women",
+        "control_id_suggestions_women_5_2",
+      );
     } else {
       form = showControl(
         form,
@@ -632,6 +668,13 @@ export const showResult = (
         "control_id_suggestions_women",
         "control_id_suggestions_women_7",
       );
+    } else if (ageGroup && Number(ageGroup.control_id_1_1) >= 65) {
+      hasIssues = true;
+      form = showControl(
+        form,
+        "control_id_suggestions_women",
+        "control_id_suggestions_women_7_2",
+      );
     } else {
       form = showControl(
         form,
@@ -655,6 +698,78 @@ export const showResult = (
     }
     return { form, nextIndexes };
   } else return { form, nextIndexes };
+};
+
+export const showPagesBasedOnAge = (
+  nextIndexes: PageIndexesType,
+  pages: FormPageViewDataType[],
+  form: FormType,
+) => {
+  const nextControlId = getControl(form.controls, nextIndexes)?.control_id;
+  if (
+    !nextControlId ||
+    (nextControlId !== "control_id_2" && nextControlId !== "control_id_7")
+  )
+    return { form, nextIndexes };
+  form = hideAllSuggestions(form);
+  const infoGroup = pages
+    .find((page) => page.indexes?.[0] === 1)
+    ?.getFormValues?.();
+  if (!infoGroup) return { form, nextIndexes };
+  const sex = infoGroup.control_id_1_2;
+  const age = infoGroup.control_id_1_1;
+  if (sex === "0") {
+    form = hideControl(form, ["control_id_suggestions_men"]);
+    form = hideControl(form, ["control_id_7", "control_id_8", "control_id_9"]);
+    if (Number(age) >= 75) {
+      return {
+        form: hideControl(form, [
+          "control_id_2",
+          "control_id_4",
+          "control_id_5",
+        ]),
+        nextIndexes: [3],
+      };
+    } else if (Number(age) >= 65) {
+      return { form: hideControl(form, ["control_id_5"]), nextIndexes };
+    }
+    return { form, nextIndexes };
+  } else {
+    form = hideControl(form, ["control_id_suggestions_women"]);
+    if (Number(age) >= 75) {
+      return {
+        form: hideControl(form, ["control_id_7", "control_id_9"]),
+        nextIndexes: [7],
+      };
+    } else if (Number(age) >= 69) {
+      return { form: hideControl(form, ["control_id_9"]), nextIndexes };
+    }
+    return { form, nextIndexes };
+  }
+};
+
+export const setSteps = (pages: FormPageViewDataType[]) => {
+  const infoGroup = pages
+    .find((page) => page.indexes?.[0] === 1)
+    ?.getFormValues?.();
+  if (!infoGroup) return [];
+  const sex = infoGroup.control_id_1_2;
+  const age = infoGroup.control_id_1_1;
+  if (sex === "0") {
+    if (Number(age) >= 75) {
+      return ["کبد"];
+    } else if (Number(age) >= 65) {
+      return ["گوارش", "کبد", "سینه"];
+    }
+    return ["گوارش", "کبد", "سینه", "گردن رحم"];
+  } else {
+    if (Number(age) >= 75) {
+      return ["کبد"];
+    } else if (Number(age) >= 69) {
+      return ["گوارش", "کبد"];
+    }
+    return ["گوارش", "کبد", "پروستات"];
+  }
 };
 
 export const persianAlphabet = [

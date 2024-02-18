@@ -20,6 +20,7 @@ export const useFormPage = ({
     gotoPrev,
     timeout,
     isPageDisabled,
+    getSteps,
   } = useContext(FormPageContext);
 
   useEffect(() => {
@@ -35,5 +36,6 @@ export const useFormPage = ({
     gotoPrev,
     timeout,
     isPageDisabled: () => id && isPageDisabled(id),
+    getSteps,
   };
 };

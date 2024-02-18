@@ -62,8 +62,9 @@ export default function MyStepper() {
   const [activeStep, setActiveStep] = React.useState<number>(0);
   let stepsRef = React.useRef<string[]>([]);
 
-  const { form } = useFormPage({
+  const { form, getSteps } = useFormPage({
     onIndexChanged: (nextIndexes: number[]) => {
+      console.log(nextIndexes);
       if (nextIndexes[0] >= 6) {
         setActiveStep(nextIndexes[0] - 6);
       } else {
@@ -86,12 +87,13 @@ export default function MyStepper() {
 
   if (isFinished || indexes[0] === 9 || indexes[0] === 10) return null;
 
-  if (control?.control_id === "control_id_2") {
-    stepsRef.current = ["گوارش", "کبد", "سینه", "گردن رحم"];
-  }
-  if (control?.control_id === "control_id_7") {
-    stepsRef.current = ["گوارش", "کبد", "پروستات"];
-  }
+  stepsRef.current = getSteps();
+  // if (control?.control_id === "control_id_2") {
+  //   stepsRef.current = ["گوارش", "کبد", "سینه", "گردن رحم"];
+  // }
+  // if (control?.control_id === "control_id_7") {
+  //   stepsRef.current = ["گوارش", "کبد", "پروستات"];
+  // }
 
   return (
     <Box sx={{ width: "100%", marginBlockStart: 3, marginBlockEnd: 1 }}>

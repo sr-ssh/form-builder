@@ -7,6 +7,8 @@ import {
   getControlParentById,
   getNextIndex,
   persianAlphabet,
+  setSteps,
+  showPagesBasedOnAge,
   showResult,
 } from "../utils/controlUtils";
 import { FieldValues } from "react-hook-form";
@@ -35,6 +37,7 @@ export const FormPageContext = createContext<{
   gotoPrev: () => void;
   timeout: () => void;
   isPageDisabled: (id: string) => boolean;
+  getSteps: () => string[];
 }>({} as any);
 
 type FormPageContextProviderProps = {
@@ -179,15 +182,26 @@ export const FormPageContextProvider = memo(
       if (!nextIndexes || !nextIndexes.length) {
         return;
       }
-      indexesRef.current = nextIndexes;
       indexListenersRef.current.forEach((listener) => listener(nextIndexes!));
       questionStackRef.current.push([]);
+      const newPage = showPagesBasedOnAge(
+        nextIndexes,
+        pageStackRef.current,
+        form,
+      );
+      nextIndexes = newPage.nextIndexes;
+      indexesRef.current = nextIndexes;
+      form = newPage.form;
       // check for which result page to show, hide and show the controls of the last page
       const result = showResult(nextIndexes, pageStackRef.current, form);
       if (result) {
         form = result.form;
       }
       openPage(nextIndexes, data);
+    };
+
+    const getSteps = () => {
+      return setSteps(pageStackRef.current);
     };
 
     const gotoNext = async (data: FieldValues) => {
@@ -354,6 +368,7 @@ export const FormPageContextProvider = memo(
             gotoPrev,
             timeout,
             isPageDisabled,
+            getSteps,
           }}
         >
           {children}

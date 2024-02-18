@@ -540,20 +540,7 @@
     {
       "control_id": "control_id_5",
       "type": "Group",
-      "conditions": [
-        {
-          "type": "ThenGo",
-          "then_control_id": "control_id_suggestions_women",
-          "when_control_id": "control_id_5_1",
-          "conditions": [
-            {
-              "control_id": "control_id_5_1",
-              "condition_type": "NotEqual",
-              "condition_value": 5
-            }
-          ]
-        }
-      ],
+      "conditions": [],
       "group_info": {
         "type": "FormSet",
         "controls": [
@@ -897,20 +884,7 @@
     {
       "control_id": "control_id_9",
       "type": "Group",
-      "conditions": [
-        {
-          "type": "ThenGo",
-          "then_control_id": "control_id_suggestions_men",
-          "when_control_id": "control_id_9_1",
-          "conditions": [
-            {
-              "control_id": "control_id_9_1",
-              "condition_type": "NotEqual",
-              "condition_value": 5
-            }
-          ]
-        }
-      ],
+
       "group_info": {
         "type": "FormSet",
         "controls": [
@@ -997,6 +971,16 @@
             }
           },
           {
+            "control_id": "control_id_suggestions_women_2_2",
+            "type": "PlaceHolder",
+            "label_text": "گوارش",
+            "is_hidden": true,
+            "place_holder_info": {
+              "description": "طبق برنامه کشوری نیاز به انجام غربالگری در سن بیشتر از ۷۵ سال بر اساس ویزیت و تجویز پزشک متخصص گوارش تعیین می گردد.",
+              "type": "Note"
+            }
+          },
+          {
             "control_id": "control_id_suggestions_women_3",
             "type": "PlaceHolder",
             "label_text": "کبد",
@@ -1047,6 +1031,16 @@
             }
           },
           {
+            "control_id": "control_id_suggestions_women_5_2",
+            "type": "PlaceHolder",
+            "label_text": "سینه",
+            "is_hidden": true,
+            "place_holder_info": {
+              "description": "طبق برنامه کشوری نیاز به انجام غربالگری در سن بیشتر از ۷۵ سال بر اساس ویزیت و تجویز پزشک متخصص زنان تعیین می گردد.",
+              "type": "Note"
+            }
+          },
+          {
             "control_id": "control_id_suggestions_women_6",
             "type": "PlaceHolder",
             "label_text": "گردن رحم",
@@ -1073,6 +1067,16 @@
             "is_hidden": true,
             "place_holder_info": {
               "description": "ظرف یک سال آینده نیاز به اقدام خاصی نیست. برای حفظ سلامتی خود بعد از یک سال مجدداً تست غربالگری تشخیص زودرس سرطان‌های رایج را تکرار نمایید.",
+              "type": "Note"
+            }
+          },
+          {
+            "control_id": "control_id_suggestions_women_7_2",
+            "type": "PlaceHolder",
+            "label_text": "گردن رحم",
+            "is_hidden": true,
+            "place_holder_info": {
+              "description": "طبق برنامه کشوری نیاز به انجام غربالگری در سن بیشتر از ۶۵ سال بر اساس ویزیت و تجویز پزشک متخصص زنان تعیین می گردد.",
               "type": "Note"
             }
           },
@@ -1137,6 +1141,16 @@
             }
           },
           {
+            "control_id": "control_id_suggestions_men_2_2",
+            "type": "PlaceHolder",
+            "label_text": "گوارش",
+            "is_hidden": true,
+            "place_holder_info": {
+              "description": "طبق برنامه کشوری نیاز به انجام غربالگری در سن بیشتر از ۷۵ سال بر اساس ویزیت و تجویز پزشک متخصص گوارش تعیین می گردد.",
+              "type": "Note"
+            }
+          },
+          {
             "control_id": "control_id_suggestions_men_3",
             "type": "PlaceHolder",
             "label_text": "کبد",
@@ -1183,6 +1197,16 @@
             "is_hidden": true,
             "place_holder_info": {
               "description": "ظرف یک سال آینده نیاز به اقدام خاصی نیست. برای حفظ سلامتی خود بعد از یک سال مجدداً تست غربالگری تشخیص زودرس سرطان‌های رایج را تکرار نمایید.",
+              "type": "Note"
+            }
+          },
+          {
+            "control_id": "control_id_suggestions_men_5_2",
+            "type": "PlaceHolder",
+            "label_text": "پروستات",
+            "is_hidden": true,
+            "place_holder_info": {
+              "description": "طبق برنامه کشوری نیاز به انجام غربالگری در سن بیشتر از ۶۹ سال بر اساس ویزیت و تجویز پزشک متخصص جراح کلیه و مجاری ادراری تعیین می گردد.",
               "type": "Note"
             }
           },
