@@ -18,9 +18,9 @@ const StepperStyle = styled(Stepper)({
   ".MuiStepConnector-line": {
     borderColor: "#ECEBFF",
     borderTopWidth: 2,
-    transform: "scaleX(1.3)",
     position: "relative",
-    right: 1,
+    width: "calc(100% + 10px)",
+    right: 8,
   },
   ".Mui-active, .Mui-completed": {
     ".MuiStepConnector-line": {
@@ -65,7 +65,12 @@ export default function MyStepper() {
   const { form, getSteps } = useFormPage({
     onIndexChanged: (nextIndexes: number[]) => {
       console.log(nextIndexes);
-      if (nextIndexes[0] >= 6) {
+      if (
+        (nextIndexes[0] === 3 || nextIndexes[0] === 7) &&
+        stepsRef.current.length === 1
+      ) {
+        setActiveStep(0);
+      } else if (nextIndexes[0] >= 6) {
         setActiveStep(nextIndexes[0] - 6);
       } else {
         setActiveStep(nextIndexes[0] - 2);
@@ -74,6 +79,7 @@ export default function MyStepper() {
     },
   });
 
+  stepsRef.current = getSteps();
   const control = getControl(form.controls, indexes);
   const isFinished = control?.control_id === "send";
   if (
@@ -86,14 +92,6 @@ export default function MyStepper() {
   }
 
   if (isFinished || indexes[0] === 9 || indexes[0] === 10) return null;
-
-  stepsRef.current = getSteps();
-  // if (control?.control_id === "control_id_2") {
-  //   stepsRef.current = ["گوارش", "کبد", "سینه", "گردن رحم"];
-  // }
-  // if (control?.control_id === "control_id_7") {
-  //   stepsRef.current = ["گوارش", "کبد", "پروستات"];
-  // }
 
   return (
     <Box sx={{ width: "100%", marginBlockStart: 3, marginBlockEnd: 1 }}>

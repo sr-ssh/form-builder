@@ -182,14 +182,14 @@ export const FormPageContextProvider = memo(
       if (!nextIndexes || !nextIndexes.length) {
         return;
       }
-      indexListenersRef.current.forEach((listener) => listener(nextIndexes!));
-      questionStackRef.current.push([]);
       const newPage = showPagesBasedOnAge(
         nextIndexes,
         pageStackRef.current,
         form,
       );
       nextIndexes = newPage.nextIndexes;
+      indexListenersRef.current.forEach((listener) => listener(nextIndexes!));
+      questionStackRef.current.push([]);
       indexesRef.current = nextIndexes;
       form = newPage.form;
       // check for which result page to show, hide and show the controls of the last page
