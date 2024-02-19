@@ -64,7 +64,6 @@ export default function MyStepper() {
 
   const { form, getSteps } = useFormPage({
     onIndexChanged: (nextIndexes: number[]) => {
-      console.log(nextIndexes);
       if (
         (nextIndexes[0] === 3 || nextIndexes[0] === 7) &&
         stepsRef.current.length === 1
