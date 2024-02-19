@@ -171,20 +171,6 @@ body {
   }
 }
 
-.toast-message {
-  margin-top: 12px;
-  background-color: coral;
-  width: 100%;
-  border-radius: 6px;
-  color: #61226f;
-  font-size: large;
-  text-align: center;
-  min-height: 60px;
-  display: flex;
-  align-items: center;
-  padding-top: 5px;
-}
-
 /* tabs */
 #root {
   width: 100%;
