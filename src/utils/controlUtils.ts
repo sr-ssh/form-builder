@@ -442,15 +442,15 @@ export const showResult = (
       );
     } else if (
       ageGroup &&
-      Number(ageGroup.control_id_1_1) > 45 &&
-      Number(ageGroup.control_id_1_1) < 75
+      Number(ageGroup.control_id_1_1) >= 45 &&
+      Number(ageGroup.control_id_1_1) <= 75
     ) {
       form = showControl(
         form,
         "control_id_suggestions_men",
         "control_id_suggestions_men_2",
       );
-    } else if (ageGroup && Number(ageGroup.control_id_1_1) >= 75) {
+    } else if (ageGroup && Number(ageGroup.control_id_1_1) > 75) {
       form = showControl(
         form,
         "control_id_suggestions_men",
@@ -498,15 +498,15 @@ export const showResult = (
       );
     } else if (
       ageGroup &&
-      Number(ageGroup.control_id_1_1) > 50 &&
-      Number(ageGroup.control_id_1_1) < 69
+      Number(ageGroup.control_id_1_1) >= 50 &&
+      Number(ageGroup.control_id_1_1) <= 69
     ) {
       form = showControl(
         form,
         "control_id_suggestions_men",
         "control_id_suggestions_men_5",
       );
-    } else if (ageGroup && Number(ageGroup.control_id_1_1) >= 69) {
+    } else if (ageGroup && Number(ageGroup.control_id_1_1) > 69) {
       form = showControl(
         form,
         "control_id_suggestions_men",
@@ -570,15 +570,15 @@ export const showResult = (
       );
     } else if (
       ageGroup &&
-      Number(ageGroup.control_id_1_1) > 45 &&
-      Number(ageGroup.control_id_1_1) < 75
+      Number(ageGroup.control_id_1_1) >= 45 &&
+      Number(ageGroup.control_id_1_1) <= 75
     ) {
       form = showControl(
         form,
         "control_id_suggestions_women",
         "control_id_suggestions_women_2",
       );
-    } else if (ageGroup && Number(ageGroup.control_id_1_1) >= 75) {
+    } else if (ageGroup && Number(ageGroup.control_id_1_1) > 75) {
       form = showControl(
         form,
         "control_id_suggestions_women",
@@ -627,8 +627,8 @@ export const showResult = (
       );
     } else if (
       ageGroup &&
-      Number(ageGroup.control_id_1_1) > 40 &&
-      Number(ageGroup.control_id_1_1) < 75
+      Number(ageGroup.control_id_1_1) >= 40 &&
+      Number(ageGroup.control_id_1_1) <= 75
     ) {
       hasIssues = true;
       form = showControl(
@@ -636,7 +636,7 @@ export const showResult = (
         "control_id_suggestions_women",
         "control_id_suggestions_women_5",
       );
-    } else if (ageGroup && Number(ageGroup.control_id_1_1) >= 75) {
+    } else if (ageGroup && Number(ageGroup.control_id_1_1) > 75) {
       hasIssues = true;
       form = showControl(
         form,
@@ -659,8 +659,8 @@ export const showResult = (
       );
     } else if (
       ageGroup &&
-      Number(ageGroup.control_id_1_1) > 21 &&
-      Number(ageGroup.control_id_1_1) < 65
+      Number(ageGroup.control_id_1_1) >= 21 &&
+      Number(ageGroup.control_id_1_1) <= 65
     ) {
       hasIssues = true;
       form = showControl(
@@ -668,7 +668,7 @@ export const showResult = (
         "control_id_suggestions_women",
         "control_id_suggestions_women_7",
       );
-    } else if (ageGroup && Number(ageGroup.control_id_1_1) >= 65) {
+    } else if (ageGroup && Number(ageGroup.control_id_1_1) > 65) {
       hasIssues = true;
       form = showControl(
         form,
@@ -721,7 +721,7 @@ export const showPagesBasedOnAge = (
   if (sex === "0") {
     form = hideControl(form, ["control_id_suggestions_men"]);
     form = hideControl(form, ["control_id_7", "control_id_8", "control_id_9"]);
-    if (Number(age) >= 75) {
+    if (Number(age) > 75) {
       return {
         form: hideControl(form, [
           "control_id_2",
@@ -730,18 +730,18 @@ export const showPagesBasedOnAge = (
         ]),
         nextIndexes: [3],
       };
-    } else if (Number(age) >= 65) {
+    } else if (Number(age) > 65) {
       return { form: hideControl(form, ["control_id_5"]), nextIndexes };
     }
     return { form, nextIndexes };
   } else {
     form = hideControl(form, ["control_id_suggestions_women"]);
-    if (Number(age) >= 75) {
+    if (Number(age) > 75) {
       return {
         form: hideControl(form, ["control_id_7", "control_id_9"]),
         nextIndexes: [7],
       };
-    } else if (Number(age) >= 69) {
+    } else if (Number(age) > 69) {
       return { form: hideControl(form, ["control_id_9"]), nextIndexes };
     }
     return { form, nextIndexes };
