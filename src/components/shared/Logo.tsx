@@ -7,8 +7,7 @@ const LogoStyle = styled.img({
   padding: 5,
 });
 
-const Logo = ({ logo }: { logo?: string }) => (
-  <LogoStyle alt="logo" src={logo} width={50} />
-);
+const Logo = ({ logo }: { logo?: string }) =>
+  logo ? <LogoStyle alt="logo" src={logo} width={50} /> : null;
 
 export default Logo;

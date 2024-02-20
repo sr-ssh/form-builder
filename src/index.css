@@ -199,6 +199,7 @@ body {
 .tab-wrapper .view-wrapper,
 .tab-container .view-wrapper {
   overflow-y: auto;
+  background-color: #fafafa;
 }
 
 .modal-container .view-wrapper.passportHelp {

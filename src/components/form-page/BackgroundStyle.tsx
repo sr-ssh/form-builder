@@ -11,14 +11,18 @@ const BackgroundStyle = styled(Container)(() => {
     flexDirection: "column",
     height: "100%",
     padding: "0 !important",
-    maxWidth: "100% !important",
+    maxWidth: "600px",
     backgroundColor: backgroundStyles?.color || "#fff",
-    backgroundImage: `url("${backgroundStyles?.image_url}")`,
+    ...(backgroundStyles?.image_url && {
+      backgroundImage: `url("${backgroundStyles?.image_url}")`,
+    }),
     opacity: backgroundStyles?.image_opacity,
     ...(imageAlign && getBackgroundPosition(imageAlign)),
     ".partial-tab-container": {
       backgroundColor: backgroundStyles?.color || "#fff",
-      backgroundImage: `url("${backgroundStyles?.image_url}")`,
+      ...(backgroundStyles?.image_url && {
+        backgroundImage: `url("${backgroundStyles?.image_url}")`,
+      }),
       opacity: backgroundStyles?.image_opacity,
       width: "100%",
       ...(imageAlign && getBackgroundPosition(imageAlign)),
