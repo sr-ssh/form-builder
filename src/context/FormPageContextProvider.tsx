@@ -127,7 +127,12 @@ export const FormPageContextProvider = memo(
       for (const key in data) {
         if (Object.prototype.hasOwnProperty.call(data, key)) {
           const value = data[key];
-          if (value === undefined || value === "" || value?.length === 0)
+          if (
+            value === undefined ||
+            value === "" ||
+            value?.length === 0 ||
+            value === null
+          )
             continue;
           const isMultiValue = typeof value === "object";
 

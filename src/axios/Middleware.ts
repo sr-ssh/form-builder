@@ -13,14 +13,14 @@ const axiosInstance = axios.create();
 const AxiosErrorHandler = async (type?: 0 | 1 | 2 | 3, message?: string) => {
   switch (type) {
     case 0:
-    // eslint-disable-next-line no-throw-literal
-    // throw { type, message } as unknown as Error;
+      // eslint-disable-next-line no-throw-literal
+      throw { type, message } as unknown as Error;
     case 2:
-    // eslint-disable-next-line no-throw-literal
-    // throw { type, message } as unknown as Error;
+      // eslint-disable-next-line no-throw-literal
+      throw { type, message } as unknown as Error;
     case 3:
-    // eslint-disable-next-line no-throw-literal
-    // throw { type, message } as unknown as Error;
+      // eslint-disable-next-line no-throw-literal
+      throw { type, message } as unknown as Error;
 
     default:
     // eslint-disable-next-line no-throw-literal
