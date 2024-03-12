@@ -1,7 +1,10 @@
 import { getQueryParam } from "../core/utils/historyManager";
 
 export const ApiURL = {
-  BASE: "https://fronttest" + (getQueryParam("dc") || "2") + ".iranlms.ir",
+  BASE:
+    "https://fronttest" +
+    (getQueryParam("dc") || "2") +
+    ".iranlms.ir/formclient",
 };
 
 export const defaultPayload = {

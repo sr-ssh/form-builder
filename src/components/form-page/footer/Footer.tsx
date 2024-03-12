@@ -46,7 +46,7 @@ const Footer = () => {
         submitNext={submitNext}
         isFinished={isFinished}
         hasNext={form.has_next}
-        hasPrev={form.has_prev}
+        hasPrev={!!(form.has_prev && indexes[0] !== 0)}
         gotoPrev={gotoPrev}
       />
     </Box>
