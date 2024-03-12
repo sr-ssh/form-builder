@@ -3,7 +3,7 @@ import Box from "@mui/material/Box";
 import PartialTabContainer from "../../core/components/containers/PartialTabContainer";
 import theme from "../../utils/theme/theme";
 import BackgroundStyle from "./BackgroundStyle";
-import form from "../../healthTest.json";
+// import form from "../../healthTest.json";
 import { ThemeType } from "../../@types/ThemeTypes";
 import { FormType, LocaleEnum } from "../../@types/FormTypes";
 import { FormPageContextProvider } from "../../context/FormPageContextProvider";
@@ -15,9 +15,10 @@ import rtlPlugin from "stylis-plugin-rtl";
 import { CacheProvider } from "@emotion/react";
 import createCache from "@emotion/cache";
 import { prefixer } from "stylis";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { AxiosApi } from "../../axios";
 import Logo from "../shared/Logo";
+import { getQueryParam } from "../../core/utils/historyManager";
 
 const NoActiveMessage = styled(Box)({
   display: "flex",
@@ -37,9 +38,9 @@ const LoadingStyle = styled(CircularProgress)({
 });
 
 const FormPage = () => {
-  // const [formData, setFormData] = useState<FormType>();
-  const formData = form as unknown as FormType;
-  const formTheme = form.theme as ThemeType;
+  const [formData, setFormData] = useState<FormType>();
+  // const formData = form as unknown as FormType;
+  const formTheme = formData?.theme;
 
   const cacheRtl = createCache({
     key: "muirtl",
@@ -50,7 +51,7 @@ const FormPage = () => {
     key: "meaningless-key",
   });
 
-  switch (form.locale) {
+  switch (formData?.locale) {
     case LocaleEnum.English:
       (window as any).lang = "en";
       document.getElementById("root")?.setAttribute("dir", "ltr");
@@ -69,15 +70,19 @@ const FormPage = () => {
   }
 
   useEffect(() => {
-    AxiosApi.GetForm({ form_id: "6592bbc3eb4b963b4936e94f" })
+    AxiosApi.GetForm({ form_id: getQueryParam("form_id") })
       .then((res) => {
-        // if (res?.form) setFormData(res.form);
+        if (res?.form) setFormData(res.form);
       })
       .catch((err) => console.error(err));
   }, []);
 
   if (!formData || !formData.controls) {
     return <LoadingStyle />;
+  }
+
+  if (!formTheme) {
+    return <></>;
   }
 
   return (
