@@ -20,6 +20,7 @@ import { PlaceHolderTypeEnum } from "../@types/controls/PlaceHolderTypes";
 import { PageNoTypeEnum } from "../@types/controls/GroupTypes";
 import { useGlobalLocales } from "../hooks/useGlobalLocales";
 import { AxiosApi } from "../axios";
+import placeHolderStyle from "../utils/theme/placeHolderStyle";
 
 export type IndexListenersType = (indexes: PageIndexesType) => void;
 
@@ -47,9 +48,10 @@ export const FormPageContextProvider = memo(
     const indexesRef = useRef<PageIndexesType>([0]);
     const passedPagesRef = useRef<string[]>([]);
     const { lang } = useGlobalLocales();
+    const formRef = useRef<FormType>(form);
 
     const addNewQuestion = (id: string) => {
-      const control = getControlById(form.controls, id);
+      const control = getControlById(formRef.current.controls, id);
       const type = control?.type;
       let pagesStack = questionStackRef.current;
       if (
@@ -67,7 +69,11 @@ export const FormPageContextProvider = memo(
       }
       pagesStack[pagesStack.length - 1]?.push(id);
       const n = pagesStack[pagesStack.length - 1].length - 1;
-      const parentControl = getControlParentById(control, form.controls, id);
+      const parentControl = getControlParentById(
+        control,
+        formRef.current.controls,
+        id,
+      );
       const pageNoType = parentControl?.group_info?.page_no_type;
       const parentQuestionNumber = pagesStack.length.toString();
       if (
@@ -97,7 +103,10 @@ export const FormPageContextProvider = memo(
         indexes,
       };
       pageStackRef.current.push(data);
-      const controlId = getControl(form.controls, indexes)?.control_id;
+      const controlId = getControl(
+        formRef.current.controls,
+        indexes,
+      )?.control_id;
       openView({
         id: controlId,
         type: "FormContainer",
@@ -108,7 +117,7 @@ export const FormPageContextProvider = memo(
     };
 
     const closePage = (prevIndexes: PageIndexesType) => {
-      const prevControl = getControl(form.controls, prevIndexes);
+      const prevControl = getControl(formRef.current.controls, prevIndexes);
       const controlId = prevControl?.control_id;
       if (controlId) {
         closeView(controlId, "FormContainer");
@@ -137,13 +146,16 @@ export const FormPageContextProvider = memo(
     };
 
     const isDisabledPage = () => {
-      if (form.form_status === FormStatusEnum.Done && !form.enable_edit_form)
+      if (
+        formRef.current.form_status === FormStatusEnum.Done &&
+        !formRef.current.enable_edit_form
+      )
         return true;
-      if (!form.disabled_edit_answer) return false;
+      if (!formRef.current.disabled_edit_answer) return false;
       const indexes =
         pageStackRef.current[pageStackRef.current.length - 1]?.indexes;
       if (indexes) {
-        const control = getControl(form.controls, indexes);
+        const control = getControl(formRef.current.controls, indexes);
         const controlId = control?.control_id;
         if (controlId) {
           const passedPages = passedPagesRef.current;
@@ -156,7 +168,7 @@ export const FormPageContextProvider = memo(
     };
 
     const isDisabledForm = () => {
-      if (form.form_status === FormStatusEnum.Done) {
+      if (formRef.current.form_status === FormStatusEnum.Done) {
         return true;
       }
       return false;
@@ -165,19 +177,23 @@ export const FormPageContextProvider = memo(
     const gotoNext = (data: FieldValues) => {
       if (Object.keys(data).length && !isDisabledPage()) {
         console.log("APICALL__sendAnswer", {
-          form_id: form.form_id,
+          form_id: formRef.current.form_id,
           answers: setAnswer(data),
         });
       }
       const controlId = getControl(
-        form.controls,
+        formRef.current.controls,
         indexesRef.current,
       )?.control_id;
       const passedPages = passedPagesRef.current;
       if (controlId && !passedPages.includes(controlId)) {
         passedPages.push(controlId);
       }
-      let nextIndexes = getNextIndex(form, indexesRef.current || [], data);
+      let nextIndexes = getNextIndex(
+        formRef.current,
+        indexesRef.current || [],
+        data,
+      );
       if (!nextIndexes || !nextIndexes.length) {
         return;
       }
@@ -188,8 +204,8 @@ export const FormPageContextProvider = memo(
     };
 
     const configClose = () => {
-      form.values = {
-        ...form.values,
+      formRef.current.values = {
+        ...formRef.current.values,
         ...pageStackRef.current[
           pageStackRef.current.length - 1
         ]?.getFormValues?.(),
@@ -206,7 +222,7 @@ export const FormPageContextProvider = memo(
         listener(currIndexes.indexes!),
       );
       const currentControl = getControl(
-        form.controls,
+        formRef.current.controls,
         currIndexes.indexes || [],
       );
       if (
@@ -238,7 +254,9 @@ export const FormPageContextProvider = memo(
       pageStackRef.current[pageStackRef.current.length - 1].submitHandler?.(
         async (data) => {
           if (!isDisabledForm()) {
-            const res = await AxiosApi.DoneForm({ form_id: form.form_id });
+            const res = await AxiosApi.DoneForm({
+              form_id: formRef.current.form_id,
+            });
             console.log(res);
           }
           gotoNext(data);
@@ -249,7 +267,7 @@ export const FormPageContextProvider = memo(
       if (isDisabledForm()) {
         return;
       }
-      const controls = form.controls;
+      const controls = formRef.current.controls;
       let firstEndPlaceHolder = controls.findIndex(
         (item) =>
           item.type === ControlTypeEnum.PlaceHolder &&
@@ -268,14 +286,29 @@ export const FormPageContextProvider = memo(
       });
     };
 
+    const sortForm = () => {
+      const controls = formRef.current.controls;
+      let firstStartPlaceHolder = controls.findIndex(
+        (item) =>
+          item.type === ControlTypeEnum.PlaceHolder &&
+          item.place_holder_info?.type === PlaceHolderTypeEnum.Start,
+      );
+      if (firstStartPlaceHolder !== -1) {
+        const startPlaceHolder = controls[firstStartPlaceHolder];
+        controls.splice(firstStartPlaceHolder, 1);
+        controls.unshift(startPlaceHolder);
+      }
+      console.log(formRef.current);
+    };
+
     const timeout = () => {
       //call api
       // make the page
       const now = Math.floor(new Date().getTime()) / 1000;
-      if (form.end_time && form.end_time > now) {
+      if (formRef.current.end_time && formRef.current.end_time > now) {
         return;
       }
-      const controls = form.controls;
+      const controls = formRef.current.controls;
       controls.push({
         control_id: "timeout",
         type: ControlTypeEnum.PlaceHolder,
@@ -286,7 +319,7 @@ export const FormPageContextProvider = memo(
         },
       });
       //open the pages
-      const nextIndexes = [form.controls.length - 1];
+      const nextIndexes = [formRef.current.controls.length - 1];
       indexListenersRef.current.forEach((listener) => listener(nextIndexes));
       openPage(nextIndexes);
     };
@@ -294,13 +327,19 @@ export const FormPageContextProvider = memo(
     const isPageDisabled = (id: string) => passedPagesRef.current.includes(id);
 
     useEffect(() => {
-      document.title = form.title || "Form Builder";
+      document.title = formRef.current.title || "Form Builder";
       const now = Math.floor(new Date().getTime()) / 1000;
-      form.end_time && console.log(form.end_time, now, form.end_time <= now);
-      if (form.end_time && form.end_time <= now) {
+      formRef.current.end_time &&
+        console.log(
+          formRef.current.end_time,
+          now,
+          formRef.current.end_time <= now,
+        );
+      if (formRef.current.end_time && formRef.current.end_time <= now) {
         timeout();
       } else {
         addSendPage();
+        sortForm();
         openPage([0]);
       }
       // eslint-disable-next-line react-hooks/exhaustive-deps
