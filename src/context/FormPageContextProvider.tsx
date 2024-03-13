@@ -298,7 +298,6 @@ export const FormPageContextProvider = memo(
         controls.splice(firstStartPlaceHolder, 1);
         controls.unshift(startPlaceHolder);
       }
-      console.log(formRef.current);
     };
 
     const timeout = () => {
@@ -329,12 +328,6 @@ export const FormPageContextProvider = memo(
     useEffect(() => {
       document.title = formRef.current.title || "Form Builder";
       const now = Math.floor(new Date().getTime()) / 1000;
-      formRef.current.end_time &&
-        console.log(
-          formRef.current.end_time,
-          now,
-          formRef.current.end_time <= now,
-        );
       if (formRef.current.end_time && formRef.current.end_time <= now) {
         timeout();
       } else {

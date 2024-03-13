@@ -173,7 +173,7 @@ const FileUpload = ({ control }: FileUploadPropsType) => {
           type="file"
           accept={acceptType}
           ref={(r) => {
-            ref(r);
+            // ref(r);
             if (r) {
               inputRef.current = r;
             }

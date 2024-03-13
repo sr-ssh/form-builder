@@ -14,5 +14,4 @@ export function hexToRgbA(hex: any, opacity: any = 1) {
       ")"
     );
   }
-  console.error("Bad Hex");
 }

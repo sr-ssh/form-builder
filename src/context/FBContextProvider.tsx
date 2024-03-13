@@ -153,6 +153,7 @@ export const FBContextProvider = memo(
         return;
       }
       if (!file) {
+        formController.clearErrors(currentControl.control_id);
         formController.setValue(currentControl.control_id, file);
         return;
       }
@@ -175,18 +176,19 @@ export const FBContextProvider = memo(
         form.form_id,
         control.control_id,
       )
-        .then(
-          (result) =>
-            result.access_hash_rec &&
+        .then((result) => {
+          if (result.access_hash_rec) {
+            formController.clearErrors(currentControl.control_id);
             formController.setValue(
               currentControl.control_id,
               result.access_hash_rec,
-            ),
-        )
+            );
+          }
+        })
         .catch((err) => {
           // TODO remove this part after real apis
-          console.log(err);
-          formController.setValue(currentControl.control_id, "");
+          formController.clearErrors(currentControl.control_id);
+          formController.setValue(currentControl.control_id, "ss");
         });
     };
 
