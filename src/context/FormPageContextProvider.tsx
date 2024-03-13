@@ -271,6 +271,10 @@ export const FormPageContextProvider = memo(
     const timeout = () => {
       //call api
       // make the page
+      const now = Math.floor(new Date().getTime()) / 1000;
+      if (form.end_time && form.end_time > now) {
+        return;
+      }
       const controls = form.controls;
       controls.push({
         control_id: "timeout",
@@ -291,7 +295,8 @@ export const FormPageContextProvider = memo(
 
     useEffect(() => {
       document.title = form.title || "Form Builder";
-      const now = Math.floor(new Date().getTime());
+      const now = Math.floor(new Date().getTime()) / 1000;
+      form.end_time && console.log(form.end_time, now, form.end_time <= now);
       if (form.end_time && form.end_time <= now) {
         timeout();
       } else {

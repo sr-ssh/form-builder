@@ -21,7 +21,7 @@ const PlaceHolder = ({ control }: PlaceHolderPropsType) => {
   const { submitNext, form } = useFormPage({});
   const theme = useTheme();
 
-  const now = Math.floor(new Date().getTime());
+  const now = Math.floor(new Date().getTime()) / 1000;
   const hasFormStarted =
     form.start_time !== undefined ? now >= form.start_time : true;
   const hasFormFinished =

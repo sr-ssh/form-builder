@@ -49,7 +49,7 @@ const Timer = () => {
   }, [finished, timeout]);
 
   useEffect(() => {
-    const now = Math.floor(new Date().getTime());
+    const now = Math.floor(new Date().getTime()) / 1000;
     if (form.end_time && form.end_time <= now) {
       timeout();
     }
