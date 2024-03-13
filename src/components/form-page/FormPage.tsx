@@ -99,7 +99,7 @@ const FormPage = () => {
             </NoActiveMessage> */}
             <Timer />
             {formData.layout?.has_logo && formData.logo_url && (
-              <Logo logo={formData.logo_url} />
+              <Logo logo={formData.logo_url} name={formData.title} />
             )}
             <Box position="relative" flex="1 1 auto" height="100%">
               <PartialTabContainer
