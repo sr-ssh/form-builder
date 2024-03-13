@@ -8,7 +8,7 @@ const LogoStyle = styled.img({
 });
 
 const Logo = ({ logo }: { logo?: string }) => (
-  <LogoStyle alt="logo" src={logo} width={50} />
+  <LogoStyle alt="logo" src={logo} width={80} />
 );
 
 export default Logo;
