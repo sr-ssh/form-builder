@@ -92,11 +92,11 @@ const FormPage = () => {
       <ThemeProvider theme={theme({ formTheme, locale: formData.locale })}>
         <FormPageContextProvider form={formData}>
           <BackgroundStyle>
-            <NoActiveMessage>
+            {/* <NoActiveMessage>
               <Typography fontSize={14}>
                 <Localizer localeKey="FORM_DISABLED" />
               </Typography>
-            </NoActiveMessage>
+            </NoActiveMessage> */}
             <Timer />
             {formData.layout?.has_logo && <Logo logo={formData.logo_url} />}
             <Box position="relative" flex="1 1 auto" height="100%">
