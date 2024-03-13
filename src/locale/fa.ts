@@ -7,7 +7,7 @@ export const globalLocales: GlobalLocalesType = {
   VALIDATION_NUMBER: "ورودی باید عدد باشد.",
   VALIDATION_RANGE: "ورودی در بازه مورد نظر نمی باشد.",
   VALIDATION_URL: "ورودی صحیح نمی‌باشد.",
-  VALIDATION_REQUIRED: "پر کردن این فیلد الزامی است.",
+  VALIDATION_REQUIRED: "پر کردن این مورد الزامی است.",
   VALIDATION_LATIN: "لطفا فقط از حروف انگلیسی استفاده کنید.",
   VALIDATION_MOBILE: "لطفا شماره موبایل خود را به درستی وارد کنید.",
   VALIDATION_NATIONAL_ID: "لطفا کد‌ملی خود را به درستی وارد کنید.",
