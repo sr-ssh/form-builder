@@ -32,50 +32,52 @@ const PlaceHolder = ({ control }: PlaceHolderPropsType) => {
   if (form.user_start_time && form.max_duration) {
     remainDuration =
       form.max_duration - (new Date().getTime() - form.user_start_time) / 1000;
-    console.log(remainDuration);
     hasRemainDuration = remainDuration > 0;
   }
 
   return (
     <Box display="grid" gap={2} sx={placeHolderStyle(theme)}>
       <Typography>{placeHolderInfo?.description}</Typography>
-      {isStart && (
-        <>
-          {form.start_time ? (
-            <Typography>
-              <Localizer
-                localeKey="PLACEHOLDER_START_TIME"
-                params={{
-                  startTime: format(
-                    toDate(form.start_time),
-                    "hh:mm yyyy/MM/dd",
-                  ),
-                }}
-              />
-            </Typography>
-          ) : null}
-          {form.end_time ? (
-            <Typography>
-              <Localizer
-                localeKey="PLACEHOLDER_END_TIME"
-                params={{
-                  endTime: format(toDate(form.end_time), "hh:mm yyyy/MM/dd"),
-                }}
-              />
-            </Typography>
-          ) : null}
-          {hasRemainDuration && remainDuration ? (
-            <Typography>
-              <Localizer
-                localeKey="PLACEHOLDER_REMAIN_DURATION"
-                params={{
-                  remainDuration: formatDuration(remainDuration),
-                }}
-              />
-            </Typography>
-          ) : null}
-        </>
-      )}
+      {/* {isStart && ( */}
+      <>
+        {form.start_time ? (
+          <Typography>
+            <Localizer
+              localeKey="PLACEHOLDER_START_TIME"
+              params={{
+                startTime: format(
+                  toDate(form.start_time * 1000),
+                  "hh:mm yyyy/MM/dd",
+                ),
+              }}
+            />
+          </Typography>
+        ) : null}
+        {form.end_time ? (
+          <Typography>
+            <Localizer
+              localeKey="PLACEHOLDER_END_TIME"
+              params={{
+                endTime: format(
+                  toDate(form.end_time * 1000),
+                  "hh:mm yyyy/MM/dd",
+                ),
+              }}
+            />
+          </Typography>
+        ) : null}
+        {hasRemainDuration && remainDuration ? (
+          <Typography>
+            <Localizer
+              localeKey="PLACEHOLDER_REMAIN_DURATION"
+              params={{
+                remainDuration: formatDuration(remainDuration * 1000),
+              }}
+            />
+          </Typography>
+        ) : null}
+      </>
+      {/* )} */}
       {isStart && hasFormStarted && !hasFormFinished && hasRemainDuration && (
         <Button sx={{ justifySelf: "center" }} onClick={() => submitNext()}>
           {placeHolderInfo.start_caption || (

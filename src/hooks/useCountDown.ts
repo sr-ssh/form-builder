@@ -1,5 +1,4 @@
 import { useState, useEffect, useCallback } from "react";
-import { format } from "date-fns-jalali";
 import { formatDuration } from "../utils/date";
 
 interface UseCountdown {
