@@ -268,14 +268,7 @@ export const FormPageContextProvider = memo(
         return;
       }
       const controls = formRef.current.controls;
-      let firstEndPlaceHolder = controls.findIndex(
-        (item) =>
-          item.type === ControlTypeEnum.PlaceHolder &&
-          item.place_holder_info?.type === PlaceHolderTypeEnum.End,
-      );
-      firstEndPlaceHolder =
-        firstEndPlaceHolder !== -1 ? firstEndPlaceHolder : controls.length;
-      controls.splice(firstEndPlaceHolder, 0, {
+      controls.push({
         control_id: "send",
         type: ControlTypeEnum.PlaceHolder,
         label_text: lang("LAST_PAGE_LABEL"),
@@ -297,6 +290,16 @@ export const FormPageContextProvider = memo(
         const startPlaceHolder = controls[firstStartPlaceHolder];
         controls.splice(firstStartPlaceHolder, 1);
         controls.unshift(startPlaceHolder);
+      }
+      for (let index = 0; index < controls.length; index++) {
+        const item = controls[index];
+        if (
+          item.type === ControlTypeEnum.PlaceHolder &&
+          item.place_holder_info?.type === PlaceHolderTypeEnum.End
+        ) {
+          controls.splice(index, 1);
+          controls.push(item);
+        }
       }
     };
 
@@ -331,8 +334,9 @@ export const FormPageContextProvider = memo(
       if (formRef.current.end_time && formRef.current.end_time <= now) {
         timeout();
       } else {
-        addSendPage();
         sortForm();
+        addSendPage();
+        console.log(formRef.current);
         openPage([0]);
       }
       // eslint-disable-next-line react-hooks/exhaustive-deps
