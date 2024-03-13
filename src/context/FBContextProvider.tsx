@@ -205,6 +205,7 @@ export const FBContextProvider = memo(
         (thisControl.type === ControlTypeEnum.MultipleOption &&
           thisControl.multiple_option_info?.multi_select === false)
       ) {
+        formController.clearErrors(target.name);
         formController.setValue(target.name, value);
       }
       handleFileInputChange(thisControl, value);
