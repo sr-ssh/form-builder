@@ -48,12 +48,9 @@ export const RawHttpMiddleware = <T extends AxiosResponseType>({
   method = "post",
   headers,
 }: HttpMiddlewareType) => {
-  const token = getQueryParam("token");
-
   const data = {
     ...defaultPayload,
     ...payload,
-    token,
   };
 
   return AxiosHandler<T>(

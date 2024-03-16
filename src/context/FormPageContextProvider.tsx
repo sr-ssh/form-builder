@@ -20,7 +20,6 @@ import { PlaceHolderTypeEnum } from "../@types/controls/PlaceHolderTypes";
 import { PageNoTypeEnum } from "../@types/controls/GroupTypes";
 import { useGlobalLocales } from "../hooks/useGlobalLocales";
 import { AxiosApi } from "../axios";
-import placeHolderStyle from "../utils/theme/placeHolderStyle";
 
 export type IndexListenersType = (indexes: PageIndexesType) => void;
 
@@ -129,7 +128,12 @@ export const FormPageContextProvider = memo(
       for (const key in data) {
         if (Object.prototype.hasOwnProperty.call(data, key)) {
           const value = data[key];
-          if (value === undefined || value === "" || value?.length === 0)
+          if (
+            value === undefined ||
+            value === "" ||
+            value?.length === 0 ||
+            value === null
+          )
             continue;
           const isMultiValue = typeof value === "object";
 
@@ -176,10 +180,10 @@ export const FormPageContextProvider = memo(
 
     const gotoNext = (data: FieldValues) => {
       if (Object.keys(data).length && !isDisabledPage()) {
-        console.log("APICALL__sendAnswer", {
+        AxiosApi.SendAnswer({
           form_id: formRef.current.form_id,
           answers: setAnswer(data),
-        });
+        }).catch((err) => console.log(err));
       }
       const controlId = getControl(
         formRef.current.controls,
@@ -307,7 +311,10 @@ export const FormPageContextProvider = memo(
       //call api
       // make the page
       const now = Math.floor(new Date().getTime()) / 1000;
-      if (formRef.current.end_time && formRef.current.end_time > now) {
+      if (!formRef.current.end_time) {
+        return;
+      }
+      if (formRef.current.end_time > now) {
         return;
       }
       const controls = formRef.current.controls;
@@ -336,7 +343,6 @@ export const FormPageContextProvider = memo(
       } else {
         sortForm();
         addSendPage();
-        console.log(formRef.current);
         openPage([0]);
       }
       // eslint-disable-next-line react-hooks/exhaustive-deps
