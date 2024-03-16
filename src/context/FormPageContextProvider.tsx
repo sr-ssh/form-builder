@@ -18,10 +18,8 @@ import {
 import { ControlTypeEnum } from "../@types/controls/ControlTypes";
 import { PlaceHolderTypeEnum } from "../@types/controls/PlaceHolderTypes";
 import { PageNoTypeEnum } from "../@types/controls/GroupTypes";
-import { convertLocale, useGlobalLocales } from "../hooks/useGlobalLocales";
+import { useGlobalLocales } from "../hooks/useGlobalLocales";
 import { AxiosApi } from "../axios";
-import { openToast } from "../core/utils/commonViews";
-import { MessageType } from "../core/@types/commonView";
 
 export type IndexListenersType = (indexes: PageIndexesType) => void;
 
@@ -263,15 +261,11 @@ export const FormPageContextProvider = memo(
       pageStackRef.current[pageStackRef.current.length - 1].submitHandler?.(
         async (data) => {
           if (!isDisabledForm()) {
-            const res = await AxiosApi.DoneForm({
+            await AxiosApi.DoneForm({
               form_id: formRef.current.form_id,
             });
-            openToast({
-              message: convertLocale("FORM_SUBMITTED_SUCCESSFULLY"),
-              type: MessageType.Success,
-              delay: 5,
-            });
           }
+          gotoNext(data);
         },
       )();
 
@@ -286,6 +280,22 @@ export const FormPageContextProvider = memo(
         label_text: lang("LAST_PAGE_LABEL"),
         place_holder_info: {
           description: lang("LAST_PAGE_DESCRIPTION"),
+          type: PlaceHolderTypeEnum.End,
+        },
+      });
+    };
+
+    const addSendSuccessPage = () => {
+      if (isDisabledForm()) {
+        return;
+      }
+      const controls = formRef.current.controls;
+      controls.push({
+        control_id: "send-success",
+        type: ControlTypeEnum.PlaceHolder,
+        label_text: "",
+        place_holder_info: {
+          description: lang("FORM_SUBMITTED_SUCCESSFULLY"),
           type: PlaceHolderTypeEnum.End,
         },
       });
@@ -351,6 +361,7 @@ export const FormPageContextProvider = memo(
       } else {
         sortForm();
         addSendPage();
+        addSendSuccessPage();
         openPage([0]);
       }
       // eslint-disable-next-line react-hooks/exhaustive-deps

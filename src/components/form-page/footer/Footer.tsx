@@ -30,6 +30,10 @@ const Footer = () => {
     return null;
   }
 
+  if (control?.control_id === "send-success") {
+    return null;
+  }
+
   return (
     <Box
       display="flex"
