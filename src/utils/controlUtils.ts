@@ -104,8 +104,8 @@ export const passCondition = (
         overallValue === undefined
           ? currValue
           : prevCond?.composition_type === ConditionCompositionEnum.And
-            ? overallValue && currValue
-            : overallValue || currValue;
+          ? overallValue && currValue
+          : overallValue || currValue;
     }
 
     if (
@@ -220,14 +220,14 @@ const getParentWithLeftChildren = (
   if (
     parentControl?.group_info?.controls &&
     parentControl?.group_info?.controls?.length >
-    index[index.length - 1 - i] + 1
+      index[index.length - 1 - i] + 1
   ) {
     index[index.length - 1 - i] = index[index.length - 1 - i] + 1;
     return i === 0 ? index.slice(0) : index.slice(0, -i);
   } else if (
     parentControl?.group_info?.controls &&
     parentControl?.group_info?.controls?.length <=
-    index[index.length - 1 - i] + 1
+      index[index.length - 1 - i] + 1
   ) {
     return getParentWithLeftChildren(controls, index, i + 1);
   } else if (
@@ -288,7 +288,10 @@ export const getDefaultValues = (
   defaultValues: FormValuesType,
 ) => {
   let defaults: FormValuesType = {};
-  if (defaultValues[control.control_id]) {
+  if (
+    defaultValues[control.control_id] &&
+    control.type !== ControlTypeEnum.FileUpload
+  ) {
     defaults[control.control_id] = defaultValues[control.control_id];
   }
   if (
