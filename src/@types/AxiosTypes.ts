@@ -20,6 +20,7 @@ export type HttpMiddlewareType = {
   payload: HttpMiddlewarePayloadType;
   method?: "post" | "get" | "patch" | "put";
   headers?: Record<string, string>;
+  url?: string;
 };
 
 export type PureHttpMiddlewareType = AxiosRequestConfig;

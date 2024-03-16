@@ -1,5 +1,6 @@
 import { SendFileHeaderDateType } from "../@types/AxiosApiTypes";
 import { FileInline, UploadOptions } from "../@types/MultiPartFileTypes";
+import { getQueryParam } from "../core/utils/historyManager";
 import { Deferred } from "./Deferred";
 // import { getCurrentUserFromStorage } from "./auth";
 
@@ -14,9 +15,11 @@ export const uploadFile = async (
   sendFile: ({
     data,
     headers,
+    url,
   }: {
     data: any;
     headers: SendFileHeaderDateType;
+    url: string;
   }) => Promise<any>,
   form_id: string,
   control_id: string,
@@ -112,15 +115,17 @@ export const uploadFile = async (
               const result2 = await sendFile({
                 headers: {
                   "Content-type": "application/json",
-                  auth: "",
+                  auth: getQueryParam("token"),
                   "access-hash-send": file_inline.access_hash_send,
                   "file-id": file_inline.file_id,
                   "part-number": (partNo + 1).toString(),
                   "total-part": totalParts.toString(),
-                  form_id,
-                  control_id,
+                  "form-id": form_id,
+                  "control-id": control_id,
+                  source: "Client",
                 },
                 data: filePart.result,
+                url: file_inline.dc_url || "",
               });
 
               doneParts++;
@@ -312,6 +317,6 @@ export const getDataUrl = (file: File): Promise<string> =>
       };
       reader.readAsDataURL(file);
     } catch (e) {
-      return reject(e);
+      return null;
     }
   });

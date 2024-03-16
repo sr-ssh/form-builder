@@ -47,6 +47,7 @@ export const RawHttpMiddleware = <T extends AxiosResponseType>({
   payload,
   method = "post",
   headers,
+  url,
 }: HttpMiddlewareType) => {
   const data = {
     ...defaultPayload,
@@ -58,6 +59,7 @@ export const RawHttpMiddleware = <T extends AxiosResponseType>({
       method,
       data,
       headers,
+      url,
     }),
   );
 };

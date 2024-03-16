@@ -171,10 +171,11 @@ export const FBContextProvider = memo(
             control_id: currentControl.control_id,
             file_name: file.name,
             size: file.size,
+            extension: file.type.split("/")[1],
           }),
         AxiosApi.SendFile,
         form.form_id,
-        control.control_id,
+        currentControl.control_id,
       )
         .then((result) => {
           if (result.access_hash_rec) {

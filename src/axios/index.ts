@@ -70,13 +70,16 @@ export const AxiosApi = {
   SendFile: ({
     data,
     headers,
+    url,
   }: {
     data: SendFileRequestDateType;
     headers: SendFileHeaderDateType;
+    url: string;
   }) =>
     PureHttpMiddleware<SendFileResponseDateType>({
       data,
       headers,
-      method: ApiMethodEnum.SEND_FILE,
+      baseURL: url,
+      method: "POST",
     }),
 };

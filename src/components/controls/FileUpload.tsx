@@ -76,9 +76,11 @@ const FileUpload = ({ control }: FileUploadPropsType) => {
   useEffect(() => {
     async function fetchFile() {
       const url = await getDataUrl(defaultValue[0]);
-      setFileUrl(url);
+      if (url) {
+        setFileUrl(url);
+      }
     }
-    if (defaultValue?.length) {
+    if (defaultValue?.length && typeof defaultValue === "object") {
       setFile(defaultValue[0]);
       fetchFile();
     }

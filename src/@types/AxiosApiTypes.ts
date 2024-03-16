@@ -72,6 +72,7 @@ export type RequestSendFileRequestDateType = {
   form_id: string;
   control_id: string;
   file_name: string;
+  extension: string;
   size?: number;
 };
 
@@ -87,9 +88,10 @@ export type SendFileHeaderDateType = {
   "access-hash-send"?: string;
   auth: string;
   "file-id": string;
-  form_id: string;
-  control_id: string;
+  "form-id": string;
+  "control-id": string;
   "Content-type": string;
+  source: string;
 };
 
 export type SendFileResponseDateType = {
