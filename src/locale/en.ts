@@ -37,4 +37,5 @@ export const globalLocales: GlobalLocalesType = {
   PLACEHOLDER_TIMEOUT_DESC: "This survey has expired.",
   TIMER_REMAIN_DURATION: "Response Time",
   FOOTER_SEND_BUTTON: "send",
+  FORM_SUBMITTED_SUCCESSFULLY: "Your form submitted successfully",
 };

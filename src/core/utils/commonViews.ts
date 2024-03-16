@@ -18,7 +18,6 @@ export function openToast(messageToast: MessageToast) {
     id: "toast-" + Date.now(),
     data: messageToast,
     component: Toast,
-    className: "toast-message",
   });
 }
 

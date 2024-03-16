@@ -18,8 +18,10 @@ import {
 import { ControlTypeEnum } from "../@types/controls/ControlTypes";
 import { PlaceHolderTypeEnum } from "../@types/controls/PlaceHolderTypes";
 import { PageNoTypeEnum } from "../@types/controls/GroupTypes";
-import { useGlobalLocales } from "../hooks/useGlobalLocales";
+import { convertLocale, useGlobalLocales } from "../hooks/useGlobalLocales";
 import { AxiosApi } from "../axios";
+import { openToast } from "../core/utils/commonViews";
+import { MessageType } from "../core/@types/commonView";
 
 export type IndexListenersType = (indexes: PageIndexesType) => void;
 
@@ -264,7 +266,11 @@ export const FormPageContextProvider = memo(
             const res = await AxiosApi.DoneForm({
               form_id: formRef.current.form_id,
             });
-            console.log(res);
+            openToast({
+              message: convertLocale("FORM_SUBMITTED_SUCCESSFULLY"),
+              type: MessageType.Success,
+              delay: 5,
+            });
           }
         },
       )();

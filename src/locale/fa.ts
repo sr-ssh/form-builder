@@ -36,4 +36,5 @@ export const globalLocales: GlobalLocalesType = {
   PLACEHOLDER_TIMEOUT_DESC: "زمان این پرسشنامه به پایان رسیده است.",
   TIMER_REMAIN_DURATION: "زمان پاسخ‌دهی",
   FOOTER_SEND_BUTTON: "ارسال",
+  FORM_SUBMITTED_SUCCESSFULLY: "فرم شما با موفقیت ثبت شد.",
 };
