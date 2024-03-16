@@ -180,10 +180,13 @@ export const FormPageContextProvider = memo(
 
     const gotoNext = (data: FieldValues) => {
       if (Object.keys(data).length && !isDisabledPage()) {
-        AxiosApi.SendAnswer({
-          form_id: formRef.current.form_id,
-          answers: setAnswer(data),
-        }).catch((err) => console.log(err));
+        const answers = setAnswer(data);
+        if (answers.length) {
+          AxiosApi.SendAnswer({
+            form_id: formRef.current.form_id,
+            answers: setAnswer(data),
+          }).catch((err) => console.log(err));
+        }
       }
       const controlId = getControl(
         formRef.current.controls,
@@ -263,7 +266,6 @@ export const FormPageContextProvider = memo(
             });
             console.log(res);
           }
-          gotoNext(data);
         },
       )();
 
