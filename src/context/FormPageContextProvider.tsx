@@ -132,7 +132,8 @@ export const FormPageContextProvider = memo(
             value === undefined ||
             value === "" ||
             value?.length === 0 ||
-            value === null
+            value === null ||
+            value === formRef.current.values?.[key]
           )
             continue;
           const isMultiValue = typeof value === "object";
