@@ -288,10 +288,7 @@ export const getDefaultValues = (
   defaultValues: FormValuesType,
 ) => {
   let defaults: FormValuesType = {};
-  if (
-    defaultValues[control.control_id] &&
-    control.type !== ControlTypeEnum.FileUpload
-  ) {
+  if (defaultValues[control.control_id]) {
     defaults[control.control_id] = defaultValues[control.control_id];
   }
   if (

@@ -68,7 +68,7 @@ const FileUpload = ({ control }: FileUploadPropsType) => {
   const [file, setFile] = useState<File | undefined>();
   const [fileUrl, setFileUrl] = useState<string>();
   let inputRef = useRef<HTMLInputElement | null>();
-  const { onChange, onBlur, name, ref, defaultValue } =
+  const { onChange, onBlur, name, defaultValue } =
     useFBRegisterControl(control);
   const { isDisabled } = useFBControl(control);
   const theme = useTheme();
@@ -83,6 +83,8 @@ const FileUpload = ({ control }: FileUploadPropsType) => {
     if (defaultValue?.length && typeof defaultValue === "object") {
       setFile(defaultValue[0]);
       fetchFile();
+    } else if (defaultValue) {
+      setFileUrl(defaultValue);
     }
   }, [defaultValue]);
 
@@ -136,13 +138,14 @@ const FileUpload = ({ control }: FileUploadPropsType) => {
 
   return (
     <ContainerStyle sx={fileUploadStyle(theme)}>
-      {file && fileUrl ? (
+      {fileUrl ? (
         <Box position="relative" display="flex">
           <FileDisplay fileUrl={fileUrl} file={file} />
           {!isDisabled && (
             <RemoveFile
               onClick={() => {
                 setFile(undefined);
+                setFileUrl(undefined);
                 if (inputRef.current) inputRef.current.value = "";
                 onChange({
                   target: {
@@ -163,8 +166,8 @@ const FileUpload = ({ control }: FileUploadPropsType) => {
         startIcon={<CloudUploadIcon />}
         sx={{
           marginBottom: 1,
-          visibility: file ? "hidden" : "visible",
-          position: file ? "absolute" : "static",
+          visibility: file || fileUrl ? "hidden" : "visible",
+          position: file || fileUrl ? "absolute" : "static",
         }}
         disabled={isDisabled}
       >
@@ -189,8 +192,8 @@ const FileUpload = ({ control }: FileUploadPropsType) => {
         variant="caption"
         component="span"
         sx={{
-          visibility: file ? "hidden" : "visible",
-          position: file ? "absolute" : "static",
+          visibility: file || fileUrl ? "hidden" : "visible",
+          position: file || fileUrl ? "absolute" : "static",
         }}
       >
         <Localizer localeKey="CHOOSE_FILE_FORMAT_1" />{" "}
