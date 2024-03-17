@@ -6,7 +6,7 @@ const LoadingButton = ({
   children,
   onClick,
 }: {
-  sx: SxProps<Theme>;
+  sx?: SxProps<Theme>;
   children: ReactNode;
   onClick: () => Promise<any> | undefined;
 }) => {

@@ -30,9 +30,9 @@ const NextButton = ({
         </Button>
       )}
       {hasNext !== false && !isFinished && (
-        <Button variant="outlined" onClick={() => submitNext()}>
+        <LoadingButton onClick={() => submitNext()}>
           <ExpandMoreIcon />
-        </Button>
+        </LoadingButton>
       )}
       <LoadingButton
         onClick={submitForm}

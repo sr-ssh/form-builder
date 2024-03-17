@@ -179,36 +179,40 @@ export const FormPageContextProvider = memo(
       return false;
     };
 
-    const gotoNext = (data: FieldValues) => {
-      if (Object.keys(data).length && !isDisabledPage()) {
-        const answers = setAnswer(data);
-        if (answers.length) {
-          AxiosApi.SendAnswer({
-            form_id: formRef.current.form_id,
-            answers: setAnswer(data),
-          }).catch((err) => console.log(err));
+    const gotoNext = async (data: FieldValues) => {
+      try {
+        if (Object.keys(data).length && !isDisabledPage()) {
+          const answers = setAnswer(data);
+          if (answers.length) {
+            await AxiosApi.SendAnswer({
+              form_id: formRef.current.form_id,
+              answers: setAnswer(data),
+            });
+          }
         }
+        const controlId = getControl(
+          formRef.current.controls,
+          indexesRef.current,
+        )?.control_id;
+        const passedPages = passedPagesRef.current;
+        if (controlId && !passedPages.includes(controlId)) {
+          passedPages.push(controlId);
+        }
+        let nextIndexes = getNextIndex(
+          formRef.current,
+          indexesRef.current || [],
+          data,
+        );
+        if (!nextIndexes || !nextIndexes.length) {
+          return;
+        }
+        indexesRef.current = nextIndexes;
+        indexListenersRef.current.forEach((listener) => listener(nextIndexes!));
+        questionStackRef.current.push([]);
+        openPage(nextIndexes, data);
+      } catch (error) {
+        console.log(error);
       }
-      const controlId = getControl(
-        formRef.current.controls,
-        indexesRef.current,
-      )?.control_id;
-      const passedPages = passedPagesRef.current;
-      if (controlId && !passedPages.includes(controlId)) {
-        passedPages.push(controlId);
-      }
-      let nextIndexes = getNextIndex(
-        formRef.current,
-        indexesRef.current || [],
-        data,
-      );
-      if (!nextIndexes || !nextIndexes.length) {
-        return;
-      }
-      indexesRef.current = nextIndexes;
-      indexListenersRef.current.forEach((listener) => listener(nextIndexes!));
-      questionStackRef.current.push([]);
-      openPage(nextIndexes, data);
     };
 
     const configClose = () => {
@@ -253,9 +257,11 @@ export const FormPageContextProvider = memo(
       indexListenersRef.current.push(listener);
     };
 
-    const submitNext = () =>
+    const submitNext = async () =>
       pageStackRef.current[pageStackRef.current.length - 1].submitHandler?.(
-        (data) => gotoNext(data),
+        async (data) => {
+          await gotoNext(data);
+        },
       )();
 
     const submitForm = async () =>
