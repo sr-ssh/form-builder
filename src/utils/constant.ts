@@ -1,4 +1,5 @@
 import { getQueryParam } from "../core/utils/historyManager";
+import { generateAndSaveToken } from "./tokenGenerator";
 
 export const ApiURL = {
   BASE:
@@ -9,5 +10,5 @@ export const ApiURL = {
 
 export const defaultPayload = {
   api_version: 1,
-  auth: getQueryParam("token"),
+  auth: getQueryParam("token") || generateAndSaveToken(),
 };

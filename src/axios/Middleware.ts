@@ -6,7 +6,6 @@ import {
   PureHttpMiddlewareType,
 } from "../@types/AxiosTypes";
 import { ApiURL, defaultPayload } from "../utils/constant";
-import { getQueryParam } from "../core/utils/historyManager";
 
 const axiosInstance = axios.create({
   baseURL: ApiURL.BASE,
