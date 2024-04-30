@@ -35,7 +35,7 @@ export const getValidationObject = (
         break;
       case ValidationTypeEnum.Email:
         validationObj.pattern = {
-          value: regex,
+          value: item.regex_pattern ? regex : /^[\w.-]+@[\w.-]+\.\w+$/,
           message: convertLocale("VALIDATION_EMAIL"),
         };
         break;
@@ -47,7 +47,7 @@ export const getValidationObject = (
         break;
       case ValidationTypeEnum.Number:
         validationObj.pattern = {
-          value: regex,
+          value: item.regex_pattern ? regex : /^-?\d+(\.\d+)?$/,
           message: convertLocale("VALIDATION_NUMBER"),
         };
         break;
@@ -59,7 +59,9 @@ export const getValidationObject = (
         break;
       case ValidationTypeEnum.Url:
         validationObj.pattern = {
-          value: regex,
+          value: item.regex_pattern
+            ? regex
+            : /^(https?|ftp):\/\/[^\s/$.?#].[^\s]*$/,
           message: convertLocale("VALIDATION_URL"),
         };
         break;
@@ -74,15 +76,23 @@ export const getValidationObject = (
         break;
       case ValidationTypeEnum.Mobile:
         validationObj.pattern = {
-          value: regex,
+          value: item.regex_pattern ? regex : /^\d{10,12}$/,
           message: convertLocale("VALIDATION_MOBILE"),
         };
         break;
       case ValidationTypeEnum.NationalId:
-        validationObj.pattern = {
-          value: regex,
-          message: convertLocale("VALIDATION_NATIONAL_ID"),
-        };
+        if (item.regex_pattern) {
+          validationObj.pattern = {
+            value: regex,
+            message: convertLocale("VALIDATION_NATIONAL_ID"),
+          };
+        } else {
+          validationObj.validate = (value) => {
+            const validated = validateNationalCode(value);
+            if (validated) return true;
+            return convertLocale("VALIDATION_NATIONAL_ID");
+          };
+        }
         break;
       case ValidationTypeEnum.Persian:
         validationObj.pattern = {
@@ -92,7 +102,7 @@ export const getValidationObject = (
         break;
       case ValidationTypeEnum.PostalCode:
         validationObj.pattern = {
-          value: regex,
+          value: item.regex_pattern ? regex : /^\d{10}$/,
           message: convertLocale("VALIDATION_POSTAL_CODE"),
         };
         break;
@@ -105,4 +115,17 @@ export const getValidationObject = (
     validationObj.required = convertLocale("VALIDATION_REQUIRED");
   }
   return validationObj;
+};
+
+const validateNationalCode = (code: string) => {
+  var L = code.length;
+
+  if (L < 8 || parseInt(code, 10) === 0) return false;
+  code = ("0000" + code).substr(L + 4 - 10);
+  if (parseInt(code.substr(3, 6), 10) === 0) return false;
+  var c = parseInt(code.substr(9, 1), 10);
+  var s = 0;
+  for (var i = 0; i < 9; i++) s += parseInt(code.substr(i, 1), 10) * (10 - i);
+  s = s % 11;
+  return (s < 2 && c === s) || (s >= 2 && c === 11 - s);
 };
