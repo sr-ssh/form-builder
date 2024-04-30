@@ -20,6 +20,8 @@ import { PlaceHolderTypeEnum } from "../@types/controls/PlaceHolderTypes";
 import { PageNoTypeEnum } from "../@types/controls/GroupTypes";
 import { useGlobalLocales } from "../hooks/useGlobalLocales";
 import { AxiosApi } from "../axios";
+import { openToast } from "../core/utils/commonViews";
+import { MessageType } from "../core/@types/commonView";
 
 export type IndexListenersType = (indexes: PageIndexesType) => void;
 
@@ -212,6 +214,10 @@ export const FormPageContextProvider = memo(
         openPage(nextIndexes, data);
       } catch (error) {
         console.log(error);
+        openToast({
+          message: "مشکلی پیش آمده است.",
+          type: MessageType.Error,
+        });
       }
     };
 

@@ -1,7 +1,7 @@
 import { useEffect, useRef } from "react";
 import { useView } from "../../hooks/useView";
 import { MessageToast, MessageType } from "../../@types/commonView";
-import "./toast.css";
+import "./commonView.style.css";
 
 export function Toast() {
   const timer = useRef<NodeJS.Timeout>();
@@ -24,9 +24,12 @@ export function Toast() {
 
   return (
     <div
-      className={`toast ${
-        viewData.type === MessageType.Success ? "toast-success" : "toast-danger"
-      }`}
+      className={
+        "toast " +
+        (viewData.type === MessageType.Success
+          ? "toast-success"
+          : "toast-danger")
+      }
     >
       <div className="toast-body">
         {viewData.message}

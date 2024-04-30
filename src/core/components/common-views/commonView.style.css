@@ -1,3 +1,12 @@
+/* Toast */
+.toasts-container {
+  position: absolute;
+  right: 1rem;
+  left: 1rem;
+  top: 1rem;
+  z-index: 1090;
+  pointer-events: none;
+}
 .toast {
   position: relative;
   --toast-color: #212529;
@@ -21,12 +30,12 @@
   box-shadow: var(--toast-box-shadow);
   padding-left: calc(var(--toast-close-width) + var(--toast-padding-x) + 1rem);
 }
-.toast-success {
-  --toast-bg: #50cd89;
-  --toast-color: #fff;
-}
 .toast-danger {
   --toast-bg: #f1416c;
+  --toast-color: #fff;
+}
+.toast-success {
+  --toast-bg: #50cd89;
   --toast-color: #fff;
 }
 .toast-close {
