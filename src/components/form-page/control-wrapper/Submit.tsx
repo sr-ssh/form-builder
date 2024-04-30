@@ -8,6 +8,7 @@ import { Localizer } from "../../shared/Localizer";
 import { getControlParentById } from "../../../utils/controlUtils";
 import { PlaceHolderTypeEnum } from "../../../@types/controls/PlaceHolderTypes";
 import { FormType } from "../../../@types/FormTypes";
+import LoadingButton from "../../shared/LoadingButton";
 
 type SubmitPropsType = {
   control: ControlType;
@@ -37,9 +38,9 @@ const Submit = ({ control, form, submitNext }: SubmitPropsType) => {
     <>
       {hasSubmitButton && (
         <Box display="flex" flexDirection="column" alignItems="flex-end">
-          <Button onClick={() => submitNext()}>
+          <LoadingButton onClick={() => submitNext()}>
             <Localizer localeKey="FORM_NEXT_BUTTON" />
-          </Button>
+          </LoadingButton>
         </Box>
       )}
     </>
