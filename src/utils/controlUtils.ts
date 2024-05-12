@@ -411,15 +411,14 @@ export const showResult = (
     : 0;
 
   if (nextControl?.control_id === "control_id_suggestions_men") {
-    let hasIssues = false;
     const group1Values = pages
-      .find((page) => page.indexes?.[0] === 6)
-      ?.getFormValues?.();
-    const group2Values = pages
       .find((page) => page.indexes?.[0] === 7)
       ?.getFormValues?.();
-    const group3Values = pages
+    const group2Values = pages
       .find((page) => page.indexes?.[0] === 8)
+      ?.getFormValues?.();
+    const group3Values = pages
+      .find((page) => page.indexes?.[0] === 9)
       ?.getFormValues?.();
     if (
       group1Values &&
@@ -520,7 +519,6 @@ export const showResult = (
       );
     }
     if (ageGroup && ageGroup.control_id_1_6 !== "0" && cigaretteUnit > 20) {
-      hasIssues = true;
       form = showControl(
         form,
         "control_id_suggestions_men",
@@ -536,7 +534,6 @@ export const showResult = (
     return { form, nextIndexes };
   }
   if (nextControl?.control_id === "control_id_suggestions_women") {
-    let hasIssues = false;
     const group1Values = pages
       .find((page) => page.indexes?.[0] === 2)
       ?.getFormValues?.();
@@ -548,6 +545,9 @@ export const showResult = (
       ?.getFormValues?.();
     const group4Values = pages
       .find((page) => page.indexes?.[0] === 5)
+      ?.getFormValues?.();
+    const group5Values = pages
+      .find((page) => page.indexes?.[0] === 6)
       ?.getFormValues?.();
     if (
       group1Values &&
@@ -601,7 +601,6 @@ export const showResult = (
       bmi > 25 ||
       waist > 90
     ) {
-      hasIssues = true;
       form = showControl(
         form,
         "control_id_suggestions_women",
@@ -619,7 +618,6 @@ export const showResult = (
       (group3Values.control_id_4_1 === "0" ||
         group3Values.control_id_4_2 === "0")
     ) {
-      hasIssues = true;
       form = showControl(
         form,
         "control_id_suggestions_women",
@@ -630,14 +628,12 @@ export const showResult = (
       Number(ageGroup.control_id_1_1) >= 40 &&
       Number(ageGroup.control_id_1_1) <= 75
     ) {
-      hasIssues = true;
       form = showControl(
         form,
         "control_id_suggestions_women",
         "control_id_suggestions_women_5",
       );
     } else if (ageGroup && Number(ageGroup.control_id_1_1) > 75) {
-      hasIssues = true;
       form = showControl(
         form,
         "control_id_suggestions_women",
@@ -651,7 +647,6 @@ export const showResult = (
       );
     }
     if (group4Values && group4Values.control_id_5_1 === "0") {
-      hasIssues = true;
       form = showControl(
         form,
         "control_id_suggestions_women",
@@ -662,14 +657,12 @@ export const showResult = (
       Number(ageGroup.control_id_1_1) >= 21 &&
       Number(ageGroup.control_id_1_1) <= 65
     ) {
-      hasIssues = true;
       form = showControl(
         form,
         "control_id_suggestions_women",
         "control_id_suggestions_women_7",
       );
     } else if (ageGroup && Number(ageGroup.control_id_1_1) > 65) {
-      hasIssues = true;
       form = showControl(
         form,
         "control_id_suggestions_women",
@@ -682,8 +675,29 @@ export const showResult = (
         "control_id_suggestions_women_7_1",
       );
     }
+    if (
+      group5Values &&
+      (group5Values.control_id_6_1 === "0" ||
+        group5Values.control_id_6_2 === "0" ||
+        group5Values.control_id_6_3 === "0" ||
+        group5Values.control_id_6_4 === "0" ||
+        group5Values.control_id_6_5 === "0" ||
+        group5Values.control_id_6_6 === "0" ||
+        group5Values.control_id_6_7 === "0")
+    ) {
+      form = showControl(
+        form,
+        "control_id_suggestions_women",
+        "control_id_suggestions_women_10",
+      );
+    } else {
+      form = showControl(
+        form,
+        "control_id_suggestions_women",
+        "control_id_suggestions_women_10_1",
+      );
+    }
     if (ageGroup && ageGroup.control_id_1_6 !== "0" && cigaretteUnit > 20) {
-      hasIssues = true;
       form = showControl(
         form,
         "control_id_suggestions_women",
@@ -761,7 +775,7 @@ export const setSteps = (pages: FormPageViewDataType[]) => {
     } else if (Number(age) >= 65) {
       return ["گوارش", "کبد", "سینه"];
     }
-    return ["گوارش", "کبد", "سینه", "گردن رحم"];
+    return ["گوارش", "کبد", "سینه", "گردن رحم", "اعصاب و روان"];
   } else {
     if (Number(age) >= 75) {
       return ["کبد"];

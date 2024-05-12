@@ -205,9 +205,7 @@ export const FormPageContextProvider = memo(
       openPage(nextIndexes, data);
     };
 
-    const getSteps = () => {
-      return setSteps(pageStackRef.current);
-    };
+    const getSteps = () => setSteps(pageStackRef.current);
 
     const gotoNext = async (data: FieldValues) => {
       if (Object.keys(data).length && !isDisabledPage()) {
@@ -226,6 +224,8 @@ export const FormPageContextProvider = memo(
           }
           callNext(data);
         } catch (err) {
+          callNext(data);
+
           console.log(err);
           openToast({
             message: "مشکلی پیش آمده است.",

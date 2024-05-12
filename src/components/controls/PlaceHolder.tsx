@@ -8,7 +8,7 @@ import placeHolderStyle from "../../utils/theme/placeHolderStyle";
 import { useFormPage } from "../../hooks/useFormPage";
 import { PlaceHolderTypeEnum } from "../../@types/controls/PlaceHolderTypes";
 import { Localizer } from "../shared/Localizer";
-import { Paper, SxProps, Theme, useTheme } from "@mui/material";
+import { useTheme } from "@mui/material";
 import { formatDuration } from "../../utils/date";
 
 type PlaceHolderPropsType = {
@@ -32,7 +32,6 @@ const PlaceHolder = ({ control }: PlaceHolderPropsType) => {
   if (form.user_start_time && form.max_duration) {
     remainDuration =
       form.max_duration - (new Date().getTime() - form.user_start_time) / 1000;
-    console.log(remainDuration);
     hasRemainDuration = remainDuration > 0;
   }
 

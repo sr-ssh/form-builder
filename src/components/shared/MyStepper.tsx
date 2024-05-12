@@ -64,13 +64,14 @@ export default function MyStepper() {
 
   const { form, getSteps } = useFormPage({
     onIndexChanged: (nextIndexes: number[]) => {
+      console.log("next index", nextIndexes);
       if (
-        (nextIndexes[0] === 3 || nextIndexes[0] === 7) &&
+        (nextIndexes[0] === 3 || nextIndexes[0] === 8) &&
         stepsRef.current.length === 1
       ) {
         setActiveStep(0);
-      } else if (nextIndexes[0] >= 6) {
-        setActiveStep(nextIndexes[0] - 6);
+      } else if (nextIndexes[0] >= 7) {
+        setActiveStep(nextIndexes[0] - 7);
       } else {
         setActiveStep(nextIndexes[0] - 2);
       }
@@ -90,22 +91,20 @@ export default function MyStepper() {
     return null;
   }
 
-  if (isFinished || indexes[0] === 9 || indexes[0] === 10) return null;
+  if (isFinished || indexes[0] === 11 || indexes[0] === 10) return null;
 
   return (
     <Box sx={{ width: "100%", marginBlockStart: 3, marginBlockEnd: 1 }}>
       <StepperStyle activeStep={activeStep}>
-        {stepsRef.current.map((label, index) => {
-          return (
-            <Step key={label}>
-              <StepLabelStyle
-                {...(activeStep === index
-                  ? { StepIconComponent: () => <div>{label}</div> }
-                  : {})}
-              ></StepLabelStyle>
-            </Step>
-          );
-        })}
+        {stepsRef.current.map((label, index) => (
+          <Step key={label}>
+            <StepLabelStyle
+              {...(activeStep === index
+                ? { StepIconComponent: () => <div>{label}</div> }
+                : {})}
+            />
+          </Step>
+        ))}
       </StepperStyle>
     </Box>
   );

@@ -9,7 +9,7 @@
   "form_status": "Registration",
   "enable_edit_form": true,
   "progress_display_mode": "None",
-  "required_answer": true,
+  "required_answer": false,
   "theme": {
     "theme_id": "dfdd",
     "name": "پیش فرض 1",
@@ -563,6 +563,120 @@
       }
     },
     {
+      "control_id": "control_id_6",
+      "type": "Group",
+      "group_info": {
+        "type": "FormSet",
+        "controls": [
+          {
+            "control_id": "control_id_6_1",
+            "type": "MultipleOption",
+            "label_text": "تمایل یا سابقه اقدام به خودکشی و یا آسیب به خود",
+            "multiple_option_info": {
+              "type": "Text",
+              "multi_select": false,
+              "randomize_option_number": false,
+              "arrange_type": "Vertical",
+              "options": [
+                { "text": "بلی", "value": 0 },
+                { "text": "خیر", "value": 1 }
+              ]
+            }
+          },
+          {
+            "control_id": "control_id_6_2",
+            "type": "MultipleOption",
+            "label_text": "روحیه غمگین، عدم علاقه به تفریح و سرگرمی، لذت نبردن از زندگی و یا ناتوانی مفرط در انجام فعالیت های روزمره علی رغم استراحت کافی",
+            "multiple_option_info": {
+              "type": "Text",
+              "multi_select": false,
+              "randomize_option_number": false,
+              "arrange_type": "Vertical",
+              "options": [
+                { "text": "بلی", "value": 0 },
+                { "text": "خیر", "value": 1 }
+              ]
+            }
+          },
+          {
+            "control_id": "control_id_6_3",
+            "type": "MultipleOption",
+            "label_text": "اختلال در شروع و یا ادامه خواب شبانه همراه با خواب آلودگی و یا عدم تمرکز در طول روز",
+            "multiple_option_info": {
+              "type": "Text",
+              "multi_select": false,
+              "randomize_option_number": false,
+              "arrange_type": "Vertical",
+              "options": [
+                { "text": "بلی", "value": 0 },
+                { "text": "خیر", "value": 1 }
+              ]
+            }
+          },
+          {
+            "control_id": "control_id_6_4",
+            "type": "MultipleOption",
+            "label_text": "نوسانات خلقی شدید و یا تجربه دوره هایی از احساس نشاط شدید، پرحرفی،کاهش نیاز به خواب و پرخاشگری بیش از حد",
+            "multiple_option_info": {
+              "type": "Text",
+              "multi_select": false,
+              "randomize_option_number": false,
+              "arrange_type": "Vertical",
+              "options": [
+                { "text": "بلی", "value": 0 },
+                { "text": "خیر", "value": 1 }
+              ]
+            }
+          },
+          {
+            "control_id": "control_id_6_5",
+            "type": "MultipleOption",
+            "label_text": "احساس  اضطراب و ترس شدید و یا حملات ناگهانی تنگی نفس و طپش قلب",
+            "multiple_option_info": {
+              "type": "Text",
+              "multi_select": false,
+              "randomize_option_number": false,
+              "arrange_type": "Vertical",
+              "options": [
+                { "text": "بلی", "value": 0 },
+                { "text": "خیر", "value": 1 }
+              ]
+            }
+          },
+          {
+            "control_id": "control_id_6_6",
+            "type": "MultipleOption",
+            "label_text": "نیاز مداوم به چک کردن چند باره یا شستن بیش از حد برای رفع نگرانی و یا تکرار ذهنی بیش از حد اتفاقات ناخوشایند گذشته",
+            "multiple_option_info": {
+              "type": "Text",
+              "multi_select": false,
+              "randomize_option_number": false,
+              "arrange_type": "Vertical",
+              "options": [
+                { "text": "بلی", "value": 0 },
+                { "text": "خیر", "value": 1 }
+              ]
+            }
+          },
+          {
+            "control_id": "control_id_6_7",
+            "type": "MultipleOption",
+            "label_text": "شکاک بودن و سوء ظن به دیگران و فقدان روابط پایدار، عدم ثبات شغلی و یا رفتارهای تکانشی همراه با    بی احترامی به دیگران",
+            "multiple_option_info": {
+              "type": "Text",
+              "multi_select": false,
+              "randomize_option_number": false,
+              "arrange_type": "Vertical",
+              "options": [
+                { "text": "بلی", "value": 0 },
+                { "text": "خیر", "value": 1 }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
       "control_id": "control_id_7",
       "type": "Group",
       "label_text": "",
@@ -1094,6 +1208,26 @@
             "control_id": "control_id_suggestions_women_9",
             "type": "PlaceHolder",
             "label_text": "ریه",
+            "is_hidden": true,
+            "place_holder_info": {
+              "description": "ظرف یک سال آینده نیاز به اقدام خاصی نیست. برای حفظ سلامتی خود بعد از یک سال مجدداً تست غربالگری تشخیص زودرس سرطان‌های رایج را تکرار نمایید.",
+              "type": "Note"
+            }
+          },
+          {
+            "control_id": "control_id_suggestions_women_10",
+            "type": "PlaceHolder",
+            "label_text": "اعصاب و روان",
+            "is_hidden": true,
+            "place_holder_info": {
+              "description": "شما نیازمند ارزیابی روانشناختی و مراجعه به متخصص اعصاب و روان(روانپزشک) یا روانشناس هستید.",
+              "type": "Note"
+            }
+          },
+          {
+            "control_id": "control_id_suggestions_women_10_1",
+            "type": "PlaceHolder",
+            "label_text": "اعصاب و روان",
             "is_hidden": true,
             "place_holder_info": {
               "description": "ظرف یک سال آینده نیاز به اقدام خاصی نیست. برای حفظ سلامتی خود بعد از یک سال مجدداً تست غربالگری تشخیص زودرس سرطان‌های رایج را تکرار نمایید.",

@@ -39,11 +39,11 @@ const Footer = () => {
     case 2:
     case 3:
     case 4:
-    case 6:
+    case 5:
     case 7:
       labelRef.current = "FOOTER_BUTTON_LABEL_NEXT";
       break;
-    case 5:
+    case 6:
     case 8:
       labelRef.current = "FOOTER_BUTTON_LABEL_RESULT";
       break;
