@@ -420,6 +420,9 @@ export const showResult = (
     const group3Values = pages
       .find((page) => page.indexes?.[0] === 9)
       ?.getFormValues?.();
+    const group4Values = pages
+      .find((page) => page.indexes?.[0] === 10)
+      ?.getFormValues?.();
     if (
       group1Values &&
       (group1Values.control_id_7_1 === "0" ||
@@ -529,6 +532,28 @@ export const showResult = (
         form,
         "control_id_suggestions_men",
         "control_id_suggestions_men_7",
+      );
+    }
+    if (
+      group4Values &&
+      (group4Values.control_id_10_1 === "0" ||
+        group4Values.control_id_10_2 === "0" ||
+        group4Values.control_id_10_3 === "0" ||
+        group4Values.control_id_10_4 === "0" ||
+        group4Values.control_id_10_5 === "0" ||
+        group4Values.control_id_10_6 === "0" ||
+        group4Values.control_id_10_7 === "0")
+    ) {
+      form = showControl(
+        form,
+        "control_id_suggestions_men",
+        "control_id_suggestions_men_8",
+      );
+    } else {
+      form = showControl(
+        form,
+        "control_id_suggestions_men",
+        "control_id_suggestions_men_8_1",
       );
     }
     return { form, nextIndexes };
@@ -734,7 +759,12 @@ export const showPagesBasedOnAge = (
   const age = infoGroup.control_id_1_1;
   if (sex === "0") {
     form = hideControl(form, ["control_id_suggestions_men"]);
-    form = hideControl(form, ["control_id_7", "control_id_8", "control_id_9"]);
+    form = hideControl(form, [
+      "control_id_7",
+      "control_id_8",
+      "control_id_9",
+      "control_id_10",
+    ]);
     if (Number(age) > 75) {
       return {
         form: hideControl(form, [
@@ -771,18 +801,18 @@ export const setSteps = (pages: FormPageViewDataType[]) => {
   const age = infoGroup.control_id_1_1;
   if (sex === "0") {
     if (Number(age) >= 75) {
-      return ["کبد"];
+      return ["کبد", "اعصاب و روان"];
     } else if (Number(age) >= 65) {
-      return ["گوارش", "کبد", "سینه"];
+      return ["گوارش", "کبد", "سینه", "اعصاب و روان"];
     }
     return ["گوارش", "کبد", "سینه", "گردن رحم", "اعصاب و روان"];
   } else {
     if (Number(age) >= 75) {
-      return ["کبد"];
+      return ["کبد", "اعصاب و روان"];
     } else if (Number(age) >= 69) {
-      return ["گوارش", "کبد"];
+      return ["گوارش", "کبد", "اعصاب و روان"];
     }
-    return ["گوارش", "کبد", "پروستات"];
+    return ["گوارش", "کبد", "پروستات", "اعصاب و روان"];
   }
 };
 

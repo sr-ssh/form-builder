@@ -69,6 +69,7 @@ const Label = ({
     control.control_id === "control_id_suggestions_men_3" ||
     control.control_id === "control_id_suggestions_men_4" ||
     control.control_id === "control_id_suggestions_men_6" ||
+    control.control_id === "control_id_suggestions_men_8" ||
     control.control_id === "control_id_suggestions_women_1" ||
     control.control_id === "control_id_suggestions_women_3" ||
     control.control_id === "control_id_suggestions_women_4" ||

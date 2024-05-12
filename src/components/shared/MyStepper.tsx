@@ -64,10 +64,10 @@ export default function MyStepper() {
 
   const { form, getSteps } = useFormPage({
     onIndexChanged: (nextIndexes: number[]) => {
-      console.log("next index", nextIndexes);
+      console.log(nextIndexes, stepsRef.current);
       if (
         (nextIndexes[0] === 3 || nextIndexes[0] === 8) &&
-        stepsRef.current.length === 1
+        stepsRef.current.length === 2
       ) {
         setActiveStep(0);
       } else if (nextIndexes[0] >= 7) {
@@ -80,6 +80,7 @@ export default function MyStepper() {
   });
 
   stepsRef.current = getSteps();
+  console.log(stepsRef.current);
   const control = getControl(form.controls, indexes);
   const isFinished = control?.control_id === "send";
   if (
@@ -91,7 +92,7 @@ export default function MyStepper() {
     return null;
   }
 
-  if (isFinished || indexes[0] === 11 || indexes[0] === 10) return null;
+  if (isFinished || indexes[0] === 11 || indexes[0] === 12) return null;
 
   return (
     <Box sx={{ width: "100%", marginBlockStart: 3, marginBlockEnd: 1 }}>
