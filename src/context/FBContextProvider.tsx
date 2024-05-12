@@ -24,6 +24,8 @@ import { AxiosApi } from "../axios";
 import { FormStatusEnum, FormValuesType } from "../@types/FormTypes";
 import { PageIndexesType } from "../@types/FormPageTypes";
 import { uploadFile } from "../utils/fileUpload";
+import { openToast } from "../core/utils/commonViews";
+import { MessageType } from "../core/@types/commonView";
 
 export const FBContext = createContext<{
   registerControl: (control: ControlType) => any;
@@ -148,7 +150,10 @@ export const FBContextProvider = memo(
       }
     };
 
-    const handleFileInputChange = (currentControl: ControlType, file: File) => {
+    const handleFileInputChange = async (
+      currentControl: ControlType,
+      file: File,
+    ) => {
       if (currentControl.type !== ControlTypeEnum.FileUpload) {
         return;
       }
@@ -157,7 +162,8 @@ export const FBContextProvider = memo(
         formController.setValue(currentControl.control_id, file);
         return;
       }
-      uploadFile(
+
+      await uploadFile(
         {
           file_data: file,
           file_id: "",
@@ -176,24 +182,18 @@ export const FBContextProvider = memo(
         AxiosApi.SendFile,
         form.form_id,
         currentControl.control_id,
-      )
-        .then((result) => {
-          if (result.access_hash_rec) {
-            formController.clearErrors(currentControl.control_id);
-            formController.setValue(
-              currentControl.control_id,
-              result.access_hash_rec,
-            );
-          }
-        })
-        .catch((err) => {
-          // TODO remove this part after real apis
+      ).then((result) => {
+        if (result.access_hash_rec) {
           formController.clearErrors(currentControl.control_id);
-          formController.setValue(currentControl.control_id, "ss");
-        });
+          formController.setValue(
+            currentControl.control_id,
+            result.access_hash_rec,
+          );
+        }
+      });
     };
 
-    const onChangedControlValue = (target: any) => {
+    const onChangedControlValue = async (target: any) => {
       let controls = mainControlRef.current.group_info?.controls;
       const thisControl =
         getControlById(controls || [], target.name) || mainControlRef.current;
@@ -211,7 +211,16 @@ export const FBContextProvider = memo(
         formController.clearErrors(target.name);
         formController.setValue(target.name, value);
       }
-      handleFileInputChange(thisControl, value);
+      try {
+        await handleFileInputChange(thisControl, value);
+      } catch (err) {
+        console.log(err);
+        openToast({
+          message: "مشکلی پیش آمده است.",
+          type: MessageType.Error,
+        });
+        return;
+      }
       if (controls) {
         const formSet = getControlParentById(
           mainControlRef.current,

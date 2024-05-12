@@ -121,11 +121,11 @@ const FileUpload = ({ control }: FileUploadPropsType) => {
   if (allowedExtensions?.length) {
     acceptType = "";
     allowedExtensions.forEach((ext, index) =>
-      index + 1 === allowedExtensions.length
-        ? (acceptType += `.${ext}`)
-        : (acceptType += `, .${ext}`),
+      index === 0 ? (acceptType += `.${ext}`) : (acceptType += `, .${ext}`),
     );
   }
+
+  console.log(acceptType);
 
   const handleChange = async (e: ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];

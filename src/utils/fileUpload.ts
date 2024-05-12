@@ -1,8 +1,7 @@
 import { SendFileHeaderDateType } from "../@types/AxiosApiTypes";
 import { FileInline, UploadOptions } from "../@types/MultiPartFileTypes";
-import { getQueryParam } from "../core/utils/historyManager";
 import { Deferred } from "./Deferred";
-// import { getCurrentUserFromStorage } from "./auth";
+import { defaultPayload } from "./constant";
 
 let requestPulls: any = {};
 
@@ -105,60 +104,65 @@ export const uploadFile = async (
       ((from: number, partNo: number) => {
         filePartRequest(
           "upload",
+          file_inline.file_id,
+          partNo,
           async () => {
-            try {
-              const filePart = await getFilePart(file, from, partSize);
-              if (canceled) {
-                throw new Error("FAILED_AND_CANCELED");
-              }
-              // const auth = getCurrentUserFromStorage()?.auth || "";
-              const result2 = await sendFile({
-                headers: {
-                  "Content-type": "application/json",
-                  auth: getQueryParam("token"),
-                  "access-hash-send": file_inline.access_hash_send,
-                  "file-id": file_inline.file_id,
-                  "part-number": (partNo + 1).toString(),
-                  "total-part": totalParts.toString(),
-                  "form-id": form_id,
-                  "control-id": control_id,
-                  source: "Client",
-                },
-                data: filePart.result,
-                url: file_inline.dc_url || "",
-              });
-
-              doneParts++;
-              if (result2?.data && result2?.data.data.access_hash_rec) {
-                resultInputFile.access_hash_rec =
-                  result2.data.data.access_hash_rec;
-              }
-              if (doneParts >= totalParts) {
-                options?.notify?.({
-                  file_id: file_inline.file_id,
-                  percent: 100,
-                  total_size: fileSize,
-                  uploaded_size: fileSize,
-                  is_done: true,
-                  blob: file_inline.file_data,
-                });
-                deferred.resolve(resultInputFile);
-                resolved = true;
-              } else {
-                options?.notify?.({
-                  file_id: file_inline.file_id,
-                  uploaded_size: doneParts * partSize,
-                  percent: Math.min(
-                    100,
-                    Math.floor((doneParts * partSize * 100) / (fileSize || 0)),
-                  ),
-                  total_size: fileSize,
-                });
-              }
-            } catch (error) {
-              // errorHandler('PART_FAILED');
-              throw error;
+            // try {
+            const filePart = await getFilePart(file, from, partSize);
+            if (canceled) {
+              throw new Error("FAILED_AND_CANCELED");
             }
+            const result2 = await sendFile({
+              headers: {
+                "Content-type": "application/json",
+                auth: defaultPayload.auth,
+                "access-hash-send": file_inline.access_hash_send,
+                "file-id": file_inline.file_id,
+                "part-number": (partNo + 1).toString(),
+                "total-part": totalParts.toString(),
+                "form-id": form_id,
+                "control-id": control_id,
+                source: "Client",
+              },
+              data: filePart.result,
+              url: file_inline.dc_url || "",
+            });
+
+            if (result2.data.status !== "OK") {
+              // eslint-disable-next-line no-throw-literal
+              throw result2.data as unknown as Error;
+            }
+            doneParts++;
+            if (result2?.data && result2?.data.data?.access_hash_rec) {
+              resultInputFile.access_hash_rec =
+                result2.data.data.access_hash_rec;
+            }
+            if (doneParts >= totalParts) {
+              options?.notify?.({
+                file_id: file_inline.file_id,
+                percent: 100,
+                total_size: fileSize,
+                uploaded_size: fileSize,
+                is_done: true,
+                blob: file_inline.file_data,
+              });
+              deferred.resolve(resultInputFile);
+              resolved = true;
+            } else {
+              options?.notify?.({
+                file_id: file_inline.file_id,
+                uploaded_size: doneParts * partSize,
+                percent: Math.min(
+                  100,
+                  Math.floor((doneParts * partSize * 100) / (fileSize || 0)),
+                ),
+                total_size: fileSize,
+              });
+            }
+            // } catch (error) {
+            //   errorHandler("PART_FAILED");
+            //   throw error;
+            // }
           },
           activeDelta,
         );
@@ -167,12 +171,15 @@ export const uploadFile = async (
 
     return await deferred.promise;
   } catch (exp) {
+    console.log("error from here", exp);
     throw exp;
   }
 };
-
+const failureParts: any = {};
 const filePartRequest = (
   requestKey: string,
+  fileId: string,
+  partNo: number,
   request: () => Promise<any>,
   activeDelta: number,
 ) => {
@@ -184,18 +191,22 @@ const filePartRequest = (
   const deferred = new Deferred();
 
   requestPull.push({
+    fileId,
     request,
     deferred,
     activeDelta,
   });
-
   setTimeout(() => {
-    requestCheck(requestKey);
+    requestCheck(requestKey, fileId, partNo);
   });
   return deferred.promise;
 };
 // using
-async function requestCheck(requestKey: string) {
+async function requestCheck(
+  requestKey: string,
+  fileId: string,
+  partId: number,
+) {
   const requestPull = requestPulls[requestKey];
   const requestLimit = requestKey === "upload" ? 3 : 3;
   if (
@@ -209,18 +220,32 @@ async function requestCheck(requestKey: string) {
   const requestInfo = requestPull.shift();
   const activeDelta = requestInfo.activeDelta || 1;
   requestActives[requestKey] += activeDelta;
-
   try {
     const result = await requestInfo.request();
-
     requestActives[requestKey] -= activeDelta;
     requestInfo.deferred.resolve(result);
-    requestCheck(requestKey);
+    requestCheck(requestKey, fileId, partId);
   } catch (error) {
+    if (!failureParts[fileId]) {
+      failureParts[fileId] = {};
+    }
+    const failureCount = (failureParts[fileId][partId] =
+      (failureParts[fileId][partId] || 0) + 1);
+    if (failureCount > 2) {
+      for (let key of requestPull) {
+        if (requestPull?.[key]?.fileId === fileId) {
+          delete requestPull[key];
+        }
+      }
+      delete failureParts[fileId];
+      // requestInfo.deferred.reject(error);
+      return;
+    }
     requestActives[requestKey] -= activeDelta;
+
     requestPull.push(requestInfo);
-    //requestInfo.deferred.reject(error);
-    requestCheck(requestKey);
+    // requestInfo.deferred.reject(error);
+    requestCheck(requestKey, fileId, partId);
   }
 }
 
