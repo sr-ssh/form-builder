@@ -1,14 +1,10 @@
-import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import PartialTabContainer from "../../core/components/containers/PartialTabContainer";
 import theme from "../../utils/theme/theme";
 import BackgroundStyle from "./BackgroundStyle";
-// import form from "../../healthTest.json";
-import { ThemeType } from "../../@types/ThemeTypes";
 import { FormType, LocaleEnum } from "../../@types/FormTypes";
 import { FormPageContextProvider } from "../../context/FormPageContextProvider";
 import Footer from "./footer/Footer";
-import { Localizer } from "../shared/Localizer";
 import { CircularProgress, ThemeProvider, styled } from "@mui/material";
 import Timer from "../shared/Timer";
 import rtlPlugin from "stylis-plugin-rtl";
@@ -20,16 +16,16 @@ import { AxiosApi } from "../../axios";
 import Logo from "../shared/Logo";
 import { getQueryParam } from "../../core/utils/historyManager";
 
-const NoActiveMessage = styled(Box)({
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "center",
-  backgroundColor: "#3390ec",
-  minHeight: "2.5rem",
-  height: "2.5rem",
-  color: "#fff",
-  userSelect: "none",
-});
+// const NoActiveMessage = styled(Box)({
+//   display: "flex",
+//   alignItems: "center",
+//   justifyContent: "center",
+//   backgroundColor: "#3390ec",
+//   minHeight: "2.5rem",
+//   height: "2.5rem",
+//   color: "#fff",
+//   userSelect: "none",
+// });
 
 const LoadingStyle = styled(CircularProgress)({
   position: "relative",
