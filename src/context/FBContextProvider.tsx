@@ -162,35 +162,42 @@ export const FBContextProvider = memo(
         formController.setValue(currentControl.control_id, file);
         return;
       }
-
-      await uploadFile(
-        {
-          file_data: file,
-          file_id: "",
-          file_name: file.name,
-          mime: file.type,
-          size: file.size,
-        },
-        () =>
-          AxiosApi.RequestSendFile({
-            form_id: form.form_id,
-            control_id: currentControl.control_id,
+      try {
+        let result = await uploadFile(
+          {
+            file_data: file,
+            file_id: "",
             file_name: file.name,
+            mime: file.type,
             size: file.size,
-            extension: file.type.split("/")[1],
-          }),
-        AxiosApi.SendFile,
-        form.form_id,
-        currentControl.control_id,
-      ).then((result) => {
+          },
+          () =>
+            AxiosApi.RequestSendFile({
+              form_id: form.form_id,
+              control_id: currentControl.control_id,
+              file_name: file.name,
+              size: file.size,
+              extension: file.type.split("/")[1],
+            }),
+          AxiosApi.SendFile,
+          form.form_id,
+          currentControl.control_id,
+        );
         if (result.access_hash_rec) {
           formController.clearErrors(currentControl.control_id);
           formController.setValue(
             currentControl.control_id,
             result.access_hash_rec,
           );
+          return true;
         }
-      });
+      } catch (error) {
+        openToast({
+          message: "مشکلی در آپلود فایل پیش آمده است.",
+          type: MessageType.Error,
+        });
+        return false;
+      }
     };
 
     const onChangedControlValue = async (target: any) => {
@@ -211,16 +218,12 @@ export const FBContextProvider = memo(
         formController.clearErrors(target.name);
         formController.setValue(target.name, value);
       }
-      try {
-        await handleFileInputChange(thisControl, value);
-      } catch (err) {
-        console.log(err);
-        openToast({
-          message: "مشکلی پیش آمده است.",
-          type: MessageType.Error,
-        });
+
+      const res = await handleFileInputChange(thisControl, value);
+      if (!res) {
         return;
       }
+
       if (controls) {
         const formSet = getControlParentById(
           mainControlRef.current,

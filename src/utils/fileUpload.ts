@@ -107,7 +107,6 @@ export const uploadFile = async (
           file_inline.file_id,
           partNo,
           async () => {
-            // try {
             const filePart = await getFilePart(file, from, partSize);
             if (canceled) {
               throw new Error("FAILED_AND_CANCELED");
@@ -159,19 +158,16 @@ export const uploadFile = async (
                 total_size: fileSize,
               });
             }
-            // } catch (error) {
-            //   errorHandler("PART_FAILED");
-            //   throw error;
-            // }
           },
           activeDelta,
-        );
+        ).catch((err) => {
+          errorHandler(err);
+        });
       })(offset, part++);
     }
 
     return await deferred.promise;
   } catch (exp) {
-    console.log("error from here", exp);
     throw exp;
   }
 };
@@ -207,7 +203,7 @@ async function requestCheck(
   fileId: string,
   partId: number,
 ) {
-  const requestPull = requestPulls[requestKey];
+  const requestPull: any[] = requestPulls[requestKey];
   const requestLimit = requestKey === "upload" ? 3 : 3;
   if (
     requestActives[requestKey] >= requestLimit ||
@@ -229,23 +225,26 @@ async function requestCheck(
     if (!failureParts[fileId]) {
       failureParts[fileId] = {};
     }
-    const failureCount = (failureParts[fileId][partId] =
-      (failureParts[fileId][partId] || 0) + 1);
-    if (failureCount > 2) {
-      for (let key of requestPull) {
-        if (requestPull?.[key]?.fileId === fileId) {
-          delete requestPull[key];
-        }
-      }
-      delete failureParts[fileId];
-      // requestInfo.deferred.reject(error);
+    if (failureParts[fileId] === "failed") {
       return;
     }
-    requestActives[requestKey] -= activeDelta;
+    const failureCount = (failureParts[fileId][partId] =
+      (failureParts[fileId][partId] || 0) + 1);
 
-    requestPull.push(requestInfo);
-    // requestInfo.deferred.reject(error);
-    requestCheck(requestKey, fileId, partId);
+    if (failureCount > 2) {
+      const requestQueue = requestPull.filter((x: any) => x.fileId === fileId);
+      requestQueue.forEach((x) => {
+        const index = requestPull.findIndex((y) => x.request === y.request);
+        requestPull.splice(index, 1);
+      });
+      failureParts[fileId] = "failed";
+      requestInfo.deferred.reject(error);
+    } else {
+      requestActives[requestKey] -= activeDelta;
+
+      requestPull.push(requestInfo);
+      requestCheck(requestKey, fileId, partId);
+    }
   }
 }
 

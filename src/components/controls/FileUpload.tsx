@@ -125,8 +125,6 @@ const FileUpload = ({ control }: FileUploadPropsType) => {
     );
   }
 
-  console.log(acceptType);
-
   const handleChange = async (e: ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
