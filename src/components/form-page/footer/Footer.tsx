@@ -40,16 +40,18 @@ const Footer = () => {
     case 3:
     case 4:
     case 5:
-    case 7:
+    case 6:
     case 8:
+    case 9:
+    case 10:
+    case 11:
       labelRef.current = "FOOTER_BUTTON_LABEL_NEXT";
       break;
-    case 6:
-    case 9:
+    case 7:
+    case 12:
       labelRef.current = "FOOTER_BUTTON_LABEL_RESULT";
       break;
-    case 11:
-    case 12:
+    case 13:
       labelRef.current = "FOOTER_SEND_BUTTON";
       break;
     default:

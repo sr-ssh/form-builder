@@ -135,15 +135,26 @@ export const FBContextProvider = memo(
       const thenShowControlId = passCondition(thisControl?.conditions, {
         [name]: value,
       });
-      let groupControls = hideControlsWithConditionOn(
-        formSet.group_info?.controls,
-      );
+      let groupControls = formSet.group_info?.controls;
+      // let groupControls = hideControlsWithConditionOn(
+      //   formSet.group_info?.controls,
+      // );
       if (thenShowControlId) {
         const thenControl = groupControls.find(
           (item) => item.control_id === thenShowControlId,
         );
         if (thenControl) {
           thenControl.is_hidden = false;
+        }
+      } else {
+        for (let index = 0; index < thisControl.conditions.length; index++) {
+          const element = thisControl.conditions[index];
+
+          groupControls.forEach((item) => {
+            if (item.control_id === element.then_control_id) {
+              item.is_hidden = true;
+            }
+          });
         }
       }
       if (thisControl?.conditions) {

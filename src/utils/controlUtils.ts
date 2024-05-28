@@ -376,13 +376,294 @@ const hideAllSuggestions = (form: FormType) => {
       control.control_id === "control_id_suggestions_men" ||
       control.control_id === "control_id_suggestions_women"
     ) {
-      control.group_info?.controls?.map((c) => {
+      control.group_info?.controls?.forEach((c) => {
         c.is_hidden = true;
       });
     }
   });
   return form;
 };
+
+function calcFraminghamRiskScore(
+  age: number,
+  sex: string,
+  hdl: number,
+  bloodPressure: number,
+  isTreated: boolean,
+  cholesterol: number,
+  isSmoker: boolean,
+): number {
+  // Calculate risk based on age and sex
+  let ageRisk: number;
+  if (sex === "Women") {
+    if (age >= 20 && age <= 34) ageRisk = -7;
+    else if (age >= 35 && age <= 39) ageRisk = -3;
+    else if (age >= 40 && age <= 44) ageRisk = 0;
+    else if (age >= 45 && age <= 49) ageRisk = 3;
+    else if (age >= 50 && age <= 54) ageRisk = 6;
+    else if (age >= 55 && age <= 59) ageRisk = 8;
+    else if (age >= 60 && age <= 64) ageRisk = 10;
+    else if (age >= 65 && age <= 69) ageRisk = 12;
+    else if (age >= 70 && age <= 74) ageRisk = 14;
+    else if (age >= 75 && age <= 79) ageRisk = 16;
+    else ageRisk = 0; // Default risk if age is outside the provided ranges
+  } else if (sex === "Men") {
+    if (age >= 20 && age <= 34) ageRisk = -9;
+    else if (age >= 35 && age <= 39) ageRisk = -4;
+    else if (age >= 40 && age <= 44) ageRisk = 0;
+    else if (age >= 45 && age <= 49) ageRisk = 3;
+    else if (age >= 50 && age <= 54) ageRisk = 6;
+    else if (age >= 55 && age <= 59) ageRisk = 8;
+    else if (age >= 60 && age <= 64) ageRisk = 10;
+    else if (age >= 65 && age <= 69) ageRisk = 11;
+    else if (age >= 70 && age <= 74) ageRisk = 12;
+    else if (age >= 75 && age <= 79) ageRisk = 13;
+    else ageRisk = 0; // Default risk if age is outside the provided ranges
+  } else {
+    ageRisk = 0; // Default risk for unknown sex
+  }
+
+  // Calculate risk based on HDL
+  let hdlRisk: number;
+  if (hdl >= 60) hdlRisk = -1;
+  else if (hdl >= 50 && hdl <= 59) hdlRisk = 0;
+  else if (hdl >= 40 && hdl <= 49) hdlRisk = 1;
+  else if (hdl < 40) hdlRisk = 2;
+  else hdlRisk = 0; // Default risk if HDL is outside the provided ranges
+
+  // Calculate risk based on systolic blood pressure
+  let bpRisk: number;
+  if (bloodPressure <= 120) {
+    bpRisk = 0;
+  } else if (bloodPressure >= 120 && bloodPressure <= 129) {
+    if (sex === "Men") {
+      bpRisk = isTreated ? 1 : 0;
+    } else {
+      bpRisk = isTreated ? 3 : 1;
+    }
+  } else if (bloodPressure >= 130 && bloodPressure <= 139) {
+    if (sex === "Men") {
+      bpRisk = isTreated ? 2 : 1;
+    } else {
+      bpRisk = isTreated ? 4 : 2;
+    }
+  } else if (bloodPressure >= 140 && bloodPressure <= 159) {
+    if (sex === "Men") {
+      bpRisk = isTreated ? 2 : 1;
+    } else {
+      bpRisk = isTreated ? 5 : 3;
+    }
+  } else if (bloodPressure >= 160) {
+    if (sex === "Men") {
+      bpRisk = isTreated ? 3 : 2;
+    } else {
+      bpRisk = isTreated ? 6 : 4;
+    }
+  } else bpRisk = 0; // Default risk for unknown blood pressure range
+
+  // Calculate risk based on cholesterol
+  let cholesterolRisk: number;
+  if (sex === "Women") {
+    if (cholesterol < 160) cholesterolRisk = 0;
+    else if (cholesterol >= 160 && cholesterol <= 199) {
+      if (age >= 20 && age <= 39) {
+        cholesterolRisk = 4;
+      } else if (age >= 40 && age <= 49) {
+        cholesterolRisk = 3;
+      } else if (age >= 50 && age <= 59) {
+        cholesterolRisk = 2;
+      } else if (age >= 60 && age <= 79) {
+        cholesterolRisk = 1;
+      } else {
+        cholesterolRisk = 0;
+      }
+    } else if (cholesterol >= 200 && cholesterol <= 239) {
+      if (age >= 20 && age <= 39) {
+        cholesterolRisk = 8;
+      } else if (age >= 40 && age <= 49) {
+        cholesterolRisk = 6;
+      } else if (age >= 50 && age <= 59) {
+        cholesterolRisk = 4;
+      } else if (age >= 60 && age <= 69) {
+        cholesterolRisk = 2;
+      } else if (age >= 70 && age <= 79) {
+        cholesterolRisk = 1;
+      } else {
+        cholesterolRisk = 0;
+      }
+    } else if (cholesterol >= 240 && cholesterol <= 279) {
+      if (age >= 20 && age <= 39) {
+        cholesterolRisk = 11;
+      } else if (age >= 40 && age <= 49) {
+        cholesterolRisk = 8;
+      } else if (age >= 50 && age <= 59) {
+        cholesterolRisk = 5;
+      } else if (age >= 60 && age <= 69) {
+        cholesterolRisk = 3;
+      } else if (age >= 70 && age <= 79) {
+        cholesterolRisk = 2;
+      } else {
+        cholesterolRisk = 0;
+      }
+    } else if (cholesterol >= 280) {
+      if (age >= 20 && age <= 39) {
+        cholesterolRisk = 13;
+      } else if (age >= 40 && age <= 49) {
+        cholesterolRisk = 10;
+      } else if (age >= 50 && age <= 59) {
+        cholesterolRisk = 7;
+      } else if (age >= 60 && age <= 69) {
+        cholesterolRisk = 4;
+      } else if (age >= 70 && age <= 79) {
+        cholesterolRisk = 2;
+      } else {
+        cholesterolRisk = 0;
+      }
+    } else cholesterolRisk = 0; // Default risk if cholesterol is outside the provided ranges
+  } else if (sex === "Men") {
+    if (cholesterol < 160) cholesterolRisk = 0;
+    else if (cholesterol >= 160 && cholesterol <= 199) {
+      if (age >= 20 && age <= 39) {
+        cholesterolRisk = 4;
+      } else if (age >= 40 && age <= 49) {
+        cholesterolRisk = 3;
+      } else if (age >= 50 && age <= 59) {
+        cholesterolRisk = 2;
+      } else if (age >= 60 && age <= 69) {
+        cholesterolRisk = 1;
+      } else if (age >= 70 && age <= 79) {
+        cholesterolRisk = 0;
+      } else {
+        cholesterolRisk = 0;
+      }
+    } else if (cholesterol >= 200 && cholesterol <= 239) {
+      if (age >= 20 && age <= 39) {
+        cholesterolRisk = 7;
+      } else if (age >= 40 && age <= 49) {
+        cholesterolRisk = 5;
+      } else if (age >= 50 && age <= 59) {
+        cholesterolRisk = 3;
+      } else if (age >= 60 && age <= 69) {
+        cholesterolRisk = 1;
+      } else if (age >= 70 && age <= 79) {
+        cholesterolRisk = 0;
+      } else {
+        cholesterolRisk = 0;
+      }
+    } else if (cholesterol >= 240 && cholesterol <= 279) {
+      if (age >= 20 && age <= 39) {
+        cholesterolRisk = 9;
+      } else if (age >= 40 && age <= 49) {
+        cholesterolRisk = 6;
+      } else if (age >= 50 && age <= 59) {
+        cholesterolRisk = 4;
+      } else if (age >= 60 && age <= 69) {
+        cholesterolRisk = 2;
+      } else if (age >= 70 && age <= 79) {
+        cholesterolRisk = 1;
+      } else {
+        cholesterolRisk = 0;
+      }
+    } else if (cholesterol >= 280) {
+      if (age >= 20 && age <= 39) {
+        cholesterolRisk = 11;
+      } else if (age >= 40 && age <= 49) {
+        cholesterolRisk = 8;
+      } else if (age >= 50 && age <= 59) {
+        cholesterolRisk = 5;
+      } else if (age >= 60 && age <= 69) {
+        cholesterolRisk = 3;
+      } else if (age >= 70 && age <= 79) {
+        cholesterolRisk = 1;
+      } else {
+        cholesterolRisk = 0;
+      }
+    } else cholesterolRisk = 0; // Default risk if cholesterol is outside the provided ranges
+  } else {
+    cholesterolRisk = 0; // Default risk for unknown sex
+  }
+
+  // Calculate risk based on smoking status
+  let smokingRisk: number;
+  if (isSmoker) {
+    if (sex === "Women") {
+      if (age >= 20 && age <= 39) {
+        smokingRisk = 9;
+      } else if (age >= 40 && age <= 49) {
+        smokingRisk = 7;
+      } else if (age >= 50 && age <= 59) {
+        smokingRisk = 4;
+      } else if (age >= 60 && age <= 69) {
+        smokingRisk = 2;
+      } else if (age >= 70 && age <= 79) {
+        smokingRisk = 1;
+      } else {
+        smokingRisk = 0;
+      }
+    } else if (sex === "Men") {
+      if (age >= 20 && age <= 39) {
+        smokingRisk = 8;
+      } else if (age >= 40 && age <= 49) {
+        smokingRisk = 5;
+      } else if (age >= 50 && age <= 59) {
+        smokingRisk = 3;
+      } else if (age >= 60 && age <= 69) {
+        smokingRisk = 1;
+      } else if (age >= 70 && age <= 79) {
+        smokingRisk = 1;
+      } else {
+        smokingRisk = 0;
+      }
+    } else smokingRisk = 0; // Default risk for unknown sex
+  } else {
+    smokingRisk = 0; // Default risk if not a smoker
+  }
+
+  // Calculate total risk
+  const totalRisk = ageRisk + hdlRisk + bpRisk + cholesterolRisk + smokingRisk;
+
+  // Calculate risk based on cholesterol
+  let tenYearRisk: number;
+  if (sex === "Women") {
+    if (totalRisk < 0) tenYearRisk = 1;
+    else if (totalRisk >= 0 && totalRisk <= 12) tenYearRisk = 1;
+    else if (totalRisk === 13 || totalRisk === 14) tenYearRisk = 2;
+    else if (totalRisk === 15) tenYearRisk = 3;
+    else if (totalRisk === 16) tenYearRisk = 4;
+    else if (totalRisk === 17) tenYearRisk = 5;
+    else if (totalRisk === 18) tenYearRisk = 6;
+    else if (totalRisk === 19) tenYearRisk = 8;
+    else if (totalRisk === 20) tenYearRisk = 11;
+    else if (totalRisk === 21) tenYearRisk = 14;
+    else if (totalRisk === 22) tenYearRisk = 17;
+    else if (totalRisk === 23) tenYearRisk = 22;
+    else if (totalRisk === 24) tenYearRisk = 27;
+    else tenYearRisk = 30;
+  } else if (sex === "Men") {
+    if (totalRisk < 0) tenYearRisk = 1;
+    else if (totalRisk >= 0 && totalRisk <= 4) tenYearRisk = 1;
+    else if (totalRisk === 5 || totalRisk === 6) tenYearRisk = 2;
+    else if (totalRisk === 7) tenYearRisk = 3;
+    else if (totalRisk === 8) tenYearRisk = 4;
+    else if (totalRisk === 9) tenYearRisk = 5;
+    else if (totalRisk === 10) tenYearRisk = 6;
+    else if (totalRisk === 11) tenYearRisk = 8;
+    else if (totalRisk === 12) tenYearRisk = 10;
+    else if (totalRisk === 13) tenYearRisk = 12;
+    else if (totalRisk === 14) tenYearRisk = 16;
+    else if (totalRisk === 15) tenYearRisk = 20;
+    else if (totalRisk === 16) tenYearRisk = 25;
+    else tenYearRisk = 30;
+  } else {
+    tenYearRisk = 0; // Default risk for unknown sex
+  }
+
+  console.log(tenYearRisk, totalRisk);
+
+  // Return the total risk
+  return tenYearRisk;
+}
+
 // check for which result page to show, hide and show the controls of the last page
 export const showResult = (
   nextIndexes: PageIndexesType,
@@ -412,16 +693,19 @@ export const showResult = (
 
   if (nextControl?.control_id === "control_id_suggestions_men") {
     const group1Values = pages
-      .find((page) => page.indexes?.[0] === 7)
-      ?.getFormValues?.();
-    const group2Values = pages
       .find((page) => page.indexes?.[0] === 8)
       ?.getFormValues?.();
-    const group3Values = pages
+    const group2Values = pages
       .find((page) => page.indexes?.[0] === 9)
       ?.getFormValues?.();
-    const group4Values = pages
+    const group3Values = pages
       .find((page) => page.indexes?.[0] === 10)
+      ?.getFormValues?.();
+    const group4Values = pages
+      .find((page) => page.indexes?.[0] === 11)
+      ?.getFormValues?.();
+    const group5Values = pages
+      .find((page) => page.indexes?.[0] === 12)
       ?.getFormValues?.();
     if (
       group1Values &&
@@ -556,6 +840,36 @@ export const showResult = (
         "control_id_suggestions_men_8_1",
       );
     }
+    if (ageGroup && group5Values) {
+      const fScore = calcFraminghamRiskScore(
+        Number(ageGroup.control_id_1_1),
+        ageGroup.control_id_1_2 === "0" ? "Women" : "Men",
+        Number(group5Values.control_id_11_2_2),
+        Number(group5Values.control_id_11_4),
+        group5Values.control_id_11_3 !== "0",
+        Number(group5Values.control_id_11_2_1),
+        ageGroup.control_id_1_6 !== "0",
+      );
+
+      if (
+        group5Values &&
+        (group5Values.control_id_11_5 === "0" ||
+          group5Values.control_id_11_6 === "0" ||
+          fScore > 10)
+      ) {
+        form = showControl(
+          form,
+          "control_id_suggestions_men",
+          "control_id_suggestions_men_9",
+        );
+      } else {
+        form = showControl(
+          form,
+          "control_id_suggestions_men",
+          "control_id_suggestions_men_9_1",
+        );
+      }
+    }
     return { form, nextIndexes };
   }
   if (nextControl?.control_id === "control_id_suggestions_women") {
@@ -573,6 +887,9 @@ export const showResult = (
       ?.getFormValues?.();
     const group5Values = pages
       .find((page) => page.indexes?.[0] === 6)
+      ?.getFormValues?.();
+    const group6Values = pages
+      .find((page) => page.indexes?.[0] === 7)
       ?.getFormValues?.();
     if (
       group1Values &&
@@ -722,6 +1039,36 @@ export const showResult = (
         "control_id_suggestions_women_10_1",
       );
     }
+    if (ageGroup && group6Values) {
+      const fScore = calcFraminghamRiskScore(
+        Number(ageGroup.control_id_1_1),
+        ageGroup.control_id_1_2 === "0" ? "Women" : "Men",
+        Number(group6Values.control_id_11_2_2),
+        Number(group6Values.control_id_11_4),
+        group6Values.control_id_11_3 !== "0",
+        Number(group6Values.control_id_11_2_1),
+        ageGroup.control_id_1_6 !== "0",
+      );
+
+      if (
+        group6Values &&
+        (group6Values.control_id_11_5 === "0" ||
+          group6Values.control_id_11_6 === "0" ||
+          fScore > 10)
+      ) {
+        form = showControl(
+          form,
+          "control_id_suggestions_women",
+          "control_id_suggestions_women_11",
+        );
+      } else {
+        form = showControl(
+          form,
+          "control_id_suggestions_women",
+          "control_id_suggestions_women_11_1",
+        );
+      }
+    }
     if (ageGroup && ageGroup.control_id_1_6 !== "0" && cigaretteUnit > 20) {
       form = showControl(
         form,
@@ -764,6 +1111,7 @@ export const showPagesBasedOnAge = (
       "control_id_8",
       "control_id_9",
       "control_id_10",
+      "control_id_12",
     ]);
     if (Number(age) > 75) {
       return {
@@ -783,7 +1131,7 @@ export const showPagesBasedOnAge = (
     if (Number(age) > 75) {
       return {
         form: hideControl(form, ["control_id_7", "control_id_9"]),
-        nextIndexes: [7],
+        nextIndexes: [9],
       };
     } else if (Number(age) > 69) {
       return { form: hideControl(form, ["control_id_9"]), nextIndexes };
@@ -801,18 +1149,18 @@ export const setSteps = (pages: FormPageViewDataType[]) => {
   const age = infoGroup.control_id_1_1;
   if (sex === "0") {
     if (Number(age) >= 75) {
-      return ["کبد", "اعصاب و روان"];
+      return ["کبد", "اعصاب و روان", "قلبی عروقی"];
     } else if (Number(age) >= 65) {
-      return ["گوارش", "کبد", "سینه", "اعصاب و روان"];
+      return ["گوارش", "کبد", "سینه", "اعصاب و روان", "قلبی عروقی"];
     }
-    return ["گوارش", "کبد", "سینه", "گردن رحم", "اعصاب و روان"];
+    return ["گوارش", "کبد", "سینه", "گردن رحم", "اعصاب و روان", "قلبی عروقی"];
   } else {
     if (Number(age) >= 75) {
-      return ["کبد", "اعصاب و روان"];
+      return ["کبد", "اعصاب و روان", "قلبی عروقی"];
     } else if (Number(age) >= 69) {
-      return ["گوارش", "کبد", "اعصاب و روان"];
+      return ["گوارش", "کبد", "اعصاب و روان", "قلبی عروقی"];
     }
-    return ["گوارش", "کبد", "پروستات", "اعصاب و روان"];
+    return ["گوارش", "کبد", "پروستات", "اعصاب و روان", "قلبی عروقی"];
   }
 };
 

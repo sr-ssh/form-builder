@@ -70,12 +70,14 @@ const Label = ({
     control.control_id === "control_id_suggestions_men_4" ||
     control.control_id === "control_id_suggestions_men_6" ||
     control.control_id === "control_id_suggestions_men_8" ||
+    control.control_id === "control_id_suggestions_men_9" ||
     control.control_id === "control_id_suggestions_women_1" ||
     control.control_id === "control_id_suggestions_women_3" ||
     control.control_id === "control_id_suggestions_women_4" ||
     control.control_id === "control_id_suggestions_women_6" ||
     control.control_id === "control_id_suggestions_women_8" ||
-    control.control_id === "control_id_suggestions_women_10"
+    control.control_id === "control_id_suggestions_women_10" ||
+    control.control_id === "control_id_suggestions_women_11"
   ) {
     chipLabel = "پرخطر";
     chipColor = "#E72828";

@@ -60,27 +60,31 @@ const StepLabelStyle = styled(StepLabel)({
 export default function MyStepper() {
   const [indexes, setIndexes] = React.useState<PageIndexesType>([0]);
   const [activeStep, setActiveStep] = React.useState<number>(0);
-  let stepsRef = React.useRef<string[]>([]);
+  let stepsRef = React.useRef<string[]>();
+  let i: PageIndexesType;
 
   const { form, getSteps } = useFormPage({
     onIndexChanged: (nextIndexes: number[]) => {
-      console.log(nextIndexes, stepsRef.current);
+      if (!stepsRef.current?.length) stepsRef.current = getSteps();
+      if (!i) i = nextIndexes;
       if (
-        (nextIndexes[0] === 3 || nextIndexes[0] === 8) &&
-        stepsRef.current.length === 2
+        (nextIndexes[0] === 3 || nextIndexes[0] === 9) &&
+        stepsRef.current.length === 3
       ) {
         setActiveStep(0);
-      } else if (nextIndexes[0] >= 7) {
-        setActiveStep(nextIndexes[0] - 7);
-      } else {
-        setActiveStep(nextIndexes[0] - 2);
+      } else if (nextIndexes[0] === 2 || nextIndexes[0] === 8) {
+        setActiveStep(0);
+      } else if (i[0] < nextIndexes[0]) {
+        setActiveStep((pre) => pre + 1);
+      } else if (i[0] > nextIndexes[0]) {
+        setActiveStep((pre) => pre - 1);
       }
+      i = nextIndexes;
       setIndexes(nextIndexes);
     },
   });
 
   stepsRef.current = getSteps();
-  console.log(stepsRef.current);
   const control = getControl(form.controls, indexes);
   const isFinished = control?.control_id === "send";
   if (
@@ -92,7 +96,7 @@ export default function MyStepper() {
     return null;
   }
 
-  if (isFinished || indexes[0] === 11 || indexes[0] === 12) return null;
+  if (isFinished || indexes[0] === 14 || indexes[0] === 13) return null;
 
   return (
     <Box sx={{ width: "100%", marginBlockStart: 3, marginBlockEnd: 1 }}>

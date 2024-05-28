@@ -9,7 +9,7 @@
   "form_status": "Registration",
   "enable_edit_form": true,
   "progress_display_mode": "None",
-  "required_answer": false,
+  "required_answer": true,
   "theme": {
     "theme_id": "dfdd",
     "name": "پیش فرض 1",
@@ -677,6 +677,159 @@
       }
     },
     {
+      "control_id": "control_id_11",
+      "type": "Group",
+      "group_info": {
+        "type": "FormSet",
+        "controls": [
+          {
+            "control_id": "control_id_11_1",
+            "type": "MultipleOption",
+            "label_text": "آیا در یک ماه گذشته آزمایش های مربوط به HDL-C و Total Cholesterol و فشار خون انجام داده و مقدار آن را بخاطر دارید؟",
+            "multiple_option_info": {
+              "type": "Text",
+              "multi_select": false,
+              "randomize_option_number": false,
+              "arrange_type": "Vertical",
+              "options": [
+                { "text": "خیر", "value": 0 },
+                { "text": "بله", "value": 1 }
+              ]
+            },
+            "validations": [{ "type": "Required" }],
+            "conditions": [
+              {
+                "type": "ThenShow",
+                "then_control_id": "control_id_11_2",
+                "when_control_id": "control_id_11_1",
+                "conditions": [
+                  {
+                    "control_id": "control_id_11_1",
+                    "condition_type": "Equal",
+                    "condition_value": 1
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "control_id": "control_id_11_2",
+            "type": "Group",
+            "group_info": {
+              "type": "FormSet",
+              "controls": [
+                {
+                  "control_id": "control_id_11_2_1",
+                  "type": "TextBox",
+                  "label_text": "میزان Total cholesterol خود را وارد کنید. (mg/dL)",
+                  "text_box_info": { "type": "Number" },
+                  "validations": [
+                    { "type": "Required" },
+                    {
+                      "type": "Number",
+                      "regex_pattern": "^\\d{1,3}$"
+                    }
+                  ]
+                },
+                {
+                  "control_id": "control_id_11_2_2",
+                  "type": "TextBox",
+                  "label_text": "میزان HDL-C خود را وارد کنید.(mg/dl)",
+                  "text_box_info": { "type": "Number" },
+                  "validations": [
+                    { "type": "Required" },
+                    {
+                      "type": "Number",
+                      "regex_pattern": "^\\d{1,3}$"
+                    }
+                  ]
+                }
+              ]
+            }
+          },
+          {
+            "control_id": "control_id_11_3",
+            "type": "MultipleOption",
+            "label_text": "برای فشارخون خود تحت درمان می باشید؟",
+            "multiple_option_info": {
+              "type": "Text",
+              "multi_select": false,
+              "randomize_option_number": false,
+              "arrange_type": "Vertical",
+              "options": [
+                { "text": "خیر", "value": 0 },
+                { "text": "بله", "value": 1 }
+              ]
+            },
+            "validations": [{ "type": "Required" }],
+            "conditions": [
+              {
+                "type": "ThenShow",
+                "then_control_id": "control_id_11_4",
+                "when_control_id": "control_id_11_3",
+                "conditions": [
+                  {
+                    "control_id": "control_id_11_3",
+                    "condition_type": "Equal",
+                    "condition_value": 1,
+                    "composition_type": "Or"
+                  },
+                  {
+                    "control_id": "control_id_11_3",
+                    "condition_type": "Equal",
+                    "condition_value": 0
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "control_id": "control_id_11_4",
+            "type": "TextBox",
+            "label_text": "فشارخون سیستولیک خود را وارد کنید.(mmHg)",
+            "text_box_info": { "type": "Number" },
+            "validations": [
+              { "type": "Required" },
+              {
+                "type": "Number",
+                "regex_pattern": "^\\d{1,3}$"
+              }
+            ]
+          },
+          {
+            "control_id": "control_id_11_5",
+            "type": "MultipleOption",
+            "label_text": " آیا سابقه خانوادگی ابتلای زودرس به بیماری های قلبی عروقی زودرس(سنین کمتر از 55 سال در اقوام مرد و کمتر از 65 سال در اقوام زن) در اقوام درجه اول داشته اید؟",
+            "multiple_option_info": {
+              "type": "Text",
+              "multi_select": false,
+              "randomize_option_number": false,
+              "arrange_type": "Vertical",
+              "options": [
+                { "text": "بلی", "value": 0 },
+                { "text": "خیر", "value": 1 }
+              ]
+            }
+          },
+          {
+            "control_id": "control_id_11_6",
+            "type": "MultipleOption",
+            "label_text": "آیا احساس درد یا فشار در قفسه سینه بخصوص حین فعالیت، تنگی نفس حین خواب یا پیاده روی و یا ورم پاها داشته اید؟",
+            "multiple_option_info": {
+              "type": "Text",
+              "multi_select": false,
+              "randomize_option_number": false,
+              "arrange_type": "Vertical",
+              "options": [
+                { "text": "بلی", "value": 0 },
+                { "text": "خیر", "value": 1 }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
       "control_id": "control_id_7",
       "type": "Group",
       "label_text": "",
@@ -1161,6 +1314,159 @@
       }
     },
     {
+      "control_id": "control_id_12",
+      "type": "Group",
+      "group_info": {
+        "type": "FormSet",
+        "controls": [
+          {
+            "control_id": "control_id_12_1",
+            "type": "MultipleOption",
+            "label_text": "آیا در یک ماه گذشته آزمایش های مربوط به HDL-C و Total Cholesterol و فشار خون انجام داده و مقدار آن را بخاطر دارید؟",
+            "multiple_option_info": {
+              "type": "Text",
+              "multi_select": false,
+              "randomize_option_number": false,
+              "arrange_type": "Vertical",
+              "options": [
+                { "text": "خیر", "value": 0 },
+                { "text": "بله", "value": 1 }
+              ]
+            },
+            "validations": [{ "type": "Required" }],
+            "conditions": [
+              {
+                "type": "ThenShow",
+                "then_control_id": "control_id_12_2",
+                "when_control_id": "control_id_12_1",
+                "conditions": [
+                  {
+                    "control_id": "control_id_12_1",
+                    "condition_type": "Equal",
+                    "condition_value": 1
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "control_id": "control_id_12_2",
+            "type": "Group",
+            "group_info": {
+              "type": "FormSet",
+              "controls": [
+                {
+                  "control_id": "control_id_12_2_1",
+                  "type": "TextBox",
+                  "label_text": "میزان Total cholesterol خود را وارد کنید. (mg/dL)",
+                  "text_box_info": { "type": "Number" },
+                  "validations": [
+                    { "type": "Required" },
+                    {
+                      "type": "Number",
+                      "regex_pattern": "^\\d{1,3}$"
+                    }
+                  ]
+                },
+                {
+                  "control_id": "control_id_12_2_2",
+                  "type": "TextBox",
+                  "label_text": "میزان HDL-C خود را وارد کنید.(mg/dl)",
+                  "text_box_info": { "type": "Number" },
+                  "validations": [
+                    { "type": "Required" },
+                    {
+                      "type": "Number",
+                      "regex_pattern": "^\\d{1,3}$"
+                    }
+                  ]
+                }
+              ]
+            }
+          },
+          {
+            "control_id": "control_id_12_3",
+            "type": "MultipleOption",
+            "label_text": "برای فشارخون خود تحت درمان می باشید؟",
+            "multiple_option_info": {
+              "type": "Text",
+              "multi_select": false,
+              "randomize_option_number": false,
+              "arrange_type": "Vertical",
+              "options": [
+                { "text": "خیر", "value": 0 },
+                { "text": "بله", "value": 1 }
+              ]
+            },
+            "validations": [{ "type": "Required" }],
+            "conditions": [
+              {
+                "type": "ThenShow",
+                "then_control_id": "control_id_12_4",
+                "when_control_id": "control_id_12_3",
+                "conditions": [
+                  {
+                    "control_id": "control_id_12_3",
+                    "condition_type": "Equal",
+                    "condition_value": 1,
+                    "composition_type": "Or"
+                  },
+                  {
+                    "control_id": "control_id_12_3",
+                    "condition_type": "Equal",
+                    "condition_value": 0
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "control_id": "control_id_12_4",
+            "type": "TextBox",
+            "label_text": "فشارخون سیستولیک خود را وارد کنید.(mmHg)",
+            "text_box_info": { "type": "Number" },
+            "validations": [
+              { "type": "Required" },
+              {
+                "type": "Number",
+                "regex_pattern": "^\\d{1,3}$"
+              }
+            ]
+          },
+          {
+            "control_id": "control_id_12_5",
+            "type": "MultipleOption",
+            "label_text": " آیا سابقه خانوادگی ابتلای زودرس به بیماری های قلبی عروقی زودرس(سنین کمتر از 55 سال در اقوام مرد و کمتر از 65 سال در اقوام زن) در اقوام درجه اول داشته اید؟",
+            "multiple_option_info": {
+              "type": "Text",
+              "multi_select": false,
+              "randomize_option_number": false,
+              "arrange_type": "Vertical",
+              "options": [
+                { "text": "بلی", "value": 0 },
+                { "text": "خیر", "value": 1 }
+              ]
+            }
+          },
+          {
+            "control_id": "control_id_12_6",
+            "type": "MultipleOption",
+            "label_text": "آیا احساس درد یا فشار در قفسه سینه بخصوص حین فعالیت، تنگی نفس حین خواب یا پیاده روی و یا ورم پاها داشته اید؟",
+            "multiple_option_info": {
+              "type": "Text",
+              "multi_select": false,
+              "randomize_option_number": false,
+              "arrange_type": "Vertical",
+              "options": [
+                { "text": "بلی", "value": 0 },
+                { "text": "خیر", "value": 1 }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
       "control_id": "control_id_suggestions_women",
       "type": "Group",
       "label_text": "",
@@ -1346,6 +1652,26 @@
               "description": "ظرف یک سال آینده نیاز به اقدام خاصی نیست. برای حفظ سلامتی خود بعد از یک سال مجدداً تست غربالگری تشخیص زودرس سرطان‌های رایج را تکرار نمایید.",
               "type": "Note"
             }
+          },
+          {
+            "control_id": "control_id_suggestions_women_11",
+            "type": "PlaceHolder",
+            "label_text": "قلبی عروقی",
+            "is_hidden": true,
+            "place_holder_info": {
+              "description": "شما در گروه با خطر بیشتر برای ابتلا به بیماری های قلبی عروقی بوده و نیازمند مراجعه به متخصص قلب برای ارزیابی بیشتر هستید",
+              "type": "Note"
+            }
+          },
+          {
+            "control_id": "control_id_suggestions_women_11_1",
+            "type": "PlaceHolder",
+            "label_text": "قلبی عروقی",
+            "is_hidden": true,
+            "place_holder_info": {
+              "description": "ظرف یک سال آینده نیاز به اقدام خاصی نیست. برای حفظ سلامتی خود بعد از یک سال مجدداً تست غربالگری تشخیص زودرس سرطان‌های رایج را تکرار نمایید.",
+              "type": "Note"
+            }
           }
         ]
       }
@@ -1491,6 +1817,26 @@
             "control_id": "control_id_suggestions_men_8_1",
             "type": "PlaceHolder",
             "label_text": "اعصاب و روان",
+            "is_hidden": true,
+            "place_holder_info": {
+              "description": "ظرف یک سال آینده نیاز به اقدام خاصی نیست. برای حفظ سلامتی خود بعد از یک سال مجدداً تست غربالگری تشخیص زودرس سرطان‌های رایج را تکرار نمایید.",
+              "type": "Note"
+            }
+          },
+          {
+            "control_id": "control_id_suggestions_men_9",
+            "type": "PlaceHolder",
+            "label_text": "قلبی عروقی",
+            "is_hidden": true,
+            "place_holder_info": {
+              "description": "شما در گروه با خطر بیشتر برای ابتلا به بیماری های قلبی عروقی بوده و نیازمند مراجعه به متخصص قلب برای ارزیابی بیشتر هستید",
+              "type": "Note"
+            }
+          },
+          {
+            "control_id": "control_id_suggestions_men_9_1",
+            "type": "PlaceHolder",
+            "label_text": "قلبی عروقی",
             "is_hidden": true,
             "place_holder_info": {
               "description": "ظرف یک سال آینده نیاز به اقدام خاصی نیست. برای حفظ سلامتی خود بعد از یک سال مجدداً تست غربالگری تشخیص زودرس سرطان‌های رایج را تکرار نمایید.",

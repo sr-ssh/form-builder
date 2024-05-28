@@ -9,7 +9,6 @@ import Box from "@mui/material/Box";
 import { useFormPage } from "../../../hooks/useFormPage";
 import { PlaceHolderTypeEnum } from "../../../@types/controls/PlaceHolderTypes";
 import Label from "./Label";
-import Submit from "./Submit";
 import Errors from "./Errors";
 import Description from "./Description";
 import File from "./File";
@@ -38,7 +37,7 @@ const ControlWrapper = ({
   hideQuestionNumber,
 }: ControlWrapperPropsType) => {
   const { getControlErrors } = useFBControl(control);
-  const { getQuestionNumber, form, submitNext } = useFormPage({
+  const { getQuestionNumber } = useFormPage({
     id: control.control_id,
   });
   const theme = useTheme();
@@ -57,12 +56,14 @@ const ControlWrapper = ({
     control.control_id === "control_id_suggestions_men_4" ||
     control.control_id === "control_id_suggestions_men_6" ||
     control.control_id === "control_id_suggestions_men_8" ||
+    control.control_id === "control_id_suggestions_men_9" ||
     control.control_id === "control_id_suggestions_women_1" ||
     control.control_id === "control_id_suggestions_women_3" ||
     control.control_id === "control_id_suggestions_women_4" ||
     control.control_id === "control_id_suggestions_women_6" ||
     control.control_id === "control_id_suggestions_women_8" ||
-    control.control_id === "control_id_suggestions_women_10"
+    control.control_id === "control_id_suggestions_women_10" ||
+    control.control_id === "control_id_suggestions_women_11"
   ) {
     paperBorderColor = "#E72828";
   } else if (
@@ -132,8 +133,6 @@ const ControlWrapper = ({
           <Errors getControlErrors={getControlErrors} />
         </FormControl>
       )}
-
-      {/* <Submit control={control} form={form} submitNext={submitNext} /> */}
     </Container>
   );
 };

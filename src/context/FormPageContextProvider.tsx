@@ -209,10 +209,6 @@ export const FormPageContextProvider = memo(
 
     const gotoNext = async (data: FieldValues) => {
       if (Object.keys(data).length && !isDisabledPage()) {
-        console.log("APICALL__sendAnswer", {
-          form_id: guidRef.current,
-          answers: setAnswer(data),
-        });
         try {
           const res = await AxiosApi.SendAnswer({
             form_id: guidRef.current,
@@ -224,9 +220,6 @@ export const FormPageContextProvider = memo(
           }
           callNext(data);
         } catch (err) {
-          callNext(data);
-
-          console.log(err);
           openToast({
             message: "مشکلی پیش آمده است.",
             type: MessageType.Error,
