@@ -14,6 +14,7 @@ import FormPageItem from "../components/form-page/FormPageItem";
 import {
   QuestionAnswerType,
   QuestionAnswerTypeEnum,
+  SendAnswerStatusEnum,
 } from "../@types/AxiosApiTypes";
 import { ControlTypeEnum } from "../@types/controls/ControlTypes";
 import { PlaceHolderTypeEnum } from "../@types/controls/PlaceHolderTypes";
@@ -186,10 +187,14 @@ export const FormPageContextProvider = memo(
         if (Object.keys(data).length && !isDisabledPage()) {
           const answers = setAnswer(data);
           if (answers.length) {
-            await AxiosApi.SendAnswer({
+            const res = await AxiosApi.SendAnswer({
               form_id: formRef.current.form_id,
               answers: setAnswer(data),
             });
+            if (res?.status !== SendAnswerStatusEnum.Registered) {
+              // eslint-disable-next-line no-throw-literal
+              throw res as Error;
+            }
           }
         }
         const controlId = getControl(

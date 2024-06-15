@@ -3,6 +3,7 @@ import { ApiMethodEnum } from "./AxiosApiTypes";
 
 export enum ApiErrorStatusEnum {
   SERVER_ERROR = "SERVER_ERROR",
+  INVALID_INPUT = "InvalidInput",
 }
 
 export type AxiosResponseType<T = any> = {

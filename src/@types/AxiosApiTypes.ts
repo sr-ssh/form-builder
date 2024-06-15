@@ -35,7 +35,7 @@ export type SendAnswerRequestDateType = {
   answers?: QuestionAnswerType[];
 };
 
-enum SendAnswerStatusEnum {
+export enum SendAnswerStatusEnum {
   Registered = "Registered",
   InvalidInput = "InvalidInput",
   TimeOut = "TimeOut",
