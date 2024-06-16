@@ -37,4 +37,7 @@ export const globalLocales: GlobalLocalesType = {
   TIMER_REMAIN_DURATION: "زمان پاسخ‌دهی",
   FOOTER_SEND_BUTTON: "ارسال",
   FORM_SUBMITTED_SUCCESSFULLY: "فرم شما با موفقیت ثبت شد.",
+  SEND_ANSWER_INVALID_INPUT_ERROR: "پاسخ شما صحیح نمی‌باشد.",
+  SEND_ANSWER_TIMEOUT_ERROR: "زمان پاسخگویی شما تمام شده است.",
+  SEND_ANSWER_NOT_ALLOWED_ERROR: "شما اجازه پاسخگویی ندارید.",
 };

@@ -23,6 +23,7 @@ import { useGlobalLocales } from "../hooks/useGlobalLocales";
 import { AxiosApi } from "../axios";
 import { openToast } from "../core/utils/commonViews";
 import { MessageType } from "../core/@types/commonView";
+import { handleSendAnswerErrors } from "../utils/handleSendAnswerErrors";
 
 export type IndexListenersType = (indexes: PageIndexesType) => void;
 
@@ -139,14 +140,18 @@ export const FormPageContextProvider = memo(
             value === formRef.current.values?.[key]
           )
             continue;
-          const isMultiValue = typeof value === "object";
+          const control = getControlById(form.controls, key);
+          if (!control) continue;
+          const isMultiValue =
+            typeof value === "object" ||
+            control.type === ControlTypeEnum.MultipleOption;
 
           answers.push({
             control_id: key,
             answer_type: isMultiValue
               ? QuestionAnswerTypeEnum.MultiValue
               : QuestionAnswerTypeEnum.OneValue,
-            ...(isMultiValue ? { values: value } : { value }),
+            ...(isMultiValue ? { values: [...value] } : { value }),
           });
         }
       }
@@ -218,11 +223,7 @@ export const FormPageContextProvider = memo(
         questionStackRef.current.push([]);
         openPage(nextIndexes, data);
       } catch (error) {
-        console.log(error);
-        openToast({
-          message: "مشکلی پیش آمده است.",
-          type: MessageType.Error,
-        });
+        handleSendAnswerErrors(error?.status);
       }
     };
 

@@ -207,6 +207,10 @@ export const FBContextProvider = memo(
       let value;
       if (thisControl.type === ControlTypeEnum.FileUpload) {
         value = target.files?.[0];
+        const res = await handleFileInputChange(thisControl, value);
+        if (!res) {
+          return;
+        }
       } else {
         value = target.value;
       }
@@ -217,11 +221,6 @@ export const FBContextProvider = memo(
       ) {
         formController.clearErrors(target.name);
         formController.setValue(target.name, value);
-      }
-
-      const res = await handleFileInputChange(thisControl, value);
-      if (!res) {
-        return;
       }
 
       if (controls) {

@@ -38,4 +38,7 @@ export const globalLocales: GlobalLocalesType = {
   TIMER_REMAIN_DURATION: "Response Time",
   FOOTER_SEND_BUTTON: "send",
   FORM_SUBMITTED_SUCCESSFULLY: "Your form submitted successfully",
+  SEND_ANSWER_INVALID_INPUT_ERROR: "Your answer is invalid.",
+  SEND_ANSWER_TIMEOUT_ERROR: "Your response time has expired",
+  SEND_ANSWER_NOT_ALLOWED_ERROR: "You are not allowed to answer.",
 };
