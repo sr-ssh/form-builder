@@ -52,7 +52,7 @@ const MultiSelect = ({ control }: MultiSelectPropsType) => {
                   onBlur={onBlur}
                   name={name}
                   value={option.value}
-                  defaultChecked={defaultValue === option.value}
+                  defaultChecked={defaultValue.includes(option.value)}
                 />
               }
               label={
@@ -69,7 +69,7 @@ const MultiSelect = ({ control }: MultiSelectPropsType) => {
                   onBlur={onBlur}
                   name={name}
                   value={option.value}
-                  defaultChecked={defaultValue === option.value}
+                  defaultChecked={defaultValue.includes(option.value)}
                 />
               }
               label={option.text}
