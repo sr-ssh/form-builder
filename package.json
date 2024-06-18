@@ -51,7 +51,7 @@
   "scripts": {
     "prepare": "husky install",
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "npm version patch && react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "lint": "eslint .",
