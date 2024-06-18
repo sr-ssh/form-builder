@@ -2,6 +2,7 @@ import {
   ControlType,
   ControlTypeEnum,
 } from "../../@types/controls/ControlTypes";
+import { useFormPage } from "../../hooks/useFormPage";
 import { hideControlsWithConditionOn } from "../../utils/controlUtils";
 import DatePicker from "../controls/DatePicker";
 import DropDown from "../controls/DropDown";
@@ -21,6 +22,8 @@ const ControlSelector = ({
   isFloatingBox?: boolean;
   hideQuestionNumber?: boolean;
 }) => {
+  const { form } = useFormPage({});
+
   switch (control.type) {
     case ControlTypeEnum.TextBox:
       return <TextBox control={control} isFloatingBox={isFloatingBox} />;
@@ -35,6 +38,7 @@ const ControlSelector = ({
         <FormSetGroup
           controls={hideControlsWithConditionOn(
             control.group_info?.controls || [],
+            form.values,
           )}
           control={control}
           isFloatingBox={isFloatingBox}

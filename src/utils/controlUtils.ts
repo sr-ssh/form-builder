@@ -182,7 +182,7 @@ export const getNextIndex = (
       return nextIndexBaseOnCondition;
     }
   }
-  const filteredControls = hideControlsWithConditionOn(form.controls);
+  const filteredControls = hideControlsWithConditionOn(form.controls, values);
   let nextControl;
   let nextIndex: PageIndexesType | null = [];
   let isHidden: boolean | undefined = true;
@@ -241,16 +241,26 @@ const getParentWithLeftChildren = (
   }
 };
 
-export const hideControlsWithConditionOn = (controls: ControlType[]) => {
+export const hideControlsWithConditionOn = (
+  controls: ControlType[],
+  values?: FieldValues,
+) => {
   let filteredControls = [...controls];
   for (let i = 0; i < controls.length; i++) {
     const control = controls[i];
-    if (control.conditions?.length) {
+    if (control.conditions && control.conditions?.length) {
       for (let j = 0; j < control.conditions.length; j++) {
         const condition = control.conditions[j];
         filteredControls.map((item) => {
           if (item.control_id === condition.then_control_id) {
-            item.is_hidden = true;
+            if (
+              control.conditions &&
+              values &&
+              passCondition(control.conditions, values)
+            ) {
+            } else {
+              item.is_hidden = true;
+            }
           }
           return item;
         });
